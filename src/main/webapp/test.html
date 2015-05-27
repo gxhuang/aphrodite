@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link href="plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
+	<link href="plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+	<link href="plugins/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css"
+	rel="stylesheet" type="text/css" />
+	<link rel="stylesheet" type="text/css" href="css/aphrodite.css">
+</head>
+<body>
+	<div id="newOrEdit" dataset type="dataset" class="container-fluid">
+		<form id="formtest" class="form-horizontal show-grid" name="form" role="form">
+			<div class="form-group">
+				<label for="name" class="col-sm-1 control-label">姓名</label>
+				<div class="col-sm-5">
+					<input type="text" class="form-control" name="name" placeholder="姓名" role="field">
+				</div>
+				<label for="idno" class="col-sm-1 control-label">身份证</label>
+				<div class="col-sm-5">
+					<div class="input-group">
+						<input type="search" class="form-control" placeholder="身份证" role="field">	
+						<span class="input-group-btn">
+							<button class="btn btn-info" type="button">
+								<span class="glyphicon glyphicon-search"></span>
+							</button>
+						</span>
+					</div>
+				</div>
+			</div>
+			<div class="btn-group">
+				<button type="button" class="btn btn-success" name="new" data-toggle="collapse" data-target="#newOrEdit">新建</button>
+				<button type="button" class="btn btn-primary" name="edit" data-toggle="collapse" data-target="#newOrEdit">编辑</button>
+				<button type="button" class="btn btn-warning" name="delete">删除</button>
+				<button type="button" class="btn btn-info" name="search" data-toggle="collapse" data-target="#search">更多选项</button>
+				<button type="button" class="btn btn-warning">warning</button>
+			</div>
+		</form>
+	</div>
+	
+	<script src="plugins/jquery-2.1.0.min.js" type="text/javascript"></script>
+	<script src="./test.js" type="text/javascript"></script>
+	<script type="text/javascript">
+
+		jQuery(document).ready(function(){
+			//$.aphrodite()
+
+			$("#formtest")._form();
+
+			jQuery("[type=button]").on('click',function(e){
+				$(this).aphrodite() ;
+			}) ;
+		});
+	</script>
+</body>
