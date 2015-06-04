@@ -1,6 +1,7 @@
 
 //form 组件有提交按钮 具体form有多种，查看，新增修改，查询 role="form" 
 //有查询form 及新增修改form
+//form是否应该有search delete add，每个页面是否有多个页面
 (function(){
 	var Form = function(binding){
 		this.id = binding.attr("id") ;
