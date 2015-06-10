@@ -2,11 +2,11 @@
 <html lang="zh-CN">
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<link href="plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
-	<link href="plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
-	<link href="plugins/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css"
+	<link href="aphrodite/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
+	<link href="aphrodite/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+	<link href="aphrodite/plugins/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css"
 	rel="stylesheet" type="text/css" />
-	<link rel="stylesheet" type="text/css" href="css/aphrodite.css"></head>
+	<link rel="stylesheet" type="text/css" href="aphrodite/css/aphrodite.css"></head>
 <body>
 
 	<!--new or edit start-->
@@ -46,11 +46,30 @@
 						<div class="form-group">
 							<label for="growPlace" class="col-sm-1 control-label">居住地</label>
 							<div class="col-sm-5">
-								<input type="text" class="form-control" name="growPlace" placeholder="居住地">
+								<div class="input-group">
+									<input type="text" class="form-control">
+									<div class="input-group-btn">
+										<button type="button" class="btn btn-info" data-toggle="dropdown"><span class="glyphicon glyphicon-search"></span></button>
+										<ul class="dropdown-menu dropdown-menu-right">
+											<li><a href="#">Actiongggggggggggggggggggggggggggg</a></li>
+											<li><a href="#">Another action</a></li>
+											<li><a href="#">Something else here</a></li>
+											<li class="divider"></li>
+											<li><a href="#">Separated link</a></li>
+										</ul>
+									</div><!-- /btn-group -->
+								</div><!-- /input-group -->
 							</div>
 							<label for="nation" class="col-sm-1 control-label">民族</label>
 							<div class="col-sm-5">
-								<input type="text" class="form-control" v="nation" placeholder="民族">
+								<div class="input-group">
+								<input type="text" class="form-control" placeholder="Username">
+								<span class="input-group-btn">
+									<button class="btn btn-info" type="button">
+										<span class="glyphicon glyphicon-search"></span>
+									</button>
+								</span>
+								</div>
 							</div>
 						</div>
 						<div class="form-group">
@@ -106,6 +125,7 @@
 					<input type="text" class="form-control" v="nation" placeholder="民族">
 				</div>
 			</div>
+
 			<div class="form-group">
 				<div class="col-sm-offset-8 col-sm-4">
 					<button type="button" class="btn btn-primary" name="cancle">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;取消&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</button>
@@ -113,6 +133,7 @@
 					<button type="button" class="btn btn-primary" name="submit">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;确定&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</button>
 				</div>
 			</div>
+
 		</form>
 	</div>
 	<!--search end-->
@@ -269,26 +290,27 @@
 	<!--show grid end-->
 
 
-	<script src="plugins/jquery-2.1.0.min.js" type="text/javascript"></script>
-	<script src="plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+	<script src="aphrodite/plugins/jquery-2.1.0.min.js" type="text/javascript"></script>
+	<script src="aphrodite/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
 	<script type="text/javascript"
-	src="plugins/bootstrap-datetimepicker/js/bootstrap-datetimepicker.js"
+	src="aphrodite/plugins/bootstrap-datetimepicker/js/bootstrap-datetimepicker.js"
 	charset="UTF-8"></script>
 	<script type="text/javascript"
-	src="plugins/bootstrap-datetimepicker/js/locales/bootstrap-datetimepicker.zh-CN.js"
+	src="aphrodite/plugins/bootstrap-datetimepicker/js/locales/bootstrap-datetimepicker.zh-CN.js"
 	charset="UTF-8"></script>
 	<script type="text/javascript"
-	src="scripts/core/dataset.js"
+	src="aphrodite/scripts/core/dataset.js"
 	charset="UTF-8"></script>
 	<!--script type="text/javascript"
 	src="scripts/core/aphrodite.js"
 	charset="UTF-8">
-</script-->
+	</script-->
 
-<script type="text/javascript">
-	$(function(){
-	});	
+	<script type="text/javascript">
+		$(function(){
+			alert(111)
+		});
 
-</script>
+	</script>
 </body>
 </html>
