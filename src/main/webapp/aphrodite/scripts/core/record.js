@@ -1,5 +1,7 @@
 (function(){
-	var Record = new function(binding){
-		this.id
+	var Record = new function(data){
+		this.id = data.id ;
+		this.datatype = data.datatype ;
+
 	}
 })();

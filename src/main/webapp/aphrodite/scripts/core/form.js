@@ -19,10 +19,10 @@
 			var jqfields = this.binding.find("role='field'") ;
 			$.each(jqfields,function(index,jqfield){
 				//$()
-				var thisField = $(field) ;
-				var _field  = thisField.get() ;
+				var jqField = $(field) ;
+				var _field  = jqField.get() ;
 				if(_field==undefined){
-					thisField._field() ; 
+					jqField._field() ;
 				}
 				this.fields[_field.id] = _field ;
 			}) ;

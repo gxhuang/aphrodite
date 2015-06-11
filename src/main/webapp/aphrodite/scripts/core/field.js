@@ -11,15 +11,22 @@
 (function(){
 	var Field = function(binding){
 		this.binding = binding ;
+
+		var selector = binding.selector ;
+
 		this.id = binding.attr("id") ;
-		this.type="field" ;
+		this.type= selector ;
 		this.value = undefined ;
 		this.datatype = binding.attr("datatype") ;
 		this.format = binding.attr("format") ;//日期及数据精度模式
 		this.fromValue = undefined ;//开始日期
 		this.toValue = undefined ;//结束日期
 		this.minView = undefined ;
-		_init() ;
+		//如果是th则不需要这个初始化动作
+		if(this.type != "th"){
+			_init() ;
+		}
+
 	};
 	Field.prototype. = function() {
 		// body...
