@@ -62,7 +62,7 @@
 		var _field = new Field(this);
 		this.data("aphrodite.field",_field) ;
 	},
-	$.fn.get = function(){
+	$.fn.getField = function(){
 		return this.data("aphrodite.field") ;
 	}
 })();

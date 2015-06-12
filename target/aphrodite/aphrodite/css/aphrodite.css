@@ -1,0 +1,11 @@
+.show-grid {
+    margin-bottom: 10px;
+}
+.show-grid [class^="col-"] {
+    padding-top: 10px;
+}
+
+.show-grid2 {
+    margin: 0px;
+}
+.abc { padding-left: 0px; }

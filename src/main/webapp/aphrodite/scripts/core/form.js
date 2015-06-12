@@ -20,7 +20,7 @@
 			$.each(jqfields,function(index,jqfield){
 				//$()
 				var jqField = $(field) ;
-				var _field  = jqField.get() ;
+				var _field  = jqField.getField() ;
 				if(_field==undefined){
 					jqField._field() ;
 				}

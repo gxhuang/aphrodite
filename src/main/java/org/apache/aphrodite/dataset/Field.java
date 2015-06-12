@@ -17,9 +17,23 @@ public class Field {
 
     private String dataType ;
 
+    //日期字段专用
+    private String format ;
+
     //日期有开始时间和结束时间[]
     //多个值用逗号分隔
     private String value ;
+
+    //add change
+    private String status ;
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
 
     public String getName() {
         return name;
@@ -59,5 +73,13 @@ public class Field {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public String getFormat() {
+        return format;
+    }
+
+    public void setFormat(String format) {
+        this.format = format;
     }
 }

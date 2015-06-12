@@ -12,7 +12,10 @@
 		var ths = header.find("th") ;
 		$.each(ths,function(index,th){
 			var jqField = $(this) ;
-			var _field = jqFiele.get() ;
+			var _field = jqFiele.getField() ;
+			if(_field == undefined){
+				_field = jqField._field() ;
+			}
 			this.fields[_field.id] = _field ;
 		});
 

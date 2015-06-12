@@ -11,6 +11,7 @@ public class PageView {
 
     private String id ;
 
+    // «∑Ò «≤È—Ø
     private String action ;
 
     private String service ;
