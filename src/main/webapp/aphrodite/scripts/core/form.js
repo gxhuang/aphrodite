@@ -1,5 +1,5 @@
 (function(){
-	alert("form")
+	//alert("form")
 	var Form = function(binding){
 	    this.binding = binding ;
 		this.id = this.binding.attr("id") ;

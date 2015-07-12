@@ -9,7 +9,7 @@
 //按键权限的命名规则  grid.button  form.button  带有action属性的按钮可提交的按键
 
 (function(){
-	alert("field") ;
+	//alert("field") ;
 	var Field = function(binding){
 		this.binding = binding ;
 
@@ -61,6 +61,21 @@
 				}) ;
 			}else if(this.type=="search"){
 				//如果是搜索复合组件 对按钮的响应事件
+				this.binding.next("div").find("button").on("click",function(e){
+					var _this = $(this) ;
+					var _jqul = $(_this.next("ul")) ;
+					_jqul.empty();
+					_jqul.append("<li><a href=\"#\">Action</a></li><li><a href=\"#\">Another action</a></li><li><a href=\"#\">Something else here</a></li><li class=\"divider\" role=\"separator\"></li><li><a href=\"#\">Separated link</a></li>")
+
+					var _jqlis = _jqul.children("li").children("a").on("click",function(e){
+						alert(12345);
+					}) ;
+//					$.each(_jqlis,function(index,_li){
+//						$(_li).find("a").on("click",function(e){
+//							alert(12345);
+//						});
+//					}) ;
+				});
 			}
 		}
 	};

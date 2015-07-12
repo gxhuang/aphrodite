@@ -1,5 +1,6 @@
 (function(){
 	var Grid = function(binding){
+		this.id = binding.attr("id") ;
 		this.binding = binding ;
 		this.status = undefined ;//grid的状态 浏览或者修改
 		this.fields = [] ;
@@ -7,38 +8,43 @@
 	};
 	Grid.prototype = {
 		_init : function() {
-		// body...
-		var header = binding.find("table") ;
-		var ths = header.find("th") ;
-		$.each(ths,function(index,th){
-			var jqField = $(this) ;
-			var _field = jqFiele.getField() ;
-			if(_field == undefined){
-				_field = jqField._field() ;
-			}
-			this.fields[_field.id] = _field ;
-		});
+			// body...
+			var jqtable = $(this.binding) ;
+			var header = jqtable.find("thead") ;
+			var ths = header.find("th") ;
+			$.each(ths,function(index,th){
+				var jqField = $(this) ;
+				var _field = jqField.getField() ;
+				if(_field == undefined){
+					_field = jqField._field() ;
+				}
+				//this.fields[_field.id] = _field ;
+			});
 
 
-		//init head toolbar
+			//init head toolbar
+			this._initHeadToolbar();
 
-		//initFields
-
-		//init foot toolbar
+			//init foot toolbar
+			this.initFootToolbar() ;
 		},
-		/**
+		/****/
 		_initHeadToolbar : function(){
-
+			var _jqtoolbar = this.binding.find(".btn-group").find("button").on("click",function(e){
+				alert("button") ;
+			}) ;
 		},
 		_initThead : function(){
 
 		},
 		initFootToolbar:function(){
-
+			var jqfoot = $(this.binding).find(".pager").find("li").find("a").on("click",function(e){
+				alert("nl");
+			}) ;
 		},
 		_initEvent:function(){
 
-		},**/
+		},
 		_loadData:function(records){
 			if(records == undefined){
 				return ;
@@ -46,21 +52,37 @@
 			//records 是一个数组
 			var htmltbody = "" ;
 			$.each(records,function(index,record){
-				htmltbody += htmltbody + "<td"+record.value ;
+				htmltbody+="<tr>"
+				for(var field in record){
+					htmltbody += "<td>" ;
+					htmltbody +=record[field] ;
+					htmltbody +="</td>"
+				}
+				htmltbody+="</tr>"
 
-				htmltbody += htmltbody + "></td>"
 			});
 
 			var jqTbody = this.binding.find("tbody") ;
-			jqTbody.html("");
-			jqTnody.append(htmltbody) ;
+			jqTbody.empty();
+			jqTbody.append(htmltbody) ;
+			jqTbody.find("tr").on("click",function(e){
+//				$(this).css("active") ;
+
+				var _jqthis = $(this) ;
+				_jqthis.parent("tbody").find("tr[class=success]").removeClass("success") ;
+				_jqthis.attr("class","success") ;
+			});
 		}
 	};
-	$.fn.Grid = function(){
-		var _grid = new Grid(this) ;
-		this.data("aphrodite.grid",_grid) ;
-	},
-	$.fn.get = function(){
-		this.data("aphrodite.grid") ;
-	}
+
+	$.fn.extend ({
+		_grid:function(){
+			var _grid = new Grid(this) ;
+			this.data("aphrodite.grid",_grid) ;
+			return _grid ;
+		},
+		getGrid:function(){
+			this.data(aphrodite.grid) ;
+		}
+	});
 })();

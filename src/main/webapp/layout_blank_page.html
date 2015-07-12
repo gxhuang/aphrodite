@@ -373,7 +373,7 @@ License: You must have a valid license purchased only from themeforest(the above
 							<div class="tab-content">
 								<div class="tab-pane active" id="order">
 									</br>
-									<form id="orderForm" class="container-fluid form-horizontal show-grid" dataset="form" role="form">
+									<form id="orderForm" class="container-fluid form-horizontal hide" dataset="form" role="form">
 										<div class="form-group">
 											<label class="col-sm-1 control-label">姓名</label>
 											<div class="col-sm-5">
@@ -401,16 +401,10 @@ License: You must have a valid license purchased only from themeforest(the above
 											<label id="aaaa" class="col-sm-1 control-label">居住地</label>
 											<div class="col-sm-5">
 												<div class="input-group">
-
-													<input id="groupPlace" type="text" datatype="string" name="groupPlace" class="form-control" placeholder="居住地">
+													<input id="groupPlace" type="search" datatype="string" name="groupPlace" class="form-control" placeholder="居住地">
 													<div class="input-group-btn">
 														<button type="button" class="btn btn-info" data-toggle="dropdown" aria-expanded="true"><span class="glyphicon glyphicon-search"></span></button>
 														<ul class="dropdown-menu dropdown-menu-right">
-															<li><a href="#">Actiongggggggggggggggggggggggggggg</a></li>
-															<li><a href="#">Another action</a></li>
-															<li><a href="#">Something else here</a></li>
-															<li class="divider"></li>
-															<li><a href="#">Separated link</a></li>
 														</ul>
 													</div><!-- /btn-group -->
 												</div><!-- /input-group -->
@@ -421,13 +415,7 @@ License: You must have a valid license purchased only from themeforest(the above
 													<input type="text" aria-label="Text input with dropdown button" class="form-control">
 													<div class="input-group-btn">
 														<button aria-expanded="false" aria-haspopup="true" data-toggle="dropdown" class="btn btn-default dropdown-toggle" type="button"><span class="caret"></span></button>
-														<ul class="dropdown-menu dropdown-menu-right">
-															<li><a href="#">Action</a></li>
-															<li><a href="#">Another action</a></li>
-															<li><a href="#">Something else here</a></li>
-															<li class="divider" role="separator"></li>
-															<li><a href="#">Separated link</a></li>
-														</ul>
+
 													</div><!-- /btn-group -->
 												</div>
 													<!--input id="nation" type="text" datatype="string" name="nation"  class="form-control" placeholder="民族">
@@ -438,14 +426,71 @@ License: You must have a valid license purchased only from themeforest(the above
 													</span-->
 												</div>
 											</div>
-										</div>
 										<div class="form-group" dataset="toolbar">
-											<div class="col-sm-offset-8 col-sm-4">
-												<button type="button" class="btn btn-primary" name="cancle">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;取消&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</button>
-												<button type="button" class="btn btn-primary" name="submit">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;确定&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</button>
+											<div class="row">
+												<div class="col-md-6 col-md-offset-6">
+													<div class="btn-group btn-group-justified" aria-label="Justified button group" role="group">
+														<a class="btn btn-default btn-warning" role="button" href="#">取消</a>
+														<a class="btn btn-default btn-info" role="button" href="#">确定</a>
+													</div>
+												</div>
 											</div>
 										</div>
 									</form>
+
+
+									</br>
+
+									<div name="grid">
+									<!--toolbar start-->
+									<div class="row" name="toolbar">
+										<div class="col-sm-9">
+											<div class="btn-group">
+												<button type="button" class="btn btn-success" name="new">新建</button>
+												<button type="button" class="btn btn-primary" name="edit">编辑</button>
+												<button type="button" class="btn btn-warning" name="delete">删除</button>
+												<button type="button" class="btn btn-info" name="search">更多选项</button>
+												<button type="button" class="btn btn-warning">warning</button>
+											</div>
+										</div>
+
+									</div>
+									<!--toolbar end-->
+									<!--table start-->
+									</br>
+									<div class="panel panel-default">
+										<div class="panel-body">
+											<table class="table table-hover">
+												<thead>
+												<tr>
+													<th width="80px" name="name" datatype="string">姓名</th>
+													<th width="120px" name="idno" datatype="string">身份证</th>
+													<th width="80px" name="sex" datatype="string">性别</th>
+													<th width="80px" name="birth" datatype="date" format="yyyy-MM-dd">出生年月</th>
+													<th width="80px" name="birthPlace" datatype="string">出生地</th>
+													<th width="80px" name="growPlace" datatype="string">居住地</th>
+													<th width="80px" name="nation" datatype="string">民族</th>
+												</tr>
+												</thead>
+												<tbody>
+
+												</tbody>
+											</table>
+										</div>
+									</div>
+									<!--table end-->
+									<!--pagenation start-->
+									<ul class="pager">
+										<li class="previous">
+											<a href="#">&larr;上一页</a>
+										</li>
+										<span class="info">第2页/共20页</span>
+										<li class="next">
+											<a href="#">下一页&rarr;</a>
+										</li>
+									</ul>
+									<!--pagenation end-->
+									</div>
 								</div>
 
 							</div>
@@ -487,6 +532,7 @@ License: You must have a valid license purchased only from themeforest(the above
 <script src="aphrodite/plugins/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
 <script src="aphrodite/scripts/core/field.js"></script>
 <script src="aphrodite/scripts/core/form.js"></script>
+<script src="aphrodite/scripts/core/grid.js"></script>
 <script>
 	  var pageView = new Object() ;
 
@@ -509,7 +555,33 @@ License: You must have a valid license purchased only from themeforest(the above
 			var namefield = pageView.form.fields["name"];
 			namefield.binding.val("黄跃文") ;
 
+			var jqgrid = jqtab.find("div[name=grid]") ;
+			var grid = jqgrid._grid();
+
 			//alert(form.fields.length);
+
+			var obj = {};
+			obj.name="黄跃文";
+			obj.idno="350525198611014972" ;
+			obj.sex="male";
+			obj.birth="1986-11-01";
+			obj.birthPlace="永春";
+			obj.growPlace="永春"
+			obj.nation="汉";
+
+			var obj1 = {};
+			obj1.name="张凤兰";
+			obj1.idno="350525198611014972" ;
+			obj1.sex="female";
+			obj1.birth="1986-11-01";
+			obj1.birthPlace="永春";
+			obj1.growPlace="永春"
+			obj1.nation="汉";
+
+			var objs = new Array();
+			objs[0] =obj ;
+			objs[1]=obj1 ;
+			grid._loadData(objs) ;
 		 }) ;
       });
 
