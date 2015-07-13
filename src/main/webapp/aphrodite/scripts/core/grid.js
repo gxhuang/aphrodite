@@ -31,7 +31,14 @@
 		/****/
 		_initHeadToolbar : function(){
 			var _jqtoolbar = this.binding.find(".btn-group").find("button").on("click",function(e){
-				alert("button") ;
+				//alert("button") ;
+				var _jq = $(e.target);
+				var op = _jq.attr("name") ;
+				if(op == "new"){
+					var _jqgrid = _jq.parents("[name=grid]") ;
+					_jqgrid.addClass("hide")
+					_jqgrid.prev("br").prev("form").removeClass("hide") ;
+				}
 			}) ;
 		},
 		_initThead : function(){

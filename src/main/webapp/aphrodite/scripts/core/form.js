@@ -10,6 +10,7 @@
 	Form.prototype = {
 		_init:function(){
 			this._initFields();
+			this._initFunction();
 			//_initBtnGroup();
 		},
 		_initFields:function(){
@@ -28,6 +29,18 @@
 				}
 				fields[_field.id]= _field ;
 			}) ;
+		},
+		_initFunction:function(){
+			var jqtoolbar = this.binding.find("[name=toolbar]").find("a").on("click",function(e){
+				var _jq = $(e.target);
+				var name = _jq.attr("name") ;
+				if("cancle" == name){
+					_jq.parents("form").addClass("hide").next("br").next("[name=grid]").removeClass("hide") ;
+//					var _jqform = _jq.parents("form") ;
+//					_jqform.addClass("hide")
+//					_jqform.next("br").next("[name=grid]").removeClass("hide") ;
+				}
+			})
 		},
 		_initBtnGroup:function(){
 			// form 组件 $(".btn.btn-group")
