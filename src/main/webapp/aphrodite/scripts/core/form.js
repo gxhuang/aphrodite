@@ -42,6 +42,18 @@
 				}
 			})
 		},
+		setData:function(record){
+			for(var prop in record){
+				var field = this.fields[prop] ;
+				if(field != undefined){
+					field.binding.val(record[prop]) ;
+                	field.value = record[prop] ;
+				}
+
+			}
+//			alert();
+//			alert(record.name);
+		},
 		_initBtnGroup:function(){
 			// form 组件 $(".btn.btn-group")
 		}
@@ -51,11 +63,11 @@
 	$.fn.extend ({
 		_form:function(){
 			var form = new Form(this) ;
-			this.data(form.id,form) ;
+			$(this).data(form.id,form) ;
 			return form ;
 		},
 		getForm:function(){
-			this.data(this.attr("id")) ;
+			return $(this).data(this.attr("id")) ;
 		}
 	});
 })();

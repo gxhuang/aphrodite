@@ -545,6 +545,7 @@ License: You must have a valid license purchased only from themeforest(the above
 		 var tablist = pageContent.find("[role=tablist]") ;
 		 var tabs = tablist.find("li") ;
 		 $.each(tabs,function(index,tab){
+		 	//tabindex 通过tabindex区别是否是主
 			var jqlitab = $(tab) ;
 			var href = jqlitab.find("a").attr("href") ;
 

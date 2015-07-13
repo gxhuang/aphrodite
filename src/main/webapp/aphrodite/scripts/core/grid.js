@@ -33,11 +33,25 @@
 			var _jqtoolbar = this.binding.find(".btn-group").find("button").on("click",function(e){
 				//alert("button") ;
 				var _jq = $(e.target);
+				var _jqgrid = _jq.parents("[name=grid]") ;
 				var op = _jq.attr("name") ;
 				if(op == "new"){
-					var _jqgrid = _jq.parents("[name=grid]") ;
-					_jqgrid.addClass("hide")
-					_jqgrid.prev("br").prev("form").removeClass("hide") ;
+					_jqgrid.addClass("hide").prev("br").prev("form").removeClass("hide") ;
+				}else if(op == "edit"){
+					var active = _jqgrid.find("tbody").find("tr").filter(".success") ;
+					if(active == undefined || active.length == 0){
+						alert("please select!") ;
+					}else{
+						var obj = {};
+						active.find("td").each(function(index,ele){
+							var _this = $(ele) ;
+							obj[_this.attr("name")] = _this.text();
+						}) ;
+
+						_jqgrid.addClass("hide").prev("br").prev("form").removeClass("hide") ;
+						var form = _jqgrid.prev("br").prev("form").getForm().setData(obj) ;
+
+					}
 				}
 			}) ;
 		},
@@ -61,7 +75,7 @@
 			$.each(records,function(index,record){
 				htmltbody+="<tr>"
 				for(var field in record){
-					htmltbody += "<td>" ;
+					htmltbody += "<td name="+field+">" ;
 					htmltbody +=record[field] ;
 					htmltbody +="</td>"
 				}
@@ -70,11 +84,10 @@
 			});
 
 			var jqTbody = this.binding.find("tbody") ;
+			jqTbody.find("tr").unbind("click");
 			jqTbody.empty();
 			jqTbody.append(htmltbody) ;
 			jqTbody.find("tr").on("click",function(e){
-//				$(this).css("active") ;
-
 				var _jqthis = $(this) ;
 				_jqthis.parent("tbody").find("tr[class=success]").removeClass("success") ;
 				_jqthis.attr("class","success") ;
