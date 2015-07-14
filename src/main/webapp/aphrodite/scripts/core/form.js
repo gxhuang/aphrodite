@@ -39,6 +39,20 @@
 //					var _jqform = _jq.parents("form") ;
 //					_jqform.addClass("hide")
 //					_jqform.next("br").next("[name=grid]").removeClass("hide") ;
+				}else if("submit" == name){
+					alert(123) ;
+					var obj = {} ;
+					var form =_jq.parents("form") ;
+					var fields = form.getForm().fields ;
+
+					for(var index in fields){
+						var _field = fields[index] ;
+						obj[index] = _field.value ;
+					}
+
+					form.next("br").next("[name=grid]").removeClass("hide").getGrid().addData(obj);
+					form.addClass("hide") ;
+
 				}
 			})
 		},

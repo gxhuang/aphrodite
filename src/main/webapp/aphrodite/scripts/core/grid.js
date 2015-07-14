@@ -66,8 +66,25 @@
 		_initEvent:function(){
 
 		},
+		addData:function(record){
+			if(record == undefined){
+				return ;
+			}
+			var htmltbody ="<tr>"
+			for(var field in record){
+				htmltbody += "<td name="+field+">" ;
+				htmltbody +=record[field] ;
+				htmltbody +="</td>"
+			}
+			htmltbody+="</tr>"
+			this.binding.find("tbody").append(htmltbody).find("tr").last().on("click",function(e){
+				var _jqthis = $(this) ;
+				_jqthis.parent("tbody").find("tr[class=success]").removeClass("success") ;
+				_jqthis.addClass("success") ;
+			});
+		},
 		_loadData:function(records){
-			if(records == undefined){
+			if(records == undefined || records.length == 0){
 				return ;
 			}
 			//records 是一个数组
@@ -90,7 +107,7 @@
 			jqTbody.find("tr").on("click",function(e){
 				var _jqthis = $(this) ;
 				_jqthis.parent("tbody").find("tr[class=success]").removeClass("success") ;
-				_jqthis.attr("class","success") ;
+				_jqthis.addClass("success") ;
 			});
 		}
 	};
@@ -102,7 +119,7 @@
 			return _grid ;
 		},
 		getGrid:function(){
-			this.data(aphrodite.grid) ;
+			return 	this.data("aphrodite.grid") ;
 		}
 	});
 })();
