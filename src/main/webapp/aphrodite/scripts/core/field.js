@@ -12,9 +12,7 @@
 	//alert("field") ;
 	var Field = function(binding){
 		this.binding = binding ;
-
 		var selector = this.binding.selector ;
-
 		this.id = this.binding.attr("id") ;
 		this.type = this.binding.attr("type") ;
 		this.selector= selector ;
@@ -50,7 +48,6 @@
 				    var o = _jq.data(_jq.attr("id"))
 					var date = e.date ;
 					o.value = date.getFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDate() ;
-					//alert(date);
 				});
 				//event
 			}else if(this.type == "text"){
@@ -61,21 +58,13 @@
 				}) ;
 			}else if(this.type=="search"){
 				//如果是搜索复合组件 对按钮的响应事件
-				this.binding.next("div").find("button").on("click",function(e){
-					var _this = $(this) ;
-					var _jqul = $(_this.next("ul")) ;
-					_jqul.empty();
-					_jqul.append("<li><a href=\"#\">Action</a></li><li><a href=\"#\">Another action</a></li><li><a href=\"#\">Something else here</a></li><li class=\"divider\" role=\"separator\"></li><li><a href=\"#\">Separated link</a></li>")
+//				this.binding.next("div").find("button").on("click",function(e){
+//
+//				});
+				this.binding.on("change",function(e){
+					//查找相应的code ul下可以放个table吗
 
-					var _jqlis = _jqul.children("li").children("a").on("click",function(e){
-						alert(12345);
-					}) ;
-//					$.each(_jqlis,function(index,_li){
-//						$(_li).find("a").on("click",function(e){
-//							alert(12345);
-//						});
-//					}) ;
-				});
+				}) ;
 			}
 		}
 	};

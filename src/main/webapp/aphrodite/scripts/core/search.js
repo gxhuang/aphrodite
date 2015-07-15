@@ -9,18 +9,22 @@
         _init:function(){
         },
         _initEvent:function(){
-            var jqbtn = this.binding.find(".input-group-btn").find("button");
-            var jqinput = this.finding.find("input") ;
-
-            $(jqinput).on("change",function(e){
-
-            }) ;
+            var jqbtn = this.binding.next("div").find("button");
             $(jqbtn).on("click",function(e){
 
             }) ;
         },
-        setData:function(json){
+        setData:function(records){
+            if(records == undefined || records.length == 0){
+                return ;
+            }
 
+            var selhtml = "" ;
+            for(var record in records){
+                seltml += "<li code="+record.code+">"+record.name+"</li>" ;
+            }
+
+            this.binding.next("div").find("ul").append(selhtml) ;
         }
     }
 
