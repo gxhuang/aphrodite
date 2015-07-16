@@ -31,7 +31,6 @@
 		/****/
 		_initHeadToolbar : function(){
 			var _jqtoolbar = this.binding.find(".btn-group").find("button").on("click",function(e){
-				//alert("button") ;
 				var _jq = $(e.target);
 				var _jqgrid = _jq.parents("[name=grid]") ;
 				var op = _jq.attr("name") ;

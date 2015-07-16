@@ -1,11 +1,11 @@
 (function(){
     var Search = function(binding){
-        this.id = binding.attr("id") ;
+        this.method = binding.attr("id") ;
         this.binding = binding ;
-        this.value = binding.val();
+        this._init();
 
     } ;
-    Search.Prototype = {
+    Search.prototype = {
         _init:function(){
         },
         _initEvent:function(){
@@ -20,18 +20,29 @@
             }
 
             var selhtml = "" ;
-            for(var record in records){
-                seltml += "<li code="+record.code+">"+record.name+"</li>" ;
-            }
+           $.each(records,function(index,record){
+                selhtml += "<li><a href=\"#"+record.code+"\">"+record.name+"<a></li>" ;
+            });
 
             this.binding.next("div").find("ul").append(selhtml) ;
+            this.binding.next("div").find("ul").find("li").find("a").on("click",function(e){
+                var _jq = $(this) ;
+                var input=_jq.parents("div.input-group-btn").prev("input[type=search]").getField() ;
+                input.binding.val(_jq.text());
+                input.binding.value=_jq.attr("code") ;
+            }) ;
         }
-    }
+    };
 
 
     $.fn.extend ({
+        _search:function(){
+            var search = new Search(this);
+            this.data("search",search) ;
+            return search ;
+        },
         getSearch:function(){
-            this.data(this.attr("id")) ;
+
         }
     });
 })();

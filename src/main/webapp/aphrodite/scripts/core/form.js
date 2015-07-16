@@ -1,5 +1,4 @@
 (function(){
-	//alert("form")
 	var Form = function(binding){
 	    this.binding = binding ;
 		this.id = this.binding.attr("id") ;
@@ -36,11 +35,7 @@
 				var name = _jq.attr("name") ;
 				if("cancle" == name){
 					_jq.parents("form").addClass("hide").next("br").next("[name=grid]").removeClass("hide") ;
-//					var _jqform = _jq.parents("form") ;
-//					_jqform.addClass("hide")
-//					_jqform.next("br").next("[name=grid]").removeClass("hide") ;
 				}else if("submit" == name){
-					alert(123) ;
 					var obj = {} ;
 					var form =_jq.parents("form") ;
 					var fields = form.getForm().fields ;
@@ -65,8 +60,6 @@
 				}
 
 			}
-//			alert();
-//			alert(record.name);
 		},
 		_initBtnGroup:function(){
 			// form 组件 $(".btn.btn-group")
