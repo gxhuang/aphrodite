@@ -381,7 +381,7 @@ License: You must have a valid license purchased only from themeforest(the above
 											</div>
 											<label class="col-sm-1 control-label">身份证</label>
 											<div class="col-sm-5">
-												<input id="idno" type="text" datatype="string" class="form-control" name="idno" placeholder="身份证">
+												<input id="idno" type="text" datatype="string" class="form-control" name="idno" placeholder="身份证" onchange="alert(112)">
 											</div>
 										</div>
 										<div class="form-group">
@@ -563,7 +563,6 @@ License: You must have a valid license purchased only from themeforest(the above
 			var jqgrid = jqtab.find("div[name=grid]") ;
 			var grid = jqgrid._grid();
 
-			//alert(form.fields.length);
 
 			var obj = {};
 			obj.name="黄跃文";
@@ -590,9 +589,7 @@ License: You must have a valid license purchased only from themeforest(the above
 		 }) ;
       });
 
-      $("[name=submit]").on("click",function(e){
-      	alert(pageView.form.fields["birth"].value )
-      }) ;
+
    </script>
 <!-- END JAVASCRIPTS -->
 </body>
