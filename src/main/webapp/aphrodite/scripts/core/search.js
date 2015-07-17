@@ -11,6 +11,7 @@
         this._initEvent();
         },
         _initEvent:function(){
+            /**
             this.binding.on("keyup",function(e){
 
                 //alert($(this).val())
@@ -18,20 +19,25 @@
                 _jq.getSearch().filter(_jq.val()) ;
 
                _jq.getSearch().binding.next("div").find("ul").dropdown("toggle")
-            }) ;
+            }) ;**/
         },
         filter:function(value){
-            var arr = new Array();
-            $.each(this.records,function(index, record){
-                if(value == record.name){
-                    arr[arr.length] = record ;
+//            $.each(this.records,function(index, record){
+//                if(value == record.name){
+//                    arr[arr.length] = record ;
+//                }
+//            }) ;
+              this.binding.next("div").find("ul").find("li").filter(function(index){
+                var jq = $(this) ;
+                if(jq.find("a").text() != value){
+                    jq.addClass("hide") ;
                 }
-            }) ;
+              }) ;
 
-            this.setData(arr) ;
+//            this.setData(arr) ;
         },
         setData:function(records){
-            this.records = records ;
+//            this.records = records ;
             if(records == undefined || records.length == 0){
                 return ;
             }
@@ -45,8 +51,9 @@
             this.binding.next("div").find("ul").find("li").find("a").on("click",function(e){
                 var _jq = $(this) ;
                 var input=_jq.parents("div.input-group-btn").prev("input[type=search]").getField() ;
+                //alert(_jq.attr("href"))
                 input.binding.val(_jq.text());
-                input.binding.value=_jq.attr("code") ;
+                input.binding.value=_jq.attr("href") ;
             }) ;
         }
     };
