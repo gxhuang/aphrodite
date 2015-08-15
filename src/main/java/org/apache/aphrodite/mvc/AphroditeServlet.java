@@ -17,7 +17,7 @@ public class AphroditeServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 //        super.doPost(req, resp);
-        req.gets
+//        req.gets
 
     }
 

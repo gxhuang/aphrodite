@@ -12,12 +12,27 @@ public class PageView {
     //对就package+class
     private String id ;
 
-    //是否是查询
+    //是否是查询还是增删改 增删改数据从Grid取
     private String action ;
 
     private String service ;
 
+    //查询及数据表现用的
     private Form form ;
 
     private Grid grid ;
+
+    public <T> T toObject(Class<?> clazz){
+
+        try {
+            T t = (T) clazz.newInstance();
+//            t.getClass().getm
+        } catch (InstantiationException e) {
+            e.printStackTrace();
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        }
+
+        return null ;
+    }
 }

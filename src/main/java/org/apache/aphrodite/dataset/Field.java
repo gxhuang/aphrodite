@@ -9,6 +9,7 @@ package org.apache.aphrodite.dataset;
  */
 public class Field {
 
+    //查询时开始时间和结束时间对应的查询字段是一样的，但是Id不一样
     private String id ;
 
     private String name ;
@@ -20,8 +21,6 @@ public class Field {
     //日期字段专用
     private String format ;
 
-    //日期有开始时间和结束时间[]
-    //多个值用逗号分隔
     private String value ;
 
     //add change
@@ -81,5 +80,10 @@ public class Field {
 
     public void setFormat(String format) {
         this.format = format;
+    }
+
+
+    public static enum Operator{
+        EQUALS,PRE_LIKE,LIKE,GREATER,LESS
     }
 }

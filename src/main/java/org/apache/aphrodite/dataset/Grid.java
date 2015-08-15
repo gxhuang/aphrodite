@@ -13,6 +13,8 @@ public class Grid {
 
     private List<Record> records ;
 
+    private List<Field> fields ;
+
     private String id ;
 
     private Integer pageSize ;
@@ -20,4 +22,6 @@ public class Grid {
     private Integer pageNo ;
 
     private Integer totalPage ;
+
+
 }
