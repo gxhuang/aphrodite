@@ -22,11 +22,6 @@
             }) ;**/
         },
         filter:function(value){
-//            $.each(this.records,function(index, record){
-//                if(value == record.name){
-//                    arr[arr.length] = record ;
-//                }
-//            }) ;
               this.binding.next("div").find("ul").find("li").filter(function(index){
                 var jq = $(this) ;
                 if(jq.find("a").text() != value){

@@ -9,6 +9,7 @@ package org.apache.aphrodite.dataset;
  */
 public class PageView {
 
+    //对就package+class
     private String id ;
 
     //是否是查询
