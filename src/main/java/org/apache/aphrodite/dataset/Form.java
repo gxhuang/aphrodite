@@ -1,6 +1,7 @@
 package org.apache.aphrodite.dataset;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * ¿‡√Ë ˆ£∫
@@ -11,17 +12,11 @@ import java.util.List;
  */
 public class Form {
 
-    private List<Field> fields ;
+//    private List<Field> fields ;
+
+    private Map<String,String> values ;
 
     private String id ;
-
-    public List<Field> getFields() {
-        return fields;
-    }
-
-    public void setFields(List<Field> fields) {
-        this.fields = fields;
-    }
 
     public String getId() {
         return id;

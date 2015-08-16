@@ -13,8 +13,6 @@ public class Grid {
 
     private List<Record> records ;
 
-    private List<Field> fields ;
-
     private String id ;
 
     private Integer pageSize ;

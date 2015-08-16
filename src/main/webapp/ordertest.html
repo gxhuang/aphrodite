@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<!-- BEGIN PAGE CONTENT-->
+<div class="row">
+    <div class="col-md-12">
+        <!--new or edit start-->
+        <div id="orderNewOrEdit" class="container-fluid collapse in">
+            <div id="tabs" class="row">
+                <ul class="nav nav-pills nav-justified" role="tablist">
+                    <li class="active"><a href="#order" role="tab" data-toggle="tab">订单信息</a></li>
+                </ul>
+                <div class="tab-content">
+                    <div class="tab-pane active" id="order">
+                        </br>
+                        <form id="orderForm" class="container-fluid form-horizontal hide" dataset="form" role="form">
+                            <div class="form-group">
+                                <label class="col-sm-1 control-label">姓名</label>
+                                <div class="col-sm-5">
+                                    <input id="name" type="text" datatype="string" class="form-control" name="name" placeholder="姓名">
+                                </div>
+                                <label class="col-sm-1 control-label">身份证</label>
+                                <div class="col-sm-5">
+                                    <input id="idno" type="text" datatype="string" class="form-control" name="idno" placeholder="身份证" onchange="alert(112)">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-1 control-label">性别</label>
+                                <div class="col-sm-5">
+                                    <input id="sex" type="text" datatype="string" class="form-control" name="sex" placeholder="性别">
+                                </div>
+                                <label class="col-sm-1 control-label">出生年月</label>
+                                <div class="col-sm-5">
+                                    <div class="input-group date form_date" data-date="" data-link-field="dtp_input2">
+                                        <input class="form-control" id="birth" type="text" datatype="date" name="birth" format="yyyy-mm-dd" placeholder="出生年月">
+                                        <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label id="aaaa" class="col-sm-1 control-label">居住地</label>
+                                <div class="col-sm-5">
+                                    <div class="input-group">
+                                        <input id="groupPlace" type="search" datatype="string" name="groupPlace" class="form-control" placeholder="居住地">
+                                        <div class="input-group-btn">
+                                            <button type="button" class="btn btn-info" data-toggle="dropdown" aria-expanded="true"><span class="glyphicon glyphicon-search"></span></button>
+                                            <ul class="dropdown-menu dropdown-menu-right">
+                                            </ul>
+                                        </div><!-- /btn-group -->
+                                    </div><!-- /input-group -->
+                                </div>
+                                <label class="col-sm-1 control-label">民族</label>
+                                <div class="col-sm-5">
+                                    <div class="input-group">
+                                        <input type="text" aria-label="Text input with dropdown button" class="form-control">
+                                        <div class="input-group-btn">
+                                            <button aria-expanded="false" aria-haspopup="true" data-toggle="dropdown" class="btn btn-default dropdown-toggle" type="button"><span class="caret"></span></button>
+                                            <ul class="dropdown-menu dropdown-menu-right">
+                                                <!--li><a href=""><table class="table table-hover"><thead><tr><th>产品编号</th><th>产品规格</th><th>产品名称</th></tr></thead><tbody><tr><td>aaa</td><td>30*40*50</td><td>bbb</td></tr></tbody></table></a></li>
+                                                <li><ul class="pager pager-sm"><li class="previous"><a href="#">&larr;上一页</a></li><li class="next"><a href="#">下一页&rarr;</a></li></ul></li-->
+                                            </ul>
+                                        </div><!-- /btn-group -->
+                                    </div>
+                                    <!--input id="nation" type="text" datatype="string" name="nation"  class="form-control" placeholder="民族">
+                                    <span class="input-group-btn">
+                                        <button class="btn btn-info" type="button">
+                                            <span class="glyphicon glyphicon-search"></span>
+                                        </button>
+                                    </span-->
+                                </div>
+                            </div>
+                            <div class="form-group" name="toolbar">
+                                <div class="row">
+                                    <div class="col-md-6 col-md-offset-6">
+                                        <div class="btn-group btn-group-justified" aria-label="Justified button group" role="group">
+                                            <a class="btn btn-default btn-info" role="button" href="#" name="submit">确定</a>
+                                            <a class="btn btn-default btn-warning" role="button" href="#" name="cancle">取消</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+
+                        </br>
+
+                        <div name="grid">
+                            <!--toolbar start-->
+                            <div class="row" name="toolbar">
+                                <div class="col-sm-9">
+                                    <div class="btn-group">
+                                        <button type="button" class="btn btn-success" name="new">新建</button>
+                                        <button type="button" class="btn btn-primary" name="edit">编辑</button>
+                                        <button type="button" class="btn btn-warning" name="delete">删除</button>
+                                        <button type="button" class="btn btn-info" name="search">更多选项</button>
+                                        <button type="button" class="btn btn-warning">warning</button>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <!--toolbar end-->
+                            <!--table start-->
+                            </br>
+                            <div class="panel panel-default">
+                                <div class="panel-body">
+                                    <table class="table table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th width="80px" name="name" datatype="string">姓名</th>
+                                                <th width="120px" name="idno" datatype="string">身份证</th>
+                                                <th width="80px" name="sex" datatype="string">性别</th>
+                                                <th width="80px" name="birth" datatype="date" format="yyyy-MM-dd">出生年月</th>
+                                                <th width="80px" name="birthPlace" datatype="string">出生地</th>
+                                                <th width="80px" name="growPlace" datatype="string">居住地</th>
+                                                <th width="80px" name="nation" datatype="string">民族</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <!--table end-->
+                            <!--pagenation start-->
+                            <ul class="pager">
+                                <li class="previous">
+                                    <a href="#">&larr;上一页</a>
+                                </li>
+                                <span class="info">第2页/共20页</span>
+                                <li class="next">
+                                    <a href="#">下一页&rarr;</a>
+                                </li>
+                            </ul>
+                            <!--pagenation end-->
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+        <!--new or edit end-->
+    </div>
+</div>
+<!-- END PAGE CONTENT-->
+<script>
+    var pageView = new Object() ;
+
+      jQuery(document).ready(function() {
+       	 <!--$("#order").test();-->
+
+		 var pageContent = $(".page-content") ;
+		 var tablist = pageContent.find("[role=tablist]") ;
+		 var tabs = tablist.find("li") ;
+		 $.each(tabs,function(index,tab){
+		 	//tabindex 通过tabindex区别是否是主
+			var jqlitab = $(tab) ;
+			var href = jqlitab.find("a").attr("href") ;
+
+			var jqtab = $(href) ;
+			var jqForm = jqtab.find("form") ;
+			var form = jqForm._form() ;
+			pageView.form = form ;
+			var namefield = pageView.form.fields["name"];
+			namefield.binding.val("黄跃文") ;
+
+			var jqgrid = jqtab.find("div[name=grid]") ;
+			var grid = jqgrid._grid();
+
+
+			var obj = {};
+			obj.name="黄跃文";
+			obj.idno="350525198611014972" ;
+			obj.sex="male";
+			obj.birth="1986-11-01";
+			obj.birthPlace="永春";
+			obj.growPlace="永春"
+			obj.nation="汉";
+
+			var obj1 = {};
+			obj1.name="张凤兰";
+			obj1.idno="350525198611014972" ;
+			obj1.sex="female";
+			obj1.birth="1986-11-01";
+			obj1.birthPlace="永春";
+			obj1.growPlace="永春"
+			obj1.nation="汉";
+
+			var objs = new Array();
+			objs[0] =obj ;
+			objs[1]=obj1 ;
+			grid._loadData(objs) ;
+		 }) ;
+      });
+</script>
+</body>
+</html>
