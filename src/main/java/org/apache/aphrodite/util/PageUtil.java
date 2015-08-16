@@ -94,7 +94,7 @@ public abstract class PageUtil {
         String simpleType = field.getType().getSimpleName() ;
         if("Date".equals(simpleType)){
             type = type+"text\"" ;
-        }else if("String".equals(simpleType)){
+        }else {
             type = type+"text\"" ;
         }
         return type ;
@@ -102,13 +102,7 @@ public abstract class PageUtil {
 
     private static String getDataType(Field field){
 
-        String datatype = "datatype=\"" ;
-        String simpleType = field.getType().getSimpleName() ;
-        if("Date".equals(simpleType)){
-            datatype = datatype+"Date\"" ;
-        }else if("String".equals(simpleType)){
-            datatype = datatype+"String\"" ;
-        }
+        String datatype = "datatype=\"" + field.getType().getSimpleName() ;
         return datatype ;
     }
 

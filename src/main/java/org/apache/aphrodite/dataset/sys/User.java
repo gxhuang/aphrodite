@@ -2,6 +2,8 @@ package org.apache.aphrodite.dataset.sys;
 
 import org.apache.aphrodite.dataset.BaseInfo;
 
+import java.util.Date;
+
 /**
  * ¿‡√Ë ˆ£∫
  *
@@ -18,4 +20,8 @@ public class User extends BaseInfo{
     private String code ;
 
     private String passwd ;
+
+    private int maxTry ;
+
+    private Date lastLogin ;
 }

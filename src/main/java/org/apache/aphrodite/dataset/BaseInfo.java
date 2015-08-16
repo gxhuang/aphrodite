@@ -7,7 +7,7 @@ package org.apache.aphrodite.dataset;
  * <p>
  * History:  2015Äê05ÔÂ07ÈÕ 15:33   huang.yuewen   Created.
  */
-public class BaseInfo {
+public abstract class BaseInfo {
 
     protected String createdByUser ;
 
