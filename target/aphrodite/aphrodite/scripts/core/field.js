@@ -11,58 +11,79 @@
 (function(){
 	var Field = function(binding){
 		this.binding = binding ;
-
-		var selector = binding.selector ;
-
-		this.id = binding.attr("id") ;
-		this.type= selector ;
+		var selector = this.binding.selector ;
+		this.id = this.binding.attr("id") ;
+		this.type = this.binding.attr("type") ;
+		this.selector= selector ;
 		this.value = undefined ;
-		this.datatype = binding.attr("datatype") ;
-		this.format = binding.attr("format") ;//日期及数据精度模式
+		this.datatype = this.binding.attr("datatype") ;
+		this.format = this.binding.attr("format") ;//日期及数据精度模式
 		this.fromValue = undefined ;//开始日期
 		this.toValue = undefined ;//结束日期
 		this.minView = undefined ;
 		//如果是th则不需要这个初始化动作
 		if(this.type != "th"){
-			_init() ;
+			this._init() ;
 		}
 
 	};
-	Field.prototype. = function() {
+	Field.prototype = {
 		// body...
 		_init:function(){
-			_initField();
-			_initEvent() ;
+			this._initField();
+			//this._initEvent() ;
 		},
 		_initField:function(){
-			if(this.type == "date"){
-				this.binding.datetimepicker({
-					language : 'zh-CN',
-					format : this.format,
+			if(this.datatype == "date"){
+				this.binding.closest(".form_date").datetimepicker({
+					format : "yyyy-mm-dd",
 					autoclose : true,
 					todayBtn : true,
 					todayHighlight : true,
-					minView : this.minView,
+					minView : 3,
 					pickerPosition : "bottom-left"
+				}).on("changeDate",function(e){
+				    var _jq = $(this).find("input") ;
+				    var o = _jq.data(_jq.attr("id"))
+					var date = e.date ;
+					o.value = date.getFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDate() ;
 				});
 				//event
 			}else if(this.type == "text"){
 				this.binding.on("change",function(e){
-					this.value = $(this).val();
+					var _jq = $(this) ;
+					var oField = _jq.data(_jq.attr("id")) ;
+					oField.value = _jq.val();
 				}) ;
 			}else if(this.type=="search"){
 				//如果是搜索复合组件 对按钮的响应事件
+//				this.binding.next("div").find("button").on("click",function(e){
+//
+//				});
+				var search = this.binding._search();
+				var arr = new Array();
+
+				var obj = {};
+				obj.code="yc"
+				obj.name="永春" ;
+				arr[0] = obj ;
+
+				var obj1 = {};
+				obj1.code="nh" ;
+				obj1.name="宁化" ;
+				arr[1] = obj1 ;
+				search.setData(arr);
 			}
-		},
-		_initToolbar : function(){
-			var jqtoolbar = this.("[dataset=toolbar]") ;
 		}
 	};
-	$.fn._field = function(){
-		var _field = new Field(this);
-		this.data("aphrodite.field",_field) ;
-	},
-	$.fn.get = function(){
-		return this.data("aphrodite.field") ;
-	}
+	$.fn.extend({
+		_field : function(){
+    		var field = new Field(this);
+    		this.data(field.id,field) ;
+    		return field ;
+    	},
+    	getField:function(){
+    		return this.data(this.attr("id")) ;
+    	}
+	});
 })();

@@ -21,6 +21,10 @@ public class User extends BaseInfo{
 
     private String passwd ;
 
+    private String loginIp ;
+
+    private String mac ;
+
     private int maxTry ;
 
     private Date lastLogin ;

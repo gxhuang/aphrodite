@@ -9,7 +9,7 @@ package org.apache.aphrodite.dataset;
  */
 public class Field {
 
-    //查询时开始时间和结束时间对应的查询字段是一样的，但是Id不一样
+    //查询时开始时间和结束时间对应的查询字段是一样的，但是Id不一样 不同的ID映射到同一个NAME上，如果AND OR这种条件呢？复合组合 mybatis?
     private String id ;
 
     private String name ;
@@ -20,6 +20,7 @@ public class Field {
 
     //日期字段专用
     private String format ;
+
 
     private String value ;
 

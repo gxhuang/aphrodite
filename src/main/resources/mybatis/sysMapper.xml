@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="sys">
+    <select id="sysuserselect" parameterType="int" resultType="hashmap">
+        SELECT * FROM C_USER WHERE USER_ID = #{id}
+    </select>
+
+    <select id="findRecords" parameterType="sqladapter" resultType="hashmap">
+        ${sql}
+    </select>
+
+    <insert id="sysuserinsert" parameterType="hashmap">
+        insert into C_USER (USER_ID,USER_NAME,PASSWORD)
+        values (#{userId},#{userName},#{password})
+    </insert>
+
+    <update id="sysuserupdate">
+        update C_USER set
+        username = #{username},
+        password = #{password},
+        email = #{email},
+        bio = #{bio}
+        where id = #{id}
+    </update>
+
+    <!--delete id="sysuserdelete">
+        delete from C_USER where id = #{id}
+    </delete-->
+</mapper>
