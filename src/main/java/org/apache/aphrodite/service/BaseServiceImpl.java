@@ -3,12 +3,14 @@ package org.apache.aphrodite.service;
 import org.apache.aphrodite.dao.BaseDao;
 import org.apache.aphrodite.dataset.Dataset;
 import org.apache.aphrodite.dataset.PageView;
+import org.apache.aphrodite.exception.ServiceException;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.TransactionDefinition;
 import org.springframework.transaction.TransactionStatus;
 import org.springframework.transaction.support.DefaultTransactionDefinition;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -32,27 +34,16 @@ public class BaseServiceImpl implements BaseService {
         this.baseDao = baseDao;
     }
 
-    public int save(PageView pv) {
-        System.out.println("save");
-
-        Map<String,String> map = new HashMap<String,String>() ;
-        map.put("userId","1111") ;
-        map.put("userName","1111") ;
-        map.put("password", "1111") ;
-        baseDao.insert("sysuserinsert",map);
-        return 0;
+    public <T> int  save(String sql,T t) {
+        return baseDao.insert(sql,t);
     }
 
-    public int update(PageView pv) {
-        System.out.println("update");
-
-        return 0;
+    public <T> int update(String sql,T t) {
+        return baseDao.update(sql,t);
     }
 
-    public int search(PageView pv) {
-        System.out.println("search");
-
-        return 0;
+    public <T> List<T> search(String sql,T t) {
+        return baseDao.select(sql,t);
     }
 
     public void doService(Callback callback,Dataset ds) {
@@ -66,7 +57,7 @@ public class BaseServiceImpl implements BaseService {
         }catch(Throwable t){
             txManager.rollback(txStatus);
             //throw exception
-            throw new RuntimeException(t.getMessage(),t.getCause());
+            throw new ServiceException(t.getMessage(),t.getCause());
         }
 
         txManager.commit(txStatus);

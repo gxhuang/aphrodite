@@ -7,9 +7,9 @@ package org.apache.aphrodite.exception;
  * <p>
  * History:  2015Äê05ÔÂ07ÈÕ 15:33   huang.yuewen   Created.
  */
-public class ServiceException extends RuntimeException {
+public class DatasetException extends RuntimeException {
 
-    public ServiceException(String message, Throwable cause) {
+    public DatasetException(String message, Throwable cause) {
         super(message, cause);
     }
 }

@@ -3,6 +3,8 @@ package org.apache.aphrodite.service;
 import org.apache.aphrodite.dataset.Dataset;
 import org.apache.aphrodite.dataset.PageView;
 
+import java.util.List;
+
 /**
  * ¿‡√Ë ˆ£∫
  *
@@ -12,11 +14,11 @@ import org.apache.aphrodite.dataset.PageView;
  */
 public interface BaseService {
 
-    public int save(PageView pv) ;
+    public <T> int save(String sql,T t) ;
 
-    public int update(PageView pv) ;
+    public <T> int update(String sql,T t) ;
 
-    public int search(PageView pv) ;
+    public <T> List<T> search(String sql,T t) ;
 
-    public void doService(Callback callback,Dataset ds) ;
+    public void  doService(Callback callback,Dataset ds) ;
 }

@@ -16,13 +16,11 @@
         values (#{userId},#{userName},#{password})
     </insert>
 
-    <update id="sysuserupdate">
+    <update id="sysuserupdate" parameterType="hashmap">
         update C_USER set
-        username = #{username},
-        password = #{password},
-        email = #{email},
-        bio = #{bio}
-        where id = #{id}
+        USER_NAME = #{userName},
+        PASSWORD = #{password}
+        where USER_ID = #{userId}
     </update>
 
     <!--delete id="sysuserdelete">

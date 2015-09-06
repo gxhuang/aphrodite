@@ -1,5 +1,10 @@
 package org.apache.aphrodite.dataset;
 
+import org.apache.aphrodite.exception.DatasetException;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
+import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 
 /**
@@ -10,6 +15,8 @@ import java.util.List;
  * History:  2015年05月07日 15:33   huang.yuewen   Created.
  */
 public class PageView {
+
+    private static final Logger LOGGER = LogManager.getLogger(PageView.class) ;
 
     //对就package+class
     private String id ;
@@ -28,16 +35,26 @@ public class PageView {
     private Grid grid ;
 
     public <T> T toObject(Class<?> clazz){
-
+        T t = null ;
         try {
-            T t = (T) clazz.newInstance();
-//            t.getClass().getm
+            t = (T) clazz.newInstance();
+            for(Field field : this.fields){
+                String fieldName = field.getName() ;
+                String setter = "set"+fieldName.substring(0,1).toUpperCase()+fieldName.substring(1,fieldName.length()-1).toUpperCase() ;
+                Class paramType = field.getClassType() ;
+                t.getClass().getMethod(setter,paramType).invoke(t,field.toObject()) ;
+            }
+            LOGGER.info("toObject finished");
         } catch (InstantiationException e) {
-            e.printStackTrace();
+           throw new DatasetException(e.getMessage(),e) ;
         } catch (IllegalAccessException e) {
-            e.printStackTrace();
+            throw new DatasetException(e.getMessage(),e) ;
+        } catch (NoSuchMethodException e) {
+            throw new DatasetException(e.getMessage(),e) ;
+        } catch (InvocationTargetException e) {
+            throw new DatasetException(e.getMessage(),e) ;
         }
 
-        return null ;
+        return t ;
     }
 }

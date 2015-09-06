@@ -1,15 +1,8 @@
 package org.apache.aphrodite.dao;
 
-import org.apache.aphrodite.exception.DaoException;
 import org.apache.ibatis.session.SqlSession;
 
-import javax.sql.DataSource;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
-import java.util.Date;
 import java.util.List;
-import java.util.Map;
 
 /**
  * ¿‡√Ë ˆ£∫

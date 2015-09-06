@@ -5,6 +5,7 @@ import org.apache.aphrodite.dataset.Dataset;
 import org.apache.aphrodite.dataset.PageView;
 import org.apache.aphrodite.service.BaseService;
 import org.apache.aphrodite.service.Callback;
+import org.springframework.jdbc.datasource.DataSourceUtils;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -26,9 +27,10 @@ public class TestCallBack implements Callback {
 
     public void doCall(Dataset ds) {
 
-        baseService.save(new PageView()) ;
 
-//        int factor = 0 ;
-//        int result = 1/0 ;
+        baseService.save(new PageView()) ;
+        baseService.update(new PageView()) ;
+        int factor = 0 ;
+        int result = 1/0 ;
     }
 }

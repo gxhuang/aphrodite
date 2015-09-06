@@ -1,15 +1,20 @@
 package org.apache.aphrodite.dataset;
 
+import java.math.BigDecimal;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 /**
- * ÀàÃèÊö£º
+ * ç±»æè¿°ï¼š
  *
  * @author: huang.yuewen
  * <p>
- * History:  2015Äê05ÔÂ07ÈÕ 15:33   huang.yuewen   Created.
+ * History:  2015å¹´05æœˆ07æ—¥ 15:33   huang.yuewen   Created.
  */
 public class Field {
 
-    //²éÑ¯Ê±¿ªÊ¼Ê±¼äºÍ½áÊøÊ±¼ä¶ÔÓ¦µÄ²éÑ¯×Ö¶ÎÊÇÒ»ÑùµÄ£¬µ«ÊÇId²»Ò»Ñù ²»Í¬µÄIDÓ³Éäµ½Í¬Ò»¸öNAMEÉÏ£¬Èç¹ûAND ORÕâÖÖÌõ¼şÄØ£¿¸´ºÏ×éºÏ mybatis?
+    //æŸ¥è¯¢æ—¶å¼€å§‹æ—¶é—´å’Œç»“æŸæ—¶é—´å¯¹åº”çš„æŸ¥è¯¢å­—æ®µæ˜¯ä¸€æ ·çš„ï¼Œä½†æ˜¯Idä¸ä¸€æ · ä¸åŒçš„IDæ˜ å°„åˆ°åŒä¸€ä¸ªNAMEä¸Šï¼Œå¦‚æœAND ORè¿™ç§æ¡ä»¶å‘¢ï¼Ÿå¤åˆç»„åˆ mybatis?
     private String id ;
 
     private String name ;
@@ -18,7 +23,7 @@ public class Field {
 
     private String dataType ;
 
-    //ÈÕÆÚ×Ö¶Î×¨ÓÃ
+    //æ—¥æœŸå­—æ®µä¸“ç”¨
     private String format ;
 
 
@@ -81,6 +86,33 @@ public class Field {
 
     public void setFormat(String format) {
         this.format = format;
+    }
+
+    public Class getClassType(){
+        Class clazz = String.class ;
+        if("date".equals(this.dataType)){
+            clazz = Date.class ;
+        }else if("bigdecimal".equals(this.dataType)){
+            clazz = BigDecimal.class ;
+        }
+
+        return clazz ;
+    }
+
+    public Object toObject(){
+        Object result = null;
+        try {
+            if ("date".equals(this.dataType)) {
+                SimpleDateFormat sdf = new SimpleDateFormat(this.format);
+                result = sdf.parse(this.value);
+            } else {
+                result = this.value;
+            }
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        return result;
     }
 
 
