@@ -13,6 +13,8 @@
 		this.binding = binding ;
 		var selector = this.binding.selector ;
 		this.id = this.binding.attr("id") ;
+		this.name = this.binding.attr("name");
+		this.op = this.binding.attr("op");//查询操作才有这个
 		this.type = this.binding.attr("type") ;
 		this.selector= selector ;
 		this.value = undefined ;
@@ -60,6 +62,7 @@
 //				this.binding.next("div").find("button").on("click",function(e){
 //
 //				});
+//基础资料servlet
 				var search = this.binding._search();
 				var arr = new Array();
 
