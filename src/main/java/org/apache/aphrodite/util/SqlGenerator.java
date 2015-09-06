@@ -30,7 +30,7 @@ public abstract class SqlGenerator {
         builder.append("CREATE TABLE `").append(tableName).append("`").append("(").append(ENTER) ;
 
 
-        Field[] fields = clazz.getFields() ;
+        Field[] fields = clazz.getDeclaredFields() ;
         for(Field field : fields){
             String fieldName = field.getName() ;
             String colName = split(fieldName) ;
