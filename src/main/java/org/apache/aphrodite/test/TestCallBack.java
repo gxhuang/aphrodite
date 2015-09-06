@@ -28,8 +28,8 @@ public class TestCallBack implements Callback {
     public void doCall(Dataset ds) {
 
 
-        baseService.save(new PageView()) ;
-        baseService.update(new PageView()) ;
+//        baseService.save(new PageView()) ;
+//        baseService.update(new PageView()) ;
         int factor = 0 ;
         int result = 1/0 ;
     }
