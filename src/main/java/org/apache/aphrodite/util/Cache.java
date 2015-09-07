@@ -18,6 +18,15 @@ public abstract class Cache {
         return cache ;
     }
 
+    public static Map<String,String> get(String key){
+
+        if(cache.size() == 0){
+            init() ;
+        }
+
+        return cache.get(key) ;
+    }
+
     public static void init(){
         //Ä¬ÈÏkeyÊÇcode,valueÊÇname
         Map<String,String> map = new HashMap<String, String>() ;

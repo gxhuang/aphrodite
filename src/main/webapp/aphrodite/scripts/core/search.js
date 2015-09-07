@@ -48,7 +48,10 @@
 
             var selhtml = "" ;
             $.each(records,function(index,record){
-                selhtml += "<li><a href=\"#"+record.code+"\">"+record.name+"<a></li>" ;
+                for(var code in record){
+                    selhtml += "<li><a href=\"#"+code+"\">"+record[name]+"<a></li>" ;
+                }
+
             });
 
             this.binding.next("div").find("ul").empty().append(selhtml) ;

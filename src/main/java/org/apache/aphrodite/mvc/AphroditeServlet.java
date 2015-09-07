@@ -44,6 +44,8 @@ public abstract class AphroditeServlet extends HttpServlet {
 
         String output = doService(message) ;
 
+        LOGGER.debug("send message {}",output);
+
         resp.setCharacterEncoding("UTF-8");
         ServletOutputStream sos = resp.getOutputStream() ;
         sos.write(output.getBytes("UTF-8"));

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+    <bean class="org.apache.aphrodite.util.ApplicationContextUtil"></bean>
+
+    <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="locations" value="classpath:jdbc.properties"/>
+    </bean>
+
+    <bean id="dataSource" destroy-method="close"
+          class="com.mchange.v2.c3p0.ComboPooledDataSource">
+        <property name="driverClass" value="${jdbc.driverClassName}"/>
+        <property name="jdbcUrl" value="${jdbc.url}"/>
+        <property name="user" value="${jdbc.username}"/>
+        <property name="password" value="${jdbc.password}"/>
+    </bean>
+
+
+
+    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource" />
+    </bean>
+
+
+
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="dataSource" />
+        <property name="mapperLocations" value="classpath*:mybatis/*.xml" />
+        <property name="configLocation" value="mybatis-config.xml" />
+
+        <property name="transactionFactory">
+            <bean class="org.mybatis.spring.transaction.SpringManagedTransactionFactory" />
+        </property>
+    </bean>
+
+    <bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
+        <constructor-arg index="0" ref="sqlSessionFactory" />
+    </bean>
+
+    <bean id="baseService" class="org.apache.aphrodite.service.BaseServiceImpl">
+        <property name="txManager" ref="transactionManager" />
+        <property name="baseDao" ref="baseDao" />
+    </bean>
+
+    <bean id="baseDao" class="org.apache.aphrodite.dao.BaseDaoImpl">
+        <property name="sqlSession" ref="sqlSession" />
+    </bean>
+
+    <bean id="test" class="org.apache.aphrodite.test.TestCallBack">
+        <property name="baseService" ref="baseService" />
+    </bean>
+
+    <!-- more bean definitions go here -->
+</beans>

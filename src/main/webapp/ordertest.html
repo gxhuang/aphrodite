@@ -45,7 +45,7 @@
                                 <label id="aaaa" class="col-sm-1 control-label">居住地</label>
                                 <div class="col-sm-5">
                                     <div class="input-group">
-                                        <input id="groupPlace" type="search" key="locations" datatype="string" name="groupPlace" class="form-control" placeholder="居住地">
+                                        <input id="groupPlace" type="search" key="location" datatype="string" name="groupPlace" class="form-control" placeholder="居住地">
                                         <div class="input-group-btn">
                                             <button type="button" class="btn btn-info" data-toggle="dropdown" aria-expanded="true"><span class="glyphicon glyphicon-search"></span></button>
                                             <ul class="dropdown-menu dropdown-menu-right">
@@ -56,7 +56,7 @@
                                 <label class="col-sm-1 control-label">民族</label>
                                 <div class="col-sm-5">
                                     <div class="input-group">
-                                        <input type="search" aria-label="Text input with dropdown button" class="form-control">
+                                        <input type="search" key="notions" name="notion" id="notion" aria-label="Text input with dropdown button" class="form-control">
                                         <div class="input-group-btn">
                                             <button aria-expanded="false" aria-haspopup="true" data-toggle="dropdown" class="btn btn-default dropdown-toggle" type="button"><span class="caret"></span></button>
                                             <ul class="dropdown-menu dropdown-menu-right">
@@ -197,12 +197,23 @@
 			grid._loadData(objs) ;
 
 			var keys = pageView.getSearchKeys();
-			alert(keys)
+			getData(keys,callback) ;
+
+
+			function callback(data){
+               var obj = JSON.parse(data) ;
+               for(var i in obj){
+                    var search = pageView.getFieldByKey(i) ;
+                    search.binding.getSearch().setData(obj[i]) ;
+               }
+
+            }
+			//alert(123);
+			<!--alert(JSON.stringify(keys))-->
 		 }) ;
-
-
-
       });
+
+
 </script>
 </body>
 </html>

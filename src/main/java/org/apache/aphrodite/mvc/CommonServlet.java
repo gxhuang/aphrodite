@@ -1,6 +1,7 @@
 package org.apache.aphrodite.mvc;
 
 import com.google.gson.reflect.TypeToken;
+import org.apache.aphrodite.util.Cache;
 import org.apache.aphrodite.util.GsonUtil;
 
 import java.lang.reflect.Type;
@@ -24,12 +25,20 @@ public class CommonServlet extends AphroditeServlet {
     public String doService(String message) {
 
         Type type = new TypeToken<List<String>>(){}.getType() ;
-        Collection<String> names = GsonUtil.toList(message, type) ;
+        Collection<String> keys = GsonUtil.toList(message, type) ;
 
         Map<String,Map<String,String>> datas = new HashMap<String, Map<String, String>>() ;
 
-        Type rType = new TypeToken<Map<String,Map<String,String>>>(){}.getType() ;
-        String json = GsonUtil.toJson(datas,rType) ;
+        for(String key:keys){
+            if(Cache.get(key) != null){
+                datas.put(key, Cache.get(key)) ;
+            }
+
+        }
+
+
+//        Type rType = new TypeToken<Map<String,Map<String,String>>>(){}.getType() ;
+        String json = GsonUtil.toJson(datas) ;
 
         return json;
     }

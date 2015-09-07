@@ -22,6 +22,23 @@
         setGrid:function(grid){
             this.grid = grid ;
         },
+        getFieldByKey:function(key){
+            var search = undefined ;
+            for(var index in this.fields){
+                if(typeof(index) == "function"){
+                    continue ;
+                }
+                var field = this.fields[index] ;
+                if( field.type == "search"){
+                    jqSearch = field.binding.getSearch();
+                    if( jqSearch.key == key ){
+                       search = jqSearch ;
+                    }
+                }
+
+            }
+            return search ;
+        },
         getSearchKeys:function(){
             //获取静态的search控件,区别码
             var searchs = new Array();

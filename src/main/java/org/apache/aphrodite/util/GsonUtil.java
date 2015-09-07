@@ -30,7 +30,7 @@ public abstract class GsonUtil {
         return collection ;
     }
 
-    public static <T> String toJson(T t, Class<List> listClass){
+    public static <T> String toJson(T t){
         Gson gson = new Gson() ;
         return gson.toJson(t) ;
     }
