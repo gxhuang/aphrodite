@@ -1,16 +1,14 @@
-
-
 function post(dataset){
     var body = JSON.stringify(dataset,replace) ;
 
     $.ajax({
         type:"post",
-        url:"",
+        url:"loginServlet",
         data:body
     }).done(function(data){
-
+        alert("done") ;
     }).fail(function(data){
-
+        alert("fail") ;
     }) ;
 }
 

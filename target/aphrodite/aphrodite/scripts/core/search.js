@@ -8,7 +8,7 @@
     } ;
     Search.prototype = {
         _init:function(){
-        this._initEvent();
+            this._initEvent();
         },
         _initEvent:function(){
             /**

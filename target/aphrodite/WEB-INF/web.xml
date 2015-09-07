@@ -4,4 +4,15 @@
 
 <web-app>
   <display-name>Archetype Created Web Application</display-name>
+    <servlet>
+        <servlet-name>loginServlet</servlet-name>
+        <servlet-class>org.apache.aphrodite.mvc.LoginServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>loginServlet</servlet-name>
+        <servlet-url>/</servlet-url>
+    </servlet-mapping>
+    <welcome-file-list>
+        <welcome-file>layout_blank_page.html</welcome-file>
+    </welcome-file-list>
 </web-app>

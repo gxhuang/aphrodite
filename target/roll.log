@@ -1,0 +1,14 @@
+2015.09.07 at 13:33:48 CST TRACE org.apache.aphrodite.test.Log4j2Test 19 main - entry
+2015.09.07 at 13:33:48 CST INFO  org.apache.aphrodite.test.Log4j2Test 20 main - Hello, World!
+2015.09.07 at 13:33:48 CST TRACE org.apache.aphrodite.test.MyApplication 17 doIt - entry
+2015.09.07 at 13:33:48 CST ERROR org.apache.aphrodite.test.MyApplication 18 doIt - Did it again!
+2015.09.07 at 13:33:48 CST TRACE org.apache.aphrodite.test.MyApplication 19 doIt - exit
+2015.09.07 at 13:33:48 CST ERROR org.apache.aphrodite.test.Log4j2Test 22 main - Hello, World!
+2015.09.07 at 13:33:48 CST TRACE org.apache.aphrodite.test.Log4j2Test 23 main - exit
+2015.09.07 at 13:34:05 CST INFO  org.apache.aphrodite.test.Log4j2Test 20 main - Hello, World!
+2015.09.07 at 13:34:05 CST ERROR org.apache.aphrodite.test.MyApplication 18 doIt - Did it again!
+2015.09.07 at 13:34:05 CST ERROR org.apache.aphrodite.test.Log4j2Test 22 main - Hello, World!
+2015.09.07 at 13:35:30 CST DEBUG org.apache.aphrodite.mvc.LoginServlet 31 doPost - request charset utf-8
+2015.09.07 at 13:35:30 CST DEBUG org.apache.aphrodite.mvc.LoginServlet 40 doPost - receive message {"service":"abc"}
+2015.09.07 at 13:35:30 CST DEBUG org.apache.aphrodite.mvc.LoginServlet 44 doPost - request service null
+2015.09.07 at 13:37:46 CST DEBUG org.apache.aphrodite.mvc.LoginServlet 31 doPost - request charset null

@@ -3,7 +3,7 @@
         "-//mybatis.org//DTD Config 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
-    <mappers>
-        <mapper resource="D:\\workspace-luna\\aphrodite\\src\\main\\resources\\mybatis\\sysMapper.xml"/>
-    </mappers>
+    <typeAliases>
+        <typeAlias alias="sqladapter"  type="org.apache.aphrodite.util.SQLAdapter"/>
+    </typeAliases>
 </configuration>
