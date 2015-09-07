@@ -1,7 +1,7 @@
 package org.apache.aphrodite.service;
 
+import org.apache.aphrodite.callback.Callback;
 import org.apache.aphrodite.dataset.Dataset;
-import org.apache.aphrodite.dataset.PageView;
 
 import java.util.List;
 
@@ -20,5 +20,5 @@ public interface BaseService {
 
     public <T> List<T> search(String sql,T t) ;
 
-    public void  doService(Callback callback,Dataset ds) ;
+    public void  doService(Callback callback) ;
 }

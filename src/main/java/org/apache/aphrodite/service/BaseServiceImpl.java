@@ -1,17 +1,15 @@
 package org.apache.aphrodite.service;
 
+import org.apache.aphrodite.callback.Callback;
 import org.apache.aphrodite.dao.BaseDao;
 import org.apache.aphrodite.dataset.Dataset;
-import org.apache.aphrodite.dataset.PageView;
 import org.apache.aphrodite.exception.ServiceException;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.TransactionDefinition;
 import org.springframework.transaction.TransactionStatus;
 import org.springframework.transaction.support.DefaultTransactionDefinition;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 /**
  * ¿‡√Ë ˆ£∫
@@ -46,13 +44,14 @@ public class BaseServiceImpl implements BaseService {
         return baseDao.select(sql,t);
     }
 
-    public void doService(Callback callback,Dataset ds) {
+    public void doService(Callback callback) {
 
         DefaultTransactionDefinition def = new DefaultTransactionDefinition() ;
         def.setName("tx");
         def.setPropagationBehavior(TransactionDefinition.PROPAGATION_REQUIRED);
         TransactionStatus txStatus = txManager.getTransaction(def) ;
         try{
+            Dataset ds = callback.getDataset() ;
             callback.doCall(ds);
         }catch(Throwable t){
             txManager.rollback(txStatus);

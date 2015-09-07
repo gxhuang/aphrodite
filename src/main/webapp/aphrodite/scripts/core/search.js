@@ -1,8 +1,11 @@
 (function(){
     var Search = function(binding){
-        this.method = binding.attr("id") ;
         this.binding = binding ;
         this.records = undefined ;
+        //key取对的
+        this.key = binding.attr("key") ;
+        //根据code取标准代码
+        this.code = binding.attr("code") ;
         this._init();
 
     } ;
@@ -10,6 +13,12 @@
         _init:function(){
             this._initEvent();
         },
+        getKey:function(){
+            return this.key ;
+        },
+        getCode:function(){
+            return this.code ;
+        }
         _initEvent:function(){
             /**
             this.binding.on("keyup",function(e){

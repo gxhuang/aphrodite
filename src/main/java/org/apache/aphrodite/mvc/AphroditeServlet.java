@@ -2,13 +2,14 @@ package org.apache.aphrodite.mvc;
 
 import org.apache.aphrodite.dataset.Dataset;
 import org.apache.aphrodite.service.BaseService;
-import org.apache.aphrodite.service.Callback;
+import org.apache.aphrodite.callback.Callback;
 import org.apache.aphrodite.util.ApplicationContextUtil;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import javax.servlet.ServletException;
 import javax.servlet.ServletInputStream;
+import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -22,7 +23,7 @@ import java.io.IOException;
  * <p>
  * History:  2015Äê05ÔÂ07ÈÕ 15:33   huang.yuewen   Created.
  */
-public class AphroditeServlet extends HttpServlet {
+public abstract class AphroditeServlet extends HttpServlet {
 
     private static final Logger LOGGER = LogManager.getLogger(AphroditeServlet.class) ;
     @Override
@@ -37,20 +38,19 @@ public class AphroditeServlet extends HttpServlet {
         while((length=sis.read(data)) >0){
             baos.write(data,0,length);
         }
+        sis.close();
         String message = new String(baos.toByteArray(),reqCharset) ;
         LOGGER.debug("receive message {}",message);
 
-        String service = null ;
+        String output = doService(message) ;
 
-        LOGGER.debug("request service {}",service);
-
-        Callback callback = ApplicationContextUtil.getApplicationContext().getBean(service, Callback.class) ;
-
-        BaseService baseService = ApplicationContextUtil.getApplicationContext().getBean("baseService", BaseService.class) ;
-        baseService.doService(callback,new Dataset());
-
-
+        resp.setCharacterEncoding("UTF-8");
+        ServletOutputStream sos = resp.getOutputStream() ;
+        sos.write(output.getBytes("UTF-8"));
+        sos.close();
     }
+
+    public abstract String doService(String message) ;
 
 
     @Override

@@ -1,4 +1,4 @@
-function post(dataset){
+function post(dataset,callback){
     var body = JSON.stringify(dataset,replace) ;
 
     $.ajax({
@@ -6,7 +6,9 @@ function post(dataset){
         url:"loginServlet",
         data:body
     }).done(function(data){
-        alert("done") ;
+       if(callback != undefined){
+           callback(data) ;
+       }
     }).fail(function(data){
         alert("fail") ;
     }) ;

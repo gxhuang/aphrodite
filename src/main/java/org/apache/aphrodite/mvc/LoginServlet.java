@@ -5,6 +5,7 @@ import org.apache.logging.log4j.Logger;
 
 import javax.servlet.ServletException;
 import javax.servlet.ServletInputStream;
+import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -46,9 +47,11 @@ public class LoginServlet extends HttpServlet {
         //用户校验
        // resp.sendRedirect("");
         resp.setCharacterEncoding("utf-8");
-        resp.setContentType("");
-        resp.sendRedirect("layout_blank_page.html");
+//        resp.setContentType("");
+//        resp.sendRedirect("layout_blank_page.html");
 
+        ServletOutputStream sos = resp.getOutputStream() ;
+        sos.write("北京欢迎你".getBytes("UTF-8"));
     }
 
     @Override

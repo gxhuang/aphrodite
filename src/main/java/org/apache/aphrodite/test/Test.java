@@ -32,8 +32,8 @@ public class Test {
 //        List maps = baseDao.select("findRecords", new SQLAdapter("SELECT * FROM C_USER LIMIT 1")) ;
 //        System.out.println(maps.size()) ;
 
-        TestCallBack test = cxt.getBean("test",TestCallBack.class) ;
-        BaseService baseService = cxt.getBean("baseService",BaseServiceImpl.class) ;
+//        TestCallBack test = cxt.getBean("test",TestCallBack.class) ;
+//        BaseService baseService = cxt.getBean("baseService",BaseServiceImpl.class) ;
 //        baseService.save(new PageView()) ;
 //        baseService.update(new PageView()) ;
         int factor = 0 ;

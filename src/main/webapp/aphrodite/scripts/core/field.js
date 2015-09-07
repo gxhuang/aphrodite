@@ -64,17 +64,17 @@
 //				});
 //基础资料servlet
 				var search = this.binding._search();
-				var arr = new Array();
-
-				var obj = {};
-				obj.code="yc"
-				obj.name="永春" ;
-				arr[0] = obj ;
-
-				var obj1 = {};
-				obj1.code="nh" ;
-				obj1.name="宁化" ;
-				arr[1] = obj1 ;
+//				var arr = new Array();
+//
+//				var obj = {};
+//				obj.code="yc"
+//				obj.name="永春" ;
+//				arr[0] = obj ;
+//
+//				var obj1 = {};
+//				obj1.code="nh" ;
+//				obj1.name="宁化" ;
+//				arr[1] = obj1 ;
 				search.setData(arr);
 			}
 		}

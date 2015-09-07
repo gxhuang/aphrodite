@@ -1,14 +1,8 @@
 package org.apache.aphrodite.test;
 
-import org.apache.aphrodite.dao.BaseDao;
 import org.apache.aphrodite.dataset.Dataset;
-import org.apache.aphrodite.dataset.PageView;
 import org.apache.aphrodite.service.BaseService;
-import org.apache.aphrodite.service.Callback;
-import org.springframework.jdbc.datasource.DataSourceUtils;
-
-import java.util.HashMap;
-import java.util.Map;
+import org.apache.aphrodite.callback.Callback;
 
 /**
  * ¿‡√Ë ˆ£∫
@@ -32,5 +26,9 @@ public class TestCallBack implements Callback {
 //        baseService.update(new PageView()) ;
         int factor = 0 ;
         int result = 1/0 ;
+    }
+
+    public Dataset getDataset() {
+        return null;
     }
 }
