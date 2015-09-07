@@ -45,7 +45,7 @@
                                 <label id="aaaa" class="col-sm-1 control-label">居住地</label>
                                 <div class="col-sm-5">
                                     <div class="input-group">
-                                        <input id="groupPlace" type="search" datatype="string" name="groupPlace" class="form-control" placeholder="居住地">
+                                        <input id="groupPlace" type="search" key="locations" datatype="string" name="groupPlace" class="form-control" placeholder="居住地">
                                         <div class="input-group-btn">
                                             <button type="button" class="btn btn-info" data-toggle="dropdown" aria-expanded="true"><span class="glyphicon glyphicon-search"></span></button>
                                             <ul class="dropdown-menu dropdown-menu-right">
@@ -56,7 +56,7 @@
                                 <label class="col-sm-1 control-label">民族</label>
                                 <div class="col-sm-5">
                                     <div class="input-group">
-                                        <input type="text" aria-label="Text input with dropdown button" class="form-control">
+                                        <input type="search" aria-label="Text input with dropdown button" class="form-control">
                                         <div class="input-group-btn">
                                             <button aria-expanded="false" aria-haspopup="true" data-toggle="dropdown" class="btn btn-default dropdown-toggle" type="button"><span class="caret"></span></button>
                                             <ul class="dropdown-menu dropdown-menu-right">
@@ -148,7 +148,6 @@
 </div>
 <!-- END PAGE CONTENT-->
 <script>
-    <!--var pageView = new Object() ;-->
 
       jQuery(document).ready(function() {
        	 <!--$("#order").test();-->
@@ -159,18 +158,19 @@
 		 $.each(tabs,function(index,tab){
 		 	//tabindex 通过tabindex区别是否是主
 			var jqlitab = $(tab) ;
-			var pageView = jqlitab._pageView() ;
 			var href = jqlitab.find("a").attr("href") ;
 
 			var jqtab = $(href) ;
+			
+			var pageView = jqtab._pageView() ;
 			var jqForm = jqtab.find("form") ;
-			var form = jqForm._form() ;
+			var form = jqForm._form(pageView) ;
 			pageView.form = form ;
-			var namefield = pageView.form.fields["name"];
-			namefield.binding.val("黄跃文") ;
+			//var namefield = pageView.form.fields["name"];
+			//namefield.binding.val("黄跃文") ;
 
 			var jqgrid = jqtab.find("div[name=grid]") ;
-			var grid = jqgrid._grid();
+			var grid = jqgrid._grid(pageView);
 
 
 			var obj = {};
@@ -195,9 +195,12 @@
 			objs[0] =obj ;
 			objs[1]=obj1 ;
 			grid._loadData(objs) ;
+
+			var keys = pageView.getSearchKeys();
+			alert(keys)
 		 }) ;
 
-		 pageView.getSearch
+
 
       });
 </script>

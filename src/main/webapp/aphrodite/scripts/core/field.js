@@ -75,7 +75,7 @@
 //				obj1.code="nh" ;
 //				obj1.name="宁化" ;
 //				arr[1] = obj1 ;
-				search.setData(arr);
+//				search.setData(arr);
 			}
 		}
 	};

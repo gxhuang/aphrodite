@@ -1,16 +1,19 @@
 (function(){
-    var PageView = function(){
-        this.fields[] = undefined ;
+    var PageView = function(binding){
+        this.binding = binding ;
+        this.fields = new Array() ;
         this.form = undefined ;
-        this.grid = grid ;
+        this.grid = undefined ;
     } ;
     PageView.prototype = {
         setFields:function(fields){
             this.fields = fields ;
         },
+        getField:function(field){
+        },
         addField:function(field){
             if(this.fields[field.id] == undefined){
-                this.field[field.id] = field ;
+                this.fields[field.id] = field ;
             }
         },
         setForm:function(form){
@@ -22,14 +25,21 @@
         getSearchKeys:function(){
             //获取静态的search控件,区别码
             var searchs = new Array();
-            $.each(this.fields,function(index,field){
-                if(field.type == "search"){
-                    var search = field.binding.getSearch() ;
-                    if(search.getCode() == undefined ){
-                        searchs[search.getKey()] = search.getKey();
+
+            var jqSearch = undefined ;
+            for(var key in this.fields){
+                if(typeof(key) == "function"){
+                    continue ;
+                }
+                var field = this.fields[key] ;
+                if( field.type == "search"){
+                    jqSearch = field.binding.getSearch();
+                    if( jqSearch.code == undefined ){
+                        searchs.push(jqSearch.getKey());
                     }
                 }
-            }) ;
+
+            }
             return searchs ;
         }
     } ;
@@ -38,8 +48,8 @@
         _pageView:function(){
             //$(document)
             var pageView = new PageView(this) ;
-            this.data("pageView",search) ;
-            return search ;
+            this.data("pageView",pageView) ;
+            return pageView ;
         },
         getPageView:function(){
             return this.data("pageView") ;

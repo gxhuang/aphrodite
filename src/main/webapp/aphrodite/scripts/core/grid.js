@@ -1,9 +1,12 @@
 (function(){
-	var Grid = function(binding){
+	var Grid = function(binding,pageView){
 		this.id = binding.attr("id") ;
 		this.binding = binding ;
 		this.status = undefined ;//grid的状态 浏览或者修改
 		this.fields = [] ;
+		this.pageView = pageView ;
+		this.editRecord = undefined ;
+		this.records = undefined ;
 		this._init();
 	};
 	Grid.prototype = {
@@ -12,13 +15,16 @@
 			var jqtable = $(this.binding) ;
 			var header = jqtable.find("thead") ;
 			var ths = header.find("th") ;
+			var fields = this.pageView.fields ;
 			$.each(ths,function(index,th){
 				var jqField = $(this) ;
 				var _field = jqField.getField() ;
 				if(_field == undefined){
 					_field = jqField._field() ;
+				} else if(fields[_field.id] == undefined){
+					fields[_field.id] = _field ;
 				}
-				//this.fields[_field.id] = _field ;
+
 			});
 
 
@@ -83,6 +89,7 @@
 			});
 		},
 		_loadData:function(records){
+			this.records = records ;
 			if(records == undefined || records.length == 0){
 				return ;
 			}
@@ -112,8 +119,8 @@
 	};
 
 	$.fn.extend ({
-		_grid:function(){
-			var _grid = new Grid(this) ;
+		_grid:function(pageView){
+			var _grid = new Grid(this,pageView) ;
 			this.data("aphrodite.grid",_grid) ;
 			return _grid ;
 		},

@@ -1,9 +1,10 @@
 (function(){
-	var Form = function(binding){
+	var Form = function(binding,pageView){
 	    this.binding = binding ;
 		this.id = this.binding.attr("id") ;
 		this.type="form" ;
 		this.fields = new Array();
+		this.pageView = pageView ;
 		this._init();
 	};
 	Form.prototype = {
@@ -15,10 +16,9 @@
 		_initFields:function(){
 			//initFields
 			var fields = this.fields ;
-
 			var _fields = this.binding.find(".form-control") ;
 
-
+			var pv = this.pageView
 			$.each(_fields,function(index,field){
 				//$()
 				var jqField = $(field) ;
@@ -26,7 +26,7 @@
 				if(_field == undefined){
 					_field = jqField._field() ;
 				}
-				fields[_field.id]= _field ;
+				pv.addField(_field) ;
 			}) ;
 		},
 		_initFunction:function(){
@@ -53,7 +53,7 @@
 		},
 		setData:function(record){
 			for(var prop in record){
-				var field = this.fields[prop] ;
+				var field = this.pageView.fields[prop] ;
 				if(field != undefined){
 					field.binding.val(record[prop]) ;
                 	field.value = record[prop] ;
@@ -68,8 +68,8 @@
 	};
 
 	$.fn.extend ({
-		_form:function(){
-			var form = new Form(this) ;
+		_form:function(pageView){
+			var form = new Form(this,pageView) ;
 			$(this).data(form.id,form) ;
 			return form ;
 		},

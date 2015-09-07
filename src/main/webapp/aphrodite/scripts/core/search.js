@@ -18,7 +18,7 @@
         },
         getCode:function(){
             return this.code ;
-        }
+        },
         _initEvent:function(){
             /**
             this.binding.on("keyup",function(e){
