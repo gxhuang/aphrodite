@@ -86,3 +86,15 @@
 2015.09.08 at 09:31:03 CST DEBUG org.apache.aphrodite.mvc.AphroditeServlet 33 doPost - request charset utf-8
 2015.09.08 at 09:31:03 CST DEBUG org.apache.aphrodite.mvc.AphroditeServlet 43 doPost - receive message ["location","notions"]
 2015.09.08 at 09:31:03 CST DEBUG org.apache.aphrodite.mvc.AphroditeServlet 47 doPost - send message {"location":{"dh":"德化","yc":"永春","nh":"宁化"}}
+2015.09.08 at 22:33:01 CST DEBUG org.apache.aphrodite.mvc.AphroditeServlet 33 doPost - request charset utf-8
+2015.09.08 at 22:33:01 CST DEBUG org.apache.aphrodite.mvc.AphroditeServlet 43 doPost - receive message ["location","notions"]
+2015.09.08 at 22:33:01 CST DEBUG org.apache.aphrodite.mvc.AphroditeServlet 47 doPost - send message {"location":{"dh":"德化","yc":"永春","nh":"宁化"}}
+2015.09.08 at 22:38:08 CST DEBUG org.apache.aphrodite.mvc.AphroditeServlet 33 doPost - request charset utf-8
+2015.09.08 at 22:38:08 CST DEBUG org.apache.aphrodite.mvc.AphroditeServlet 43 doPost - receive message ["location","notions"]
+2015.09.08 at 22:38:08 CST DEBUG org.apache.aphrodite.mvc.AphroditeServlet 47 doPost - send message {"location":{"dh":"德化","yc":"永春","nh":"宁化"}}
+2015.09.08 at 22:38:20 CST DEBUG org.apache.aphrodite.mvc.AphroditeServlet 33 doPost - request charset utf-8
+2015.09.08 at 22:38:20 CST DEBUG org.apache.aphrodite.mvc.AphroditeServlet 43 doPost - receive message ["location","notions"]
+2015.09.08 at 22:38:20 CST DEBUG org.apache.aphrodite.mvc.AphroditeServlet 47 doPost - send message {"location":{"dh":"德化","yc":"永春","nh":"宁化"}}
+2015.09.08 at 22:40:35 CST DEBUG org.apache.aphrodite.mvc.AphroditeServlet 33 doPost - request charset utf-8
+2015.09.08 at 22:40:35 CST DEBUG org.apache.aphrodite.mvc.AphroditeServlet 43 doPost - receive message ["location","notions"]
+2015.09.08 at 22:40:35 CST DEBUG org.apache.aphrodite.mvc.AphroditeServlet 47 doPost - send message {"location":{"dh":"德化","yc":"永春","nh":"宁化"}}

@@ -77,9 +77,17 @@
 			}
 
 			var htmltbody ="<tr>"
-			for(var field in record){
-				htmltbody += "<td name="+field+">" ;
-				htmltbody +=record[field] ;
+			for(var id in record){
+				htmltbody += "<td name="+id+">" ;
+
+				var field = this.pageView.getField(id) ;
+				if(field.type == "search"){
+					htmltbody += field.binding.val();
+				}else{
+					htmltbody += record[id] ;
+				}
+
+
 				htmltbody +="</td>"
 			}
 			htmltbody+="</tr>"
