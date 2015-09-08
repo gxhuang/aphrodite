@@ -47,12 +47,11 @@
             }
 
             var selhtml = "" ;
-            $.each(records,function(index,record){
-                for(var code in record){
-                    selhtml += "<li><a href=\"#"+code+"\">"+record[name]+"<a></li>" ;
-                }
+            for(var code in records){
 
-            });
+                selhtml += "<li><a href=\"#"+code+"\">"+records[code]+"<a></li>" ;
+            }
+
 
             this.binding.next("div").find("ul").empty().append(selhtml) ;
             this.binding.next("div").find("ul").find("li").find("a").on("click",function(e){
@@ -60,7 +59,7 @@
                 var input=_jq.parents("div.input-group-btn").prev("input[type=search]").getField() ;
                 //alert(_jq.attr("href"))
                 input.binding.val(_jq.text());
-                input.binding.value=_jq.attr("href") ;
+                input.value=_jq.attr("href") ;
             }) ;
         }
     };

@@ -3,7 +3,7 @@
 		this.id = binding.attr("id") ;
 		this.binding = binding ;
 		this.status = undefined ;//grid的状态 浏览或者修改
-		this.fields = [] ;
+		//this.fields = [] ;
 		this.pageView = pageView ;
 		this.editRecord = undefined ;
 		this.records = undefined ;
@@ -75,6 +75,7 @@
 			if(record == undefined){
 				return ;
 			}
+
 			var htmltbody ="<tr>"
 			for(var field in record){
 				htmltbody += "<td name="+field+">" ;
@@ -87,6 +88,7 @@
 				_jqthis.parent("tbody").find("tr[class=success]").removeClass("success") ;
 				_jqthis.addClass("success") ;
 			});
+			this.records[this.records.length] = record ;
 		},
 		_loadData:function(records){
 			this.records = records ;

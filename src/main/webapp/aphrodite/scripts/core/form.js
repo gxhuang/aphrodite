@@ -38,7 +38,7 @@
 				}else if("submit" == name){
 					var obj = {} ;
 					var form =_jq.parents("form") ;
-					var fields = form.getForm().fields ;
+					var fields = form.getForm().pageView.fields ;
 
 					for(var index in fields){
 						var _field = fields[index] ;

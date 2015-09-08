@@ -9,7 +9,8 @@
         setFields:function(fields){
             this.fields = fields ;
         },
-        getField:function(field){
+        getField:function(id){
+            return this.fields[id] ;
         },
         addField:function(field){
             if(this.fields[field.id] == undefined){
