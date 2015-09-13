@@ -41,7 +41,9 @@
 				var _jqgrid = _jq.parents("[name=grid]") ;
 				var op = _jq.attr("name") ;
 				if(op == "new"){
-					_jqgrid.addClass("hide").prev("br").prev("form").removeClass("hide") ;
+					//_jqgrid.addClass("hide").prev("br").prev("form").removeClass("hide") ;
+					_jqgrid.addClass("hide") ;
+					_jq.parents(".tab-pane").find("form").removeClass("hide") ;
 				}else if(op == "edit"){
 					var active = _jqgrid.find("tbody").find("tr").filter(".success") ;
 					if(active == undefined || active.length == 0){

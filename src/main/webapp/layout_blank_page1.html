@@ -105,14 +105,14 @@ License: You must have a valid license purchased only from themeforest(the above
 					<a href="javascript:;">
 						<i class="fa fa-shopping-cart"></i>
 						<span class="title">
-							E-Commerce
+							系统配置
 						</span>
 						<span class="arrow ">
 						</span>
 					</a>
 					<ul class="sub-menu">
 						<li>
-							<a href="ecommerce_index.html">
+							<a name="menu" href="menu.html">
 								<i class="fa fa-bullhorn"></i>
 								Dashboard
 							</a>
@@ -395,56 +395,50 @@ License: You must have a valid license purchased only from themeforest(the above
 <script src="aphrodite/scripts/core/search.js"></script>
 <script src="aphrodite/scripts/core/form.js"></script>
 <script src="aphrodite/scripts/core/grid.js"></script>
+<script src="aphrodite/scripts/core/pageView.js"></script>
 <script>
 
-	  $(".page-content").load("tmp.html") ;
 
-	  var pageView = new Object() ;
 
       jQuery(document).ready(function() {
          App.init();
-		 var pageContent = $(".page-content") ;
-		 var tablist = pageContent.find("[role=tablist]") ;
-		 var tabs = tablist.find("li") ;
-		 $.each(tabs,function(index,tab){
-		 	//tabindex 通过tabindex区别是否是主
-			var jqlitab = $(tab) ;
-			var href = jqlitab.find("a").attr("href") ;
+		 $("[name=menu]").on("click",function(e){
+		 	<!--alert(111)-->
+
+			var pageContent = $(".page-content") ;
+		 	pageContent.empty() ;
+		 	pageContent.load($(e.target).attr("href"),function(a,b,c){
+		 		var tablist = pageContent.find("[role=tablist]") ;
+				 var tabs = tablist.find("li") ;
+				 $.each(tabs,function(index,tab){
+					//tabindex 通过tabindex区别是否是主
+					var jqlitab = $(tab) ;
+					var href = jqlitab.find("a").attr("href") ;
+
+					var jqtab = $(href) ;
+
+					var pageView = jqtab._pageView() ;
+					var jqForm = jqtab.find("form") ;
+					var form = jqForm._form(pageView) ;
+					pageView.form = form ;
+					//var namefield = pageView.form.fields["name"];
+					//namefield.binding.val("黄跃文") ;
+
+					var jqgrid = jqtab.find("div[name=grid]") ;
+					var grid = jqgrid._grid(pageView);
 
 
-			var jqtab = $(href) ;
-			var jqForm = jqtab.find("form") ;
-			var form = jqForm._form() ;
-			pageView.form = form ;
-			//var namefield = pageView.form.fields["name"];
-			//namefield.binding.val("黄跃文") ;
 
-			var jqgrid = jqtab.find("div[name=grid]") ;
-			var grid = jqgrid._grid();
+					//alert(123);
+					<!--alert(JSON.stringify(keys))-->
+				 }) ;
+
+		 	}) ;
+		 	 return false ;
+		 	//alert("success")
 
 
-			var obj = {};
-			obj.name="黄跃文";
-			obj.idno="350525198611014972" ;
-			obj.sex="male";
-			obj.birth="1986-11-01";
-			obj.birthPlace="永春";
-			obj.growPlace="永春"
-			obj.nation="汉";
 
-			var obj1 = {};
-			obj1.name="张凤兰";
-			obj1.idno="350525198611014972" ;
-			obj1.sex="female";
-			obj1.birth="1986-11-01";
-			obj1.birthPlace="永春";
-			obj1.growPlace="永春"
-			obj1.nation="汉";
-
-			var objs = new Array();
-			objs[0] =obj ;
-			objs[1]=obj1 ;
-			//grid._loadData(objs) ;
 		 }) ;
       });
 

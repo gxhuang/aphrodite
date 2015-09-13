@@ -11,20 +11,23 @@ import java.util.Date;
  * <p>
  * History:  2015年05月07日 15:33   huang.yuewen   Created.
  */
-public class Order extends BaseInfo{
+public class Order extends BaseInfo {
 
-    private String id ;
+    private String id;
 
-    private Date orderDate ;
+    private Date orderDate;
 
     /**
      * 交货时间
      */
-    private Date delDate ;
+    private Date delDate;
 
-    private String customerCode ;
+    private String customerCode;
 
-    private String totalAmount ;
+    private String totalAmount;
 
-//    private String
+    /**
+     * 订单状态
+     */
+    private String status ;
 }

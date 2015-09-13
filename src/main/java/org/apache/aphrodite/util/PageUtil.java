@@ -1,5 +1,6 @@
 package org.apache.aphrodite.util;
 
+import org.apache.aphrodite.dataset.sys.Menu;
 import org.apache.aphrodite.dataset.sys.User;
 
 import java.io.File;
@@ -102,7 +103,7 @@ public abstract class PageUtil {
 
     private static String getDataType(Field field){
 
-        String datatype = "datatype=\"" + field.getType().getSimpleName() ;
+        String datatype = "datatype=\"" + field.getType().getSimpleName()+"\"" ;
         return datatype ;
     }
 
@@ -180,12 +181,12 @@ public abstract class PageUtil {
     }
 
     public static void main(String[] args){
-        String html = PageUtil.html(User.class) ;
-        File file = new File("D:\\workspace-luna\\aphrodite\\src\\main\\webapp\\auto.html") ;
+        String html = PageUtil.html(Menu.class) ;
+        File file = new File("D:\\workspace-luna\\aphrodite\\src\\main\\webapp\\menu.html") ;
         FileOutputStream fos = null ;
         try {
             fos = new FileOutputStream(file) ;
-            byte[] data = html.getBytes(Charset.forName("GBK")) ;
+            byte[] data = html.getBytes(Charset.forName("utf-8")) ;
             fos.write(data);
             fos.flush();
         } catch (FileNotFoundException e) {

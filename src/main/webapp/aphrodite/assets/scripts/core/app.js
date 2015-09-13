@@ -1010,7 +1010,7 @@ var App = function () {
             handleResponsiveOnResize(); // set and handle responsive    
             handleUniform(); // hanfle custom radio & checkboxes
             handleBootstrapSwitch(); // handle bootstrap switch plugin
-            handleScrollers(); // handles slim scrolling contents 
+            handleScrollers(); // handles slim scrolling contents
             handleResponsiveOnInit(); // handler responsive elements on page load
 
             //layout handlers
@@ -1025,7 +1025,7 @@ var App = function () {
 
             //ui component handlers
             handleFancybox() // handle fancy box
-            handleSelect2(); // handle custom Select2 dropdowns
+            //handleSelect2(); // handle custom Select2 dropdowns
             handlePortletTools(); // handles portlet action bar functionality(refresh, configure, toggle, remove)
             handleAlerts(); //handle closabled alerts
             handleDropdowns(); // handle dropdowns
