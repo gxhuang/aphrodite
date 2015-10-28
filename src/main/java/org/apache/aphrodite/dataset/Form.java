@@ -25,4 +25,12 @@ public class Form {
     public void setId(String id) {
         this.id = id;
     }
+
+    public Map<String, String> getValues() {
+        return values;
+    }
+
+    public void setValues(Map<String, String> values) {
+        this.values = values;
+    }
 }
