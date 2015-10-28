@@ -1,5 +1,6 @@
 package org.apache.aphrodite.dataset;
 
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -21,6 +22,13 @@ public class Record {
 
     public void setRecordVal(Map<String, String> recordVal) {
         this.recordVal = recordVal;
+    }
+
+    public void addRecordVal(String key,String value){
+        if(recordVal == null){
+            recordVal = new HashMap<String, String>() ;
+        }
+        recordVal.put(key,value) ;
     }
 
     public String getStatus() {

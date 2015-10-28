@@ -13,12 +13,12 @@ public class SqlContext {
 
     private String tail ;
 
-    private String[] fieldName ;
+    private String[] fieldNames ;
 
-    public SqlContext(String head, String tail, String[] fieldName) {
+    public SqlContext(String head, String tail, String[] fieldNames) {
         this.head = head;
         this.tail = tail;
-        this.fieldName = fieldName;
+        this.fieldNames = fieldNames;
     }
 
     public String getHead() {
@@ -37,11 +37,11 @@ public class SqlContext {
         this.tail = tail;
     }
 
-    public String[] getFieldName() {
-        return fieldName;
+    public String[] getFieldNames() {
+        return fieldNames;
     }
 
-    public void setFieldName(String[] fieldName) {
-        this.fieldName = fieldName;
+    public void setFieldNames(String[] fieldNames) {
+        this.fieldNames = fieldNames;
     }
 }

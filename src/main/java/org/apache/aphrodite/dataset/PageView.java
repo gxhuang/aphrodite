@@ -21,6 +21,9 @@ public class PageView {
     //对就package+class
     private String id ;
 
+    //tableName
+    private String name ;
+
     //是否是查询还是增删改 增删改数据从Grid取
     private String action ;
 
@@ -80,6 +83,30 @@ public class PageView {
 
     public void setGrid(Grid grid) {
         this.grid = grid;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    /**
+     * 性能如果有问题，还是得改呀
+     * @param fieldName
+     * @return
+     */
+    public Field getField(String fieldName){
+        Field result = null ;
+        for(Field field : this.fields){
+            if(fieldName.equals(field.getName())){
+                result = field ;
+            }
+        }
+
+        return result ;
     }
 
     public <T> T toObject(Class<?> clazz){

@@ -22,6 +22,6 @@ public interface Jdbc {
 
     public int delete(PageView pv,Connection conn) ;
 
-    public int select(PageView pv,Connection conn) ;
+    public void select(PageView pv,Connection conn) ;
 
 }
