@@ -3,11 +3,6 @@ package org.apache.aphrodite.service;
 import org.apache.aphrodite.callback.Callback;
 import org.apache.aphrodite.dao.JdbcDao;
 import org.apache.aphrodite.dataset.PageView;
-import org.apache.aphrodite.exception.DaoException;
-
-import javax.sql.DataSource;
-import java.sql.Connection;
-import java.sql.SQLException;
 
 /**
  * ¿‡√Ë ˆ£∫
@@ -20,32 +15,32 @@ public class JdbcServiceImpl implements JdbcService {
 
     private JdbcDao jdbcDao;
 
-    public void begin(){
+    public void begin() {
         jdbcDao.begin();
     }
 
-    public void rollback(){
+    public void rollback() {
         jdbcDao.rollback();
     }
 
-    public void commit(){
+    public void commit() {
         jdbcDao.commit();
     }
 
-    public void close(){
+    public void close() {
         jdbcDao.close();
     }
 
     public void save(PageView pv) {
-        jdbcDao.insert(pv) ;
+        jdbcDao.insert(pv);
     }
 
     public void update(PageView pv) {
-        jdbcDao.update(pv) ;
+        jdbcDao.update(pv);
     }
 
     public void select(PageView pv) {
-        jdbcDao.select(pv); ;
+        jdbcDao.select(pv);
     }
 
     public void delete(PageView pv) {
@@ -53,11 +48,11 @@ public class JdbcServiceImpl implements JdbcService {
     }
 
     public void doService(Callback callback) {
-        try{
+        try {
             begin();
-
+            callback.doCall(callback.getDataset());
             commit();
-        }catch(Throwable e){
+        } catch (Throwable e) {
             rollback();
         }
 
