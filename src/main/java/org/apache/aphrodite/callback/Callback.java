@@ -11,8 +11,6 @@ import org.apache.aphrodite.dataset.Dataset;
  */
 public interface Callback {
 
-    public Dataset getDataset() ;
-
-    public void doCall(Dataset ds) ;
+    public void doCall(String... pvName) ;
 }
 

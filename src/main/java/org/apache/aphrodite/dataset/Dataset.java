@@ -1,5 +1,7 @@
 package org.apache.aphrodite.dataset;
 
+import java.util.List;
+
 /**
  * ¿‡√Ë ˆ£∫
  *
@@ -13,7 +15,29 @@ public class Dataset {
 
     private String service ;
 
-    private Form form ;
+    private List<PageView> pvs ;
 
-//    pri
+    public String getActioin() {
+        return actioin;
+    }
+
+    public void setActioin(String actioin) {
+        this.actioin = actioin;
+    }
+
+    public String getService() {
+        return service;
+    }
+
+    public void setService(String service) {
+        this.service = service;
+    }
+
+    public List<PageView> getPvs() {
+        return pvs;
+    }
+
+    public void setPvs(List<PageView> pvs) {
+        this.pvs = pvs;
+    }
 }

@@ -50,7 +50,7 @@ public class JdbcServiceImpl implements JdbcService {
     public void doService(Callback callback) {
         try {
             begin();
-            callback.doCall(callback.getDataset());
+            callback.doCall();
             commit();
         } catch (Throwable e) {
             rollback();

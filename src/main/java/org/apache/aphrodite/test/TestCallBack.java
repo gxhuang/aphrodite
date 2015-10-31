@@ -19,7 +19,7 @@ public class TestCallBack implements Callback {
         this.baseService = baseService;
     }
 
-    public void doCall(Dataset ds) {
+    public void doCall() {
 
 
 //        baseService.save(new PageView()) ;
@@ -31,4 +31,9 @@ public class TestCallBack implements Callback {
     public Dataset getDataset() {
         return null;
     }
+
+	public void doCall(String... pvName) {
+		// TODO Auto-generated method stub
+		
+	}
 }

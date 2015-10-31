@@ -28,7 +28,7 @@ public abstract class AphroditeServlet extends HttpServlet {
     private static final Logger LOGGER = LogManager.getLogger(AphroditeServlet.class) ;
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-    //字符集+消息
+        //字符集+消息
         String reqCharset = req.getCharacterEncoding() ;
         LOGGER.debug("request charset {}",reqCharset);
         ServletInputStream sis = req.getInputStream() ;

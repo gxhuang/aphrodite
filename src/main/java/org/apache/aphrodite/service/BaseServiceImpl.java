@@ -51,8 +51,8 @@ public class BaseServiceImpl implements BaseService {
         def.setPropagationBehavior(TransactionDefinition.PROPAGATION_REQUIRED);
         TransactionStatus txStatus = txManager.getTransaction(def) ;
         try{
-            Dataset ds = callback.getDataset() ;
-            callback.doCall(ds);
+//            Dataset ds = callback.getDataset() ;
+            callback.doCall();
         }catch(Throwable t){
             txManager.rollback(txStatus);
             //throw exception

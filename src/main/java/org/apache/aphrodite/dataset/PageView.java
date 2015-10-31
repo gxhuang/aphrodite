@@ -25,9 +25,9 @@ public class PageView {
     private String name ;
 
     //是否是查询还是增删改 增删改数据从Grid取
-    private String action ;
+//    private String action ;
 
-    private String service ;
+//    private String service ;
 
     //存储相关字段的数据类型及查询操作(like or equal)等信息
     private List<Field> fields ;
@@ -45,21 +45,21 @@ public class PageView {
         this.id = id;
     }
 
-    public String getAction() {
-        return action;
-    }
-
-    public void setAction(String action) {
-        this.action = action;
-    }
-
-    public String getService() {
-        return service;
-    }
-
-    public void setService(String service) {
-        this.service = service;
-    }
+//    public String getAction() {
+//        return action;
+//    }
+//
+//    public void setAction(String action) {
+//        this.action = action;
+//    }
+//
+//    public String getService() {
+//        return service;
+//    }
+//
+//    public void setService(String service) {
+//        this.service = service;
+//    }
 
     public List<Field> getFields() {
         return fields;
