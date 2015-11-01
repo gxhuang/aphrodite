@@ -33,8 +33,19 @@
 
                                 <label class="col-sm-1 control-label">父菜单</label>
                                 <div class="col-sm-5">
-                                    <input id="parentId" name="parentId" type="text" datatype="String" class="form-control" palceholder="parentId">
+                                    <div class="input-group">
+                                        <input type="search" datatype="String" key="notions" ajax name="parentId" id="parentId" aria-label="Text input with dropdown button" class="form-control">
+                                        <div class="input-group-btn">
+                                            <button aria-expanded="false" aria-haspopup="true" data-toggle="dropdown" class="btn btn-default dropdown-toggle" type="button"><span class="caret"></span></button>
+                                            <ul class="dropdown-menu dropdown-menu-right">
+                                                <li><div><table class="table table-hover"><thead><tr><th width="30">产品编号</th><th>产品规格</th><th>产品名称</th></tr></thead><tbody><tr><td>aaaaaaaa</td><td>30*40*50</td><td>bbb</td></tr></tr></thead><tbody><tr><td>cccc</td><td>30*40*50</td><td>dddd</td></tr></tbody></table><div></li>
+                                                <!--li><ul class="pager pager-sm"><li class="previous"><a href="#">&larr;上一页</a></li><li class="next"><a href="#">下一页&rarr;</a></li></ul></li-->
+                                            </ul>
+                                        </div><!-- /btn-group -->
+                                    </div>
+                                    <!--input id="parentId" name="parentId" type="text" datatype="String" class="form-control" palceholder="parentId"-->
                                 </div>
+
                             </div>
                             <div class="form-group" name="toolbar">
                                 <div class="row">
@@ -47,7 +58,7 @@
                                 </div>
                             </div>
                         </form>
-                        <div id="menu" name="grid">
+                        <div id="menu" name="grid" tree>
                             <div class="row" name="toolbar">
                                 <div class="col-sm-9">
                                     <div class="btn-group">

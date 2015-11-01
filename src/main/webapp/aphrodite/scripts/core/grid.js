@@ -1,7 +1,10 @@
 (function(){
+	//grid 与tree grid
+	//如果是树结构，初始化数据时全都带有链接，如果点接连接查询无下级数据时，去除链接
 	var Grid = function(binding,pageView){
 		this.id = binding.attr("id") ;
 		this.binding = binding ;
+		this.tree= binding.attr("tree")
 		this.status = undefined ;//grid的状态 浏览或者修改
 		//this.fields = [] ;
 		this.pageView = pageView ;
@@ -23,9 +26,7 @@
 					_field = jqField._field() ;
 				} 
 				pv.addField(_field) ;
-
 			});
-
 
 			//init head toolbar
 			this._initHeadToolbar();
@@ -91,27 +92,22 @@
 					allUndefined = false ;
 				}
 
-				htmltbody += "<td name="+id +">" ;
-
-
-				
-				
+				//ID是后台生成还是前台生成
+				htmltbody += "<td name="+id +">" ;				
 				if(field.type == "search"){
 					htmltbody += field.binding.val();
 				}else{
 					htmltbody += (record[id] == undefined ?"":record[id]) ;
 				}
-
-
 				htmltbody +="</td>"
 			}
 			htmltbody+="</tr>"
 
 			if(!allUndefined){
 				this.binding.find("tbody").append(htmltbody).find("tr").last().on("click",function(e){
-				var _jqthis = $(this) ;
-				_jqthis.parent("tbody").find("tr[class=success]").removeClass("success") ;
-				_jqthis.addClass("success") ;
+					var _jqthis = $(this) ;
+					_jqthis.parent("tbody").find("tr[class=success]").removeClass("success") ;
+					_jqthis.addClass("success") ;
 				});
 				this.records[this.records.length] = record ;
 			}

@@ -1,10 +1,14 @@
 (function(){
+	//数据获取方式分为ajax和非ajax
+    //如果是取表数据，全通过ajax方式获取
     var Search = function(binding){
         this.binding = binding ;
+        // this.ajax = binding.attr("ajax")
+        //存储数据
         this.records = undefined ;
-        //keyȡ�Ե�
+        //key取对的
         this.key = binding.attr("key") ;
-        //����codeȡ��׼����
+        //根据code取标准代码
         this.code = binding.attr("code") ;
         this._init();
 
