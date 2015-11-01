@@ -54,8 +54,8 @@
 							obj[_this.attr("name")] = _this.text();
 						}) ;
 
-						_jqgrid.addClass("hide").prev("br").prev("form").removeClass("hide") ;
-						var form = _jqgrid.prev("br").prev("form").getForm().setData(obj) ;
+						_jqgrid.addClass("hide").prev("form").removeClass("hide") ;
+						var form = _jqgrid.prev("form").getForm().setData(obj) ;
 
 					}
 				}
@@ -77,12 +77,20 @@
 				return ;
 			}
 
+
+			var allUndefined = true ;
 			var htmltbody ="<tr>"
 			for(var id in record){
 				var field = this.pageView.getField(id) ;
-				if (field.isHide !=undefined && field.isHide.contains("hide")) {
+				if (field.isHide != undefined && field.isHide.contains("hide")) {
+					console.log("hide")
 					continue ;
 				}
+
+				if(record[id] != undefined && record[id]  != ""){
+					allUndefined = false ;
+				}
+
 				htmltbody += "<td name="+id +">" ;
 
 
@@ -91,19 +99,24 @@
 				if(field.type == "search"){
 					htmltbody += field.binding.val();
 				}else{
-					htmltbody += record[id] ;
+					htmltbody += (record[id] == undefined ?"":record[id]) ;
 				}
 
 
 				htmltbody +="</td>"
 			}
 			htmltbody+="</tr>"
-			this.binding.find("tbody").append(htmltbody).find("tr").last().on("click",function(e){
+
+			if(!allUndefined){
+				this.binding.find("tbody").append(htmltbody).find("tr").last().on("click",function(e){
 				var _jqthis = $(this) ;
 				_jqthis.parent("tbody").find("tr[class=success]").removeClass("success") ;
 				_jqthis.addClass("success") ;
-			});
-			this.records[this.records.length] = record ;
+				});
+				this.records[this.records.length] = record ;
+			}
+
+			
 		},
 		_loadData:function(records){
 			this.records = records ;

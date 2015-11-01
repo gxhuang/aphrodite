@@ -34,7 +34,7 @@
 				var _jq = $(e.target);
 				var name = _jq.attr("name") ;
 				if("cancle" == name){
-					_jq.parents("form").addClass("hide").next("br").next("[name=grid]").removeClass("hide") ;
+					_jq.parents("form").addClass("hide").next("[name=grid]").removeClass("hide") ;
 				}else if("submit" == name){
 					var obj = {} ;
 					var form =_jq.parents("form") ;
