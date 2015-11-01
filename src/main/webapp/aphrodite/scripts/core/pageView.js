@@ -2,6 +2,7 @@
     var PageView = function(binding){
         this.binding = binding ;
         this.fields = new Array() ;
+        this.fieldIndexs = new Array();
         this.form = undefined ;
         this.grid = undefined ;
     } ;
@@ -10,12 +11,14 @@
             this.fields = fields ;
         },
         getField:function(id){
-            return this.fields[id] ;
+            return this.fields[this.fieldIndexs[id]] ;
         },
         addField:function(field){
-            if(this.fields[field.id] == undefined){
-                this.fields[field.id] = field ;
+            if(this.fieldIndexs[field.id] == undefined){                
+                this.fieldIndexs[field.id] = this.fields.length
+                this.fields[this.fields.length] = field ;
             }
+            
         },
         setForm:function(form){
             this.form = form ;

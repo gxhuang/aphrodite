@@ -3,7 +3,7 @@
 	    this.binding = binding ;
 		this.id = this.binding.attr("id") ;
 		this.type="form" ;
-		this.fields = new Array();
+		//this.fields = new Array();
 		this.pageView = pageView ;
 		this._init();
 	};
@@ -15,7 +15,7 @@
 		},
 		_initFields:function(){
 			//initFields
-			var fields = this.fields ;
+			//var fields = this.fields ;
 			var _fields = this.binding.find(".form-control") ;
 
 			var pv = this.pageView
@@ -42,10 +42,11 @@
 
 					for(var index in fields){
 						var _field = fields[index] ;
-						obj[index] = _field.value ;
+						obj[_field.id] = _field.value ;
 					}
-
-					form.next("br").next("[name=grid]").removeClass("hide").getGrid().addData(obj);
+					console.log(JSON.stringify(obj))
+					form.next("[name=grid]").removeClass("hide").getGrid().addData(obj);
+					//form.addClass("")
 					form.addClass("hide") ;
 
 				}

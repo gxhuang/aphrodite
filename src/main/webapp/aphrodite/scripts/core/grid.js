@@ -6,7 +6,7 @@
 		//this.fields = [] ;
 		this.pageView = pageView ;
 		this.editRecord = undefined ;
-		this.records = undefined ;
+		this.records = new Array() ;
 		this._init();
 	};
 	Grid.prototype = {
@@ -15,15 +15,14 @@
 			var jqtable = $(this.binding) ;
 			var header = jqtable.find("thead") ;
 			var ths = header.find("th") ;
-			var fields = this.pageView.fields ;
+			var pv = this.pageView
 			$.each(ths,function(index,th){
 				var jqField = $(this) ;
 				var _field = jqField.getField() ;
 				if(_field == undefined){
 					_field = jqField._field() ;
-				} else if(fields[_field.id] == undefined){
-					fields[_field.id] = _field ;
-				}
+				} 
+				pv.addField(_field) ;
 
 			});
 
@@ -80,9 +79,15 @@
 
 			var htmltbody ="<tr>"
 			for(var id in record){
-				htmltbody += "<td name="+id+">" ;
-
 				var field = this.pageView.getField(id) ;
+				if (field.isHide !=undefined && field.isHide.contains("hide")) {
+					continue ;
+				}
+				htmltbody += "<td name="+id +">" ;
+
+
+				
+				
 				if(field.type == "search"){
 					htmltbody += field.binding.val();
 				}else{

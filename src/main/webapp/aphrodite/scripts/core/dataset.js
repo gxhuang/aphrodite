@@ -20,7 +20,7 @@
 		},
 		addDataset:function(dataset){
 			this.datasets[dataset.id]=dataset ;
-		}
+		},
 		getGrid:function(id){
 			return this.grids[id] ;
 		},
