@@ -2,8 +2,6 @@ package org.apache.aphrodite.dao;
 
 import org.apache.aphrodite.dataset.PageView;
 
-import java.sql.*;
-
 /**
  * ÀàÃèÊö£º
  *

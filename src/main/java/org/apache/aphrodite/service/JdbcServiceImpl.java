@@ -5,11 +5,11 @@ import org.apache.aphrodite.dao.JdbcDao;
 import org.apache.aphrodite.dataset.PageView;
 
 /**
- * ÀàÃèÊö£º
+ * ç±»æè¿°ï¼š
  *
  * @author: huang.yuewen
  * <p>
- * History:  2015Äê05ÔÂ07ÈÕ 15:33   huang.yuewen   Created.
+ * History:  2015å¹´05æœˆ07æ—¥ 15:33   huang.yuewen   Created.
  */
 public class JdbcServiceImpl implements JdbcService {
 

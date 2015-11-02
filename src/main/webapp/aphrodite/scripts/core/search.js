@@ -6,15 +6,28 @@
         // this.ajax = binding.attr("ajax")
         //存储数据
         this.records = undefined ;
+        this.tablename = undefined ;
+        this.grid = binding.attr("grid") ;
         //key取对的
         this.key = binding.attr("key") ;
         //根据code取标准代码
         this.code = binding.attr("code") ;
+        this.fields = new Array();
         this._init();
 
     } ;
     Search.prototype = {
         _init:function(){
+            if(this.grid ){
+                var jqfields = this.binding.next(".input-group-btn").find("ul").find("th") ;
+                this.tablename = this.binding.next(".input-group-btn").find("ul").find("table").attr("tablename") ;
+                $.each(jqfields,function(index,jqfield){
+                    var field = $(jqfield).getField();
+                    //是否可以直接这样子使用
+                    this.fields[field.name] = field ;
+                }) ;
+            }
+
             this._initEvent();
         },
         getKey:function(){
@@ -24,15 +37,34 @@
             return this.code ;
         },
         _initEvent:function(){
-            /**
+            
             this.binding.on("keyup",function(e){
 
-                //alert($(this).val())
-                var _jq = $(this) ;
-                _jq.getSearch().filter(_jq.val()) ;
+                //回车时候触发查询
+                if(e.which == 13) {
+                    var _jq = $(this) ;
+                    var field = _jq.getField();
+                    if(field.grid){
+                        function searchFilter(key,value){
+                            if(key == "binding"){
+                                return undefined
+                            }
+                            return value ;
+                        }
+                        var search = JSON.stringify(_jq.getSearch(),searchFilter) ;
+                        var result = ajax("commonServlet",search) ;
+                        _jq.getSearch.setGridData(data.grid) ;
+                    }else{
+                        _jq.getSearch().filter(_jq.val()) ;
+                    }
+                    
 
-               _jq.getSearch().binding.next("div").find("ul").dropdown("toggle")
-            }) ;**/
+                   _jq.getSearch().binding.next("div").find("ul").dropdown("toggle")
+                }
+
+                //alert($(this).val())
+                
+            }) ;
         },
         filter:function(value){
               this.binding.next("div").find("ul").find("li").filter(function(index){
@@ -43,6 +75,14 @@
               }) ;
 
 //            this.setData(arr) ;
+        },
+        setGridData:function(jqGrid,records){
+            if(records == undefined || records.length == 0){
+                return ;
+            }
+
+            jqGrid.find("th")
+
         },
         setData:function(records){
 //            this.records = records ;

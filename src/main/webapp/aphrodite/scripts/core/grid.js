@@ -59,6 +59,20 @@
 						var form = _jqgrid.prev("form").getForm().setData(obj) ;
 
 					}
+				}else if(op == "submit"){
+					function filterValue(key,value){
+
+						if(key == "pageView" || key == "binding" || key == "fieldIndexs" || typeof(value) == "function" || value == undefined || value == ""){
+							return undefined ;
+						}
+						
+
+						return value ;
+					}
+					var grid = _jqgrid.getGrid();
+					//提交
+					var request = JSON.stringify(grid.pageView,filterValue) ;
+					console.log(request)
 				}
 			}) ;
 		},

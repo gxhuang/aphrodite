@@ -1,15 +1,23 @@
 function ajax(url,message,callback,setting){
-     $.ajax({
-            type:"post",
-            url:url,
-            data:message
-        }).done(function(data){
-           if(callback != undefined){
-               callback(data) ;
-           }
-        }).fail(function(data){
-            alert("fail") ;
-        }) ;
+    var result = undefined ;
+    $.ajax({
+        type:"post",
+        url:url,
+        data:message
+    }).done(function(data){
+       if(callback != undefined){
+           callback(data) ;
+       } else{
+           result = data ;
+       }
+    }).fail(function(data){
+        alert("fail") ;
+    }) ;
+    return result ;
+}
+
+function get(url,message){
+
 }
 
 function login(dataset,callback){

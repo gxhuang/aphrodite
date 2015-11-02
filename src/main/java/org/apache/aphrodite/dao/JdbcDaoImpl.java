@@ -18,11 +18,11 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * ÀàÃèÊö£º
+ * ç±»æè¿°ï¼š
  *
  * @author: huang.yuewen
  * <p>
- * History:  2015Äê05ÔÂ07ÈÕ 15:33   huang.yuewen   Created.
+ * History:  2015å¹´05æœˆ07æ—¥ 15:33   huang.yuewen   Created.
  */
 public class JdbcDaoImpl implements JdbcDao {
 
@@ -106,7 +106,7 @@ public class JdbcDaoImpl implements JdbcDao {
         }
     }
 
-    //Èç¹û×Ö¶Î¶à£¬ÎŞÂÛÓĞÃ»ÓĞ±ä¸ü¾ù¸üĞÂµÄÇé¿öÏÂÊÇ·ñ»áÓ°ÏìĞÔÄÜ
+    //ï¿½ï¿½ï¿½ï¿½Ö¶Î¶à£¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ã»ï¿½Ğ±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Âµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ç·ï¿½ï¿½Ó°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
     public int update(PageView pv) {
         PreparedStatement pstmt = null;
         SqlContext sqlContext = PageViewUtil.getSql(PageViewUtil.SqlType.UPDATE, pv);
@@ -126,7 +126,7 @@ public class JdbcDaoImpl implements JdbcDao {
 
     public int delete(PageView pv) {
 
-        //¸ü¸ÄÒ»ÏÂ¼ÇÂ¼µÄ×´Ì¬
+        //
         return 0;
     }
 
