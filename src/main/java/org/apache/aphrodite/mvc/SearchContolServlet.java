@@ -1,6 +1,8 @@
 package org.apache.aphrodite.mvc;
 
 import com.google.gson.reflect.TypeToken;
+
+import org.apache.aphrodite.dataset.Search;
 import org.apache.aphrodite.util.Cache;
 import org.apache.aphrodite.util.GsonUtil;
 
@@ -17,24 +19,19 @@ import java.util.Map;
  * <p>
  * History:  2015年05月07日 15:33   huang.yuewen   Created.
  */
-public class CommonServlet extends AphroditeServlet {
+public class SearchContolServlet extends AphroditeServlet {
 
 
 
     @Override
     public String doService(String message) {
 
-        Type type = new TypeToken<List<String>>(){}.getType() ;
-        Collection<String> keys = GsonUtil.toList(message, type) ;
+        Type type = new TypeToken<Search>(){}.getType() ;
+        Search search = GsonUtil.toObject(message, Search.class) ;
 
         Map<String,Map<String,String>> datas = new HashMap<String, Map<String, String>>() ;
 
-        for(String key:keys){
-            if(Cache.get(key) != null){
-                datas.put(key, Cache.get(key)) ;
-            }
-
-        }
+        
 
         String json = GsonUtil.toJson(datas) ;
 

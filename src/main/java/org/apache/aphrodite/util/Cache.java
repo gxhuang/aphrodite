@@ -4,11 +4,11 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * ÀàÃèÊö£º
+ * ç±»æè¿°ï¼š
  *
  * @author: huang.yuewen
  * <p>
- * History:  2015Äê05ÔÂ07ÈÕ 15:33   huang.yuewen   Created.
+ * History:  2015æœˆ05æœˆ07æ—¥ 15:33   huang.yuewen   Created.
  */
 public abstract class Cache {
 
@@ -28,11 +28,11 @@ public abstract class Cache {
     }
 
     public static void init(){
-        //Ä¬ÈÏkeyÊÇcode,valueÊÇname
+        //
         Map<String,String> map = new HashMap<String, String>() ;
-        map.put("yc","ÓÀ´º") ;
-        map.put("nh","Äş»¯") ;
-        map.put("dh","µÂ»¯") ;
+        map.put("yc","æ°¸æ˜¥") ;
+        map.put("nh","å®åŒ–") ;
+        map.put("dh","å¾·åŒ–") ;
         cache.put("location",map) ;
     }
 }
