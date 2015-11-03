@@ -3,18 +3,35 @@ package org.apache.aphrodite.service;
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
 
+import org.apache.aphrodite.exception.ServiceException;
+
 /**
- * ÀàÃèÊö£º
+ * 
  *
  * @author: huang.yuewen
  * <p>
- * History:  2015Äê05ÔÂ07ÈÕ 15:33   huang.yuewen   Created.
+ * History:  2015å¹´05æœˆ07æ—¥ 15:33   huang.yuewen   Created.
  */
 public class JdbcServiceProxy implements InvocationHandler{
+	
+	private JdbcService jdbcService ;
+	
+    public void setJdbcService(JdbcService jdbcService) {
+		this.jdbcService = jdbcService;
+	}
 
-    public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
+	public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
         System.out.println("invoke......");
-        return method.invoke(proxy,args);
+        Object result = null ;
+        try{
+        	result = method.invoke(jdbcService,args);
+        }catch(Throwable t){
+        	jdbcService.rollback();
+        	throw new ServiceException(t.getMessage(), t.getCause()) ;
+        }finally{
+        	jdbcService.close();
+        }
+        return result ;
     }
 
     public static void main(String[] args){

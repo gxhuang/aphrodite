@@ -5,11 +5,11 @@ import org.apache.aphrodite.dataset.Dataset;
 import org.apache.aphrodite.dataset.PageView;
 
 /**
- * ÀàÃèÊö£º
+ * 
  *
  * @author: huang.yuewen
  * <p>
- * History:  2015Äê05ÔÂ07ÈÕ 15:33   huang.yuewen   Created.
+ * History:  2015å¹´05æœˆ07æ—¥   15:33   huang.yuewen   Created.
  */
 public interface JdbcService {
 
@@ -22,5 +22,11 @@ public interface JdbcService {
     public void delete(PageView pv) ;
 
     public void doService(Callback callback) ;
+    
+    public void commit() ;
+    
+    public void close();
+    
+    public void rollback();
 
 }

@@ -70,6 +70,7 @@ public class JdbcDaoImpl implements JdbcDao {
     public void close(){
         try {
             getConnection().close();
+//            tlocals.remove();
         } catch (SQLException e) {
             throw new DaoException(e.getMessage(), e) ;
         }
