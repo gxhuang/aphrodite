@@ -10,10 +10,33 @@ public class Search {
 	
 	private Boolean isTreeGrid ;
 	
+	/**
+	 * 如果是多个字段，请用逗号分开
+	 */
+	private String key ; 
+	
+	private String op ;
+	
 	private String condition ;
 	
 	private List<Record> records ;
 	
+	public String getOp() {
+		return op;
+	}
+
+	public void setOp(String op) {
+		this.op = op;
+	}
+
+	public String getKey() {
+		return key;
+	}
+
+	public void setKey(String key) {
+		this.key = key;
+	}
+
 	public List<Record> getRecords() {
 		return records;
 	}

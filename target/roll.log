@@ -4,3 +4,27 @@
 2015.11.03 at 14:27:44 CST DEBUG org.apache.aphrodite.mvc.AphroditeServlet 33 doPost - request charset utf-8
 2015.11.03 at 14:27:44 CST DEBUG org.apache.aphrodite.mvc.AphroditeServlet 43 doPost - receive message ["location","notions"]
 2015.11.03 at 14:27:44 CST DEBUG org.apache.aphrodite.mvc.AphroditeServlet 47 doPost - send message {"location":{"dh":"德化","yc":"永春","nh":"宁化"}}
+2015.11.03 at 15:51:22 CST DEBUG org.apache.aphrodite.mvc.AphroditeServlet 33 doPost - request charset utf-8
+2015.11.03 at 15:51:22 CST DEBUG org.apache.aphrodite.mvc.AphroditeServlet 43 doPost - receive message {"tableName":"SYS_MENU","grid":true,"key":"notions","fields":[]}
+2015.11.03 at 15:51:22 CST DEBUG org.apache.aphrodite.mvc.AphroditeServlet 47 doPost - send message {}
+2015.11.03 at 16:04:11 CST DEBUG org.apache.aphrodite.mvc.AphroditeServlet 33 doPost - request charset utf-8
+2015.11.03 at 16:04:11 CST DEBUG org.apache.aphrodite.mvc.AphroditeServlet 43 doPost - receive message {"tableName":"SYS_MENU","grid":true,"key":"name","condition":"dddd","fields":[]}
+2015.11.03 at 16:04:11 CST DEBUG org.apache.aphrodite.mvc.AphroditeServlet 47 doPost - send message {}
+2015.11.03 at 16:08:31 CST DEBUG org.apache.aphrodite.mvc.AphroditeServlet 33 doPost - request charset utf-8
+2015.11.03 at 16:08:31 CST DEBUG org.apache.aphrodite.mvc.AphroditeServlet 43 doPost - receive message {"tableName":"SYS_MENU","grid":true,"key":"name","condition":"dddd","fields":[]}
+2015.11.03 at 16:18:46 CST DEBUG org.apache.aphrodite.mvc.AphroditeServlet 33 doPost - request charset utf-8
+2015.11.03 at 16:18:46 CST DEBUG org.apache.aphrodite.mvc.AphroditeServlet 43 doPost - receive message {"tableName":"SYS_MENU","grid":true,"key":"name","condition":"jjjjjj","fields":[]}
+2015.11.03 at 16:19:57 CST DEBUG org.apache.aphrodite.mvc.AphroditeServlet 33 doPost - request charset utf-8
+2015.11.03 at 16:19:57 CST DEBUG org.apache.aphrodite.mvc.AphroditeServlet 43 doPost - receive message {"tableName":"SYS_MENU","grid":true,"key":"name","condition":"dddd","fields":[{"name":"name","selector":""},{"name":"url","selector":""},{"name":"id","selector":"","isHide":"hide"}]}
+2015.11.03 at 16:19:57 CST DEBUG org.apache.aphrodite.dao.JdbcDaoImpl 172 select - select sql:SELECT NAME,URL,ID FROM _S_Y_S?_M_E_N_U WHERE  name  = ?
+2015.11.03 at 16:19:57 CST DEBUG org.apache.aphrodite.dao.JdbcDaoImpl 111 setSelectParam - input params:{name=dddd}
+2015.11.03 at 16:20:48 CST DEBUG org.apache.aphrodite.mvc.AphroditeServlet 33 doPost - request charset utf-8
+2015.11.03 at 16:20:48 CST DEBUG org.apache.aphrodite.mvc.AphroditeServlet 43 doPost - receive message {"tableName":"sysMenu","grid":true,"key":"name","condition":"dddd","fields":[{"name":"name","selector":""},{"name":"url","selector":""},{"name":"id","selector":"","isHide":"hide"}]}
+2015.11.03 at 16:20:48 CST DEBUG org.apache.aphrodite.dao.JdbcDaoImpl 172 select - select sql:SELECT NAME,URL,ID FROM SYS_MENU WHERE  name  = ?
+2015.11.03 at 16:20:49 CST DEBUG org.apache.aphrodite.dao.JdbcDaoImpl 111 setSelectParam - input params:{name=dddd}
+2015.11.03 at 16:20:49 CST DEBUG org.apache.aphrodite.mvc.AphroditeServlet 47 doPost - send message {"fields":[{"name":"name"},{"name":"url"},{"name":"id"}],"tableName":"sysMenu","key":"name","condition":"dddd","records":[]}
+2015.11.03 at 16:21:16 CST DEBUG org.apache.aphrodite.mvc.AphroditeServlet 33 doPost - request charset utf-8
+2015.11.03 at 16:21:16 CST DEBUG org.apache.aphrodite.mvc.AphroditeServlet 43 doPost - receive message {"tableName":"sysMenu","grid":true,"key":"name","condition":"系统管理","fields":[{"name":"name","selector":""},{"name":"url","selector":""},{"name":"id","selector":"","isHide":"hide"}]}
+2015.11.03 at 16:21:16 CST DEBUG org.apache.aphrodite.dao.JdbcDaoImpl 172 select - select sql:SELECT NAME,URL,ID FROM SYS_MENU WHERE  name  = ?
+2015.11.03 at 16:21:16 CST DEBUG org.apache.aphrodite.dao.JdbcDaoImpl 111 setSelectParam - input params:{name=系统管理}
+2015.11.03 at 16:21:16 CST DEBUG org.apache.aphrodite.mvc.AphroditeServlet 47 doPost - send message {"fields":[{"name":"name"},{"name":"url"},{"name":"id"}],"tableName":"sysMenu","key":"name","condition":"系统管理","records":[{"recordVal":{"name":"系统管理","id":"1","url":"sys"}}]}

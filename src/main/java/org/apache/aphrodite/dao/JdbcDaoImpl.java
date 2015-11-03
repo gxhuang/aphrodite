@@ -1,5 +1,17 @@
 package org.apache.aphrodite.dao;
 
+import java.math.BigDecimal;
+import java.sql.Connection;
+import java.sql.Date;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
+import javax.sql.DataSource;
+
 import org.apache.aphrodite.dataset.Field;
 import org.apache.aphrodite.dataset.PageView;
 import org.apache.aphrodite.dataset.Record;
@@ -9,13 +21,8 @@ import org.apache.aphrodite.util.Constants;
 import org.apache.aphrodite.util.DateUtil;
 import org.apache.aphrodite.util.ObjectTableUtil;
 import org.apache.aphrodite.util.PageViewUtil;
-
-import javax.sql.DataSource;
-import java.math.BigDecimal;
-import java.sql.*;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 /**
  * 类描述：
@@ -25,6 +32,8 @@ import java.util.Map;
  * History:  2015年05月07日 15:33   huang.yuewen   Created.
  */
 public class JdbcDaoImpl implements JdbcDao {
+	
+	private static final Logger LOGGER = LogManager.getLogger(JdbcDaoImpl.class) ; 
 
     private DataSource dataSource;
 
@@ -99,6 +108,7 @@ public class JdbcDaoImpl implements JdbcDao {
     private void setSelectParam(SqlContext sqlContext, PageView pv, PreparedStatement pstmt) throws SQLException {
         String[] fieldNames = sqlContext.getFieldNames();
         Map<String, String> values = pv.getForm().getValues(); 
+        LOGGER.debug("input params:"+values.toString());
         for (int j = 1, len = fieldNames.length; j <= len; j++) {
             setParam(pstmt, j, pv.getField(fieldNames[j - 1]), values.get(fieldNames[j - 1]));
         }
@@ -158,7 +168,9 @@ public class JdbcDaoImpl implements JdbcDao {
 
         SqlContext sqlContext = PageViewUtil.getSql(PageViewUtil.SqlType.SELECT, pv);
         try {
-            pstmt = getConnection().prepareStatement(String.format(Constants.SELECT_FORMAT, sqlContext.getHead(),ObjectTableUtil.toTableFieldFormat(pv.getName()), sqlContext.getTail()));
+        	String sql = String.format(Constants.SELECT_FORMAT, sqlContext.getHead(),ObjectTableUtil.toTableFieldFormat(pv.getName()), sqlContext.getTail());
+        	LOGGER.debug("select sql:"+sql);
+            pstmt = getConnection().prepareStatement(sql);
             setSelectParam(sqlContext, pv, pstmt);
             rs = pstmt.executeQuery();
             toPageView(rs, pv);

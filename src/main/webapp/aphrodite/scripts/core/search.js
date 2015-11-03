@@ -7,11 +7,12 @@
         //存储数据
         this.records = undefined ;
         this.tableName = this.binding.attr("tableName") ;
-        this.grid = binding.attr("grid") ;
+        this.grid = (binding.attr("grid") != undefined? true:false) ;
         //key取对的
         this.key = binding.attr("key") ;
         //根据code取标准代码
         this.code = binding.attr("code") ;
+        this.condition = undefined ;
         this.fields = new Array();
         this._init();
 
@@ -21,10 +22,13 @@
             if(this.grid ){
                 var jqfields = this.binding.next(".input-group-btn").find("ul").find("th") ;
                 this.tablename = this.binding.next(".input-group-btn").find("ul").find("table").attr("tablename") ;
+                var _fields = this.fields  ;
                 $.each(jqfields,function(index,jqfield){
-                    var field = $(jqfield).getField();
+                    var _this = $(jqfield) ;
+                    var field = _this.getField();
+                    if(field == undefined) field = _this._field() ;
                     //是否可以直接这样子使用
-                    this.fields[field.name] = field ;
+                    _fields[_fields.length] = field ;
                 }) ;
             }
 
@@ -42,10 +46,13 @@
 
                 //回车时候触发查询
                 if(e.which == 13) {
-                    alert(1111) ;
+                    // alert(1111) ;
+
                     var _jq = $(this) ;
-                    var field = _jq.getField();
-                    if(field.grid){
+
+                    var search = _jq.getSearch();
+                    search.condition = _jq.val() ;
+                    if(search.grid){
                         function searchFilter(key,value){
                             if(key == "binding"){
                                 return undefined
@@ -53,7 +60,7 @@
                             return value ;
                         }
                         var search = JSON.stringify(_jq.getSearch(),searchFilter) ;
-                        var result = ajax("/searchControlServlet",search) ;
+                        var result = ajax("searchControlServlet",search) ;
                         console.log(JSON.stringify(result)) ;
                         // _jq.getSearch.setGridData(data.grid) ;
                     }else{
