@@ -3,6 +3,7 @@
 	    this.binding = binding ;
 		this.id = this.binding.attr("id") ;
 		this.type="form" ;
+		this.isSearch = (binding.attr("search") != undefined ? true : false) ;
 		//this.fields = new Array();
 		this.pageView = pageView ;
 		this._init();
@@ -34,35 +35,27 @@
 				var _jq = $(e.target);
 				var name = _jq.attr("name") ;
 				if("cancle" == name){
-					_jq.parents("form").addClass("hide").next("[name=grid]").removeClass("hide") ;
+					_jq.parents("form").addClass("hide").siblings("[name=grid]").removeClass("hide") ;
 				}else if("submit" == name){
 					var obj = {} ;
 					var form =_jq.parents("form") ;
+
 					var fields = form.getForm().pageView.fields ;
 
 					for(var index in fields){
 						var _field = fields[index] ;
 						obj[_field.id] = _field.value ;
 					}
+
 					console.log(JSON.stringify(obj))
-					form.next("[name=grid]").removeClass("hide").getGrid().addData(obj);
-					//form.addClass("")
-					form.addClass("hide") ;
+					var isSearch = form.getForm().isSearch ;
+					if(isSearch){
 
-				}else if("search" == name){
-					var obj = {} ;
-					var form =_jq.parents("form") ;
-					var fields = form.getForm().pageView.fields ;
-
-					for(var index in fields){
-						var _field = fields[index] ;
-						obj[_field.id] = _field.value ;
+					}else{
+						form.siblings("[name=grid]").removeClass("hide").getGrid().addData(obj);
+						//form.addClass("")
+						form.addClass("hide") ;
 					}
-					console.log(JSON.stringify(obj))
-					// form.next("[name=grid]").removeClass("hide").getGrid().addData(obj);
-					//form.addClass("")
-					form.addClass("hide") ;
-
 				}
 			})
 		},

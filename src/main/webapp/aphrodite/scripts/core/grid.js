@@ -42,8 +42,10 @@
 				var op = _jq.attr("name") ;
 				if(op == "new"){
 					//_jqgrid.addClass("hide").prev("br").prev("form").removeClass("hide") ;
+					var jqSForm = _jqgrid.siblings("form[search]") ;
+					if(!jqSForm.hasClass("hide")) jqSForm.addClass("hide")
 					_jqgrid.addClass("hide") ;
-					_jq.parents(".tab-pane").find("form").removeClass("hide") ;
+					_jq.parents(".tab-pane").find("form[neworedit]").removeClass("hide") ;
 				}else if(op == "edit"){
 					var active = _jqgrid.find("tbody").find("tr").filter(".success") ;
 					if(active == undefined || active.length == 0){
@@ -54,9 +56,11 @@
 							var _this = $(ele) ;
 							obj[_this.attr("name")] = _this.text();
 						}) ;
-
-						_jqgrid.addClass("hide").prev("form").removeClass("hide") ;
-						var form = _jqgrid.prev("form").getForm().setData(obj) ;
+						//如果是grid的时候，search或者neworedit都是hide状态
+						// var jqNeForm = _jqgrid.siblings("form[neworedit]") ;
+						// if(!jqNeForm.hasClass("hide")) jqNeForm.addClass("hide")
+						_jqgrid.addClass("hide").siblings("form[neworedit]").removeClass("hide") ;
+						var form = _jqgrid.siblings("form[neworedit]").getForm().setData(obj) ;
 
 					}
 				}else if(op == "submit"){
@@ -74,7 +78,10 @@
 					var request = JSON.stringify(grid.pageView,filterValue) ;
 					console.log(request)
 				}else if(op == "search"){
-					
+					_jqgrid.addClass("hide") ;
+					_jq.parents(".tab-pane").find("form[search]").removeClass("hide") ;
+					var jqNeForm = _jq.siblings("form[neworedit]") ;
+					if(!jqNeForm.hasClass("hide")) jqNeForm.addClass("hide") ;
 				}
 			}) ;
 		},
