@@ -1,6 +1,6 @@
 (function(){
 	var Form = function(binding,pageView){
-	    this.binding = binding ;
+		this.binding = binding ;
 		this.id = this.binding.attr("id") ;
 		this.type="form" ;
 		this.isSearch = (binding.attr("search") != undefined ? true : false) ;
@@ -41,13 +41,12 @@
 					var form =_jq.parents("form") ;
 
 					var fields = form.getForm().pageView.fields ;
-
 					for(var index in fields){
 						var _field = fields[index] ;
 						obj[_field.id] = _field.value ;
 					}
 
-					console.log(JSON.stringify(obj))
+					console.log(JSON.stringify(obj)) ;
 					var isSearch = form.getForm().isSearch ;
 					if(isSearch){
 
@@ -64,9 +63,8 @@
 				var field = this.pageView.fields[prop] ;
 				if(field != undefined){
 					field.binding.val(record[prop]) ;
-                	field.value = record[prop] ;
+					field.value = record[prop] ;
 				}
-
 			}
 		},
 		_initBtnGroup:function(){

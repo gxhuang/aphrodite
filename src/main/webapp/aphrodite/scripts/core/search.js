@@ -6,7 +6,7 @@
         // this.ajax = binding.attr("ajax")
         //存储数据
         this.records = undefined ;
-        this.tablename = undefined ;
+        this.tableName = this.binding.attr("tableName") ;
         this.grid = binding.attr("grid") ;
         //key取对的
         this.key = binding.attr("key") ;
@@ -42,6 +42,7 @@
 
                 //回车时候触发查询
                 if(e.which == 13) {
+                    alert(1111) ;
                     var _jq = $(this) ;
                     var field = _jq.getField();
                     if(field.grid){
@@ -52,8 +53,9 @@
                             return value ;
                         }
                         var search = JSON.stringify(_jq.getSearch(),searchFilter) ;
-                        var result = ajax("commonServlet",search) ;
-                        _jq.getSearch.setGridData(data.grid) ;
+                        var result = ajax("/searchControlServlet",search) ;
+                        console.log(JSON.stringify(result)) ;
+                        // _jq.getSearch.setGridData(data.grid) ;
                     }else{
                         _jq.getSearch().filter(_jq.val()) ;
                     }

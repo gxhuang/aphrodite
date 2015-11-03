@@ -1,4 +1,5 @@
 function ajax(url,message,callback,setting){
+    console.log("ajax message:"+message) ;
     var result = undefined ;
     $.ajax({
         type:"post",
