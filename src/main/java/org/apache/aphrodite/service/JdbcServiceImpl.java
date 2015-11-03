@@ -8,54 +8,59 @@ import org.apache.aphrodite.dataset.PageView;
  * 类描述：
  *
  * @author: huang.yuewen
- * <p>
- * History:  2015年05月07日 15:33   huang.yuewen   Created.
+ *          <p>
+ *          History: 2015年05月07日 15:33 huang.yuewen Created.
  */
 public class JdbcServiceImpl implements JdbcService {
 
-    private JdbcDao jdbcDao;
+	private JdbcDao jdbcDao;
 
-    public void begin() {
-        jdbcDao.begin();
-    }
+	public void setJdbcDao(JdbcDao jdbcDao) {
+		this.jdbcDao = jdbcDao;
+	}
 
-    public void rollback() {
-        jdbcDao.rollback();
-    }
+	public void begin() {
+		jdbcDao.begin();
+	}
 
-    public void commit() {
-        jdbcDao.commit();
-    }
+	public void rollback() {
+		jdbcDao.rollback();
+	}
 
-    public void close() {
-        jdbcDao.close();
-    }
+	public void commit() {
+		jdbcDao.commit();
+	}
 
-    public void save(PageView pv) {
-        jdbcDao.insert(pv);
-    }
+	public void close() {
+		jdbcDao.close();
+	}
 
-    public void update(PageView pv) {
-        jdbcDao.update(pv);
-    }
+	public void save(PageView pv) {
+		jdbcDao.insert(pv);
+	}
 
-    public void select(PageView pv) {
-        jdbcDao.select(pv);
-    }
+	public void update(PageView pv) {
+		jdbcDao.update(pv);
+	}
 
-    public void delete(PageView pv) {
+	public void select(PageView pv) {
+		jdbcDao.select(pv);
+	}
 
-    }
+	public void delete(PageView pv) {
 
-    public void doService(Callback callback) {
-        try {
-            begin();
-            callback.doCall();
-            commit();
-        } catch (Throwable e) {
-            rollback();
-        }
+	}
 
+	public void doService(Callback callback) {
+		try {
+			begin();
+			callback.doCall();
+			commit();
+		} catch (Throwable e) {
+			rollback();
+		} finally {
+			close();
+		}
 
-    }
+	}
 }

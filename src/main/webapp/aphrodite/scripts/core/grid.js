@@ -73,6 +73,8 @@
 					//提交
 					var request = JSON.stringify(grid.pageView,filterValue) ;
 					console.log(request)
+				}else if(op == "search"){
+					
 				}
 			}) ;
 		},

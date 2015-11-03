@@ -32,7 +32,7 @@ public class PageView {
     //存储相关字段的数据类型及查询操作(like or equal)等信息
     private List<Field> fields ;
 
-    //查询及数据表现用的
+    //查询及数据展现用的
     private Form form ;
 
     private Grid grid ;

@@ -1,24 +1,21 @@
 package org.apache.aphrodite.test;
 
-import org.apache.aphrodite.dao.BaseDao;
-import org.apache.aphrodite.dataset.Dataset;
-import org.apache.aphrodite.dataset.PageView;
-import org.apache.aphrodite.service.BaseService;
-import org.apache.aphrodite.service.BaseServiceImpl;
-import org.apache.aphrodite.util.SQLAdapter;
-import org.apache.ibatis.session.SqlSession;
+import java.util.ArrayList;
+import java.util.List;
+
+import org.apache.aphrodite.dataset.Field;
+import org.apache.aphrodite.dataset.Search;
+import org.apache.aphrodite.service.SearchControlService;
+import org.apache.aphrodite.util.GsonUtil;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import java.util.List;
-import java.util.Map;
-
 /**
- * ¿‡√Ë ˆ£∫
+ * Á±ªÊèèËø∞ Ôºö
  *
  * @author: huang.yuewen
  * <p>
- * History:  2015ƒÍ05‘¬07»’ 15:33   huang.yuewen   Created.
+ * History:  2015Âπ¥05Êúà07Êó• 15:33   huang.yuewen   Created.
  */
 public class Test {
 
@@ -27,6 +24,10 @@ public class Test {
 
         String applicationName = cxt.getApplicationName();
         System.out.println(applicationName) ;
+        Test test = new Test();
+        test.searchControlTest(cxt);
+        
+        
 
 //        BaseDao baseDao = cxt.getBean("baseDao",BaseDao.class ) ;
 //        List maps = baseDao.select("findRecords", new SQLAdapter("SELECT * FROM C_USER LIMIT 1")) ;
@@ -36,13 +37,51 @@ public class Test {
 //        BaseService baseService = cxt.getBean("baseService",BaseServiceImpl.class) ;
 //        baseService.save(new PageView()) ;
 //        baseService.update(new PageView()) ;
-        int factor = 0 ;
-        int result = 1/0 ;
+//        int factor = 0 ;
+//        int result = 1/0 ;
 //        baseService.doService(test,new Dataset());
 //        test.doCall(new Dataset());
 
 //
 // .save(new PageView()) ;
+    }
+    
+    public void searchControlTest(ApplicationContext cxt){
+    	Search search = new Search();
+    	
+    	List<Field> fields = new ArrayList<Field>() ;
+    	
+    	Field id = new Field() ;
+    	id.setDataType("string");
+    	id.setName("id");
+    	fields.add(id) ;
+    	
+    	Field name = new Field() ;
+    	name.setDataType("string");
+    	name.setName("name");
+    	name.setOp("LIKE");
+    	fields.add(name) ;
+    	
+    	Field url = new Field() ;
+    	url.setDataType("string");
+    	url.setName("url");
+    	fields.add(url) ;
+    	
+    	Field parendId = new Field() ;
+    	parendId.setDataType("string");
+    	parendId.setName("parentId");
+    	fields.add(parendId) ;
+    	search.setFields(fields);
+    	
+    	search.setTableName("sysMenu");
+    	search.setCondition("Á≥ªÁªüÁÆ°ÁêÜ");
+    	
+    	SearchControlService searchControlService = cxt.getBean("searchControlService",SearchControlService.class) ;
+    	searchControlService.get(search);
+    	
+    	System.out.println(GsonUtil.toJson(search));
+
+    	
     }
 
 }

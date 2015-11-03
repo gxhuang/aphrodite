@@ -1,11 +1,11 @@
 package org.apache.aphrodite.util;
 
 /**
- * ÀàÃèÊö£º
+ * ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
  *
  * @author: huang.yuewen
  * <p>
- * History:  2015Äê05ÔÂ07ÈÕ 15:33   huang.yuewen   Created.
+ * History:  2015ï¿½ï¿½05ï¿½ï¿½07ï¿½ï¿½ 15:33   huang.yuewen   Created.
  */
 public abstract class Constants {
 

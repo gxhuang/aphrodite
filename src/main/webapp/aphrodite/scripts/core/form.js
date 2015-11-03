@@ -49,6 +49,20 @@
 					//form.addClass("")
 					form.addClass("hide") ;
 
+				}else if("search" == name){
+					var obj = {} ;
+					var form =_jq.parents("form") ;
+					var fields = form.getForm().pageView.fields ;
+
+					for(var index in fields){
+						var _field = fields[index] ;
+						obj[_field.id] = _field.value ;
+					}
+					console.log(JSON.stringify(obj))
+					// form.next("[name=grid]").removeClass("hide").getGrid().addData(obj);
+					//form.addClass("")
+					form.addClass("hide") ;
+
 				}
 			})
 		},

@@ -1,5 +1,10 @@
 eclipse.preferences.version=1
 encoding//src/main/doc/readme.txt=UTF-8
 encoding//src/main/java/org/apache/aphrodite/dao/JdbcDao.java=UTF-8
+encoding//src/main/java/org/apache/aphrodite/dataset/Form.java=UTF-8
+encoding//src/main/java/org/apache/aphrodite/dataset/PageView.java=UTF-8
+encoding//src/main/java/org/apache/aphrodite/dataset/sys/Menu.java=UTF-8
+encoding//src/main/java/org/apache/aphrodite/util/ApplicationContextUtil.java=UTF-8
+encoding//src/main/java/org/apache/aphrodite/util/PageViewUtil.java=UTF-8
 encoding//src/main/resources/readme.txt=UTF-8
 encoding//src/main/webapp/aphrodite/scripts/core/search.js=UTF-8

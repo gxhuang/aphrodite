@@ -25,14 +25,24 @@ public class Field {
 
     //日期字段专用
     private String format ;
+    
+    private String op ;
 
 
     private String value ;
 
     //add change
     private String status ;
+    
+    public String getOp() {
+		return op;
+	}
 
-    public String getStatus() {
+	public void setOp(String op) {
+		this.op = op;
+	}
+
+	public String getStatus() {
         return status;
     }
 
@@ -116,7 +126,4 @@ public class Field {
     }
 
 
-    public static enum Operator{
-        EQUALS,PRE_LIKE,LIKE,GREATER,LESS
-    }
 }

@@ -40,11 +40,25 @@ http://www.springframework.org/schema/beans/spring-beans.xsd">
     <bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
         <constructor-arg index="0" ref="sqlSessionFactory" />
     </bean>
-
+    
     <bean id="baseService" class="org.apache.aphrodite.service.BaseServiceImpl">
         <property name="txManager" ref="transactionManager" />
         <property name="baseDao" ref="baseDao" />
     </bean>
+    
+    <bean id="jdbcDao" class="org.apache.aphrodite.dao.JdbcDaoImpl">
+        <property name="dataSource" ref="dataSource" />
+    </bean>
+
+    <bean id="jdbcService" class="org.apache.aphrodite.service.JdbcServiceImpl">
+        <property name="jdbcDao" ref="jdbcDao" />
+    </bean>
+    
+    <bean id="searchControlService" class="org.apache.aphrodite.service.SearchControlService">
+        
+    </bean>
+    
+    
 
     <bean id="baseDao" class="org.apache.aphrodite.dao.BaseDaoImpl">
         <property name="sqlSession" ref="sqlSession" />

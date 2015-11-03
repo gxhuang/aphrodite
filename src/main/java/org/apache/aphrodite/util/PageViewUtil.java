@@ -8,22 +8,22 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * ¿‡√Ë ˆ£∫
+ * Á±ªÊèèËø∞ Ôºö
  *
  * @author: huang.yuewen
  * <p>
- * History:  2015ƒÍ05‘¬07»’ 15:33   huang.yuewen   Created.
+ * History:  2015Âπ¥05Êúà07Êó• 15:33   huang.yuewen   Created.
  */
 public abstract class PageViewUtil {
 
     public static SqlContext getSql(Enum<SqlType> sqlType, PageView pv) {
         SqlContext sql = null ;
         if (sqlType.equals(SqlType.INSERT)) {
-            getInsertSql(pv) ;
+        	sql = getInsertSql(pv) ;
         } else if (sqlType.equals(SqlType.UPDATE)) {
-            getUpdateSql(pv) ;
+        	sql = getUpdateSql(pv) ;
         } else if (sqlType.equals(SqlType.SELECT)) {
-            getSelectSql(pv) ;
+        	sql = getSelectSql(pv) ;
         } else if (sqlType.equals(SqlType.DELETE)) {
 
         }
@@ -36,7 +36,7 @@ public abstract class PageViewUtil {
         List<Field> fields = pv.getFields();
         String[] fieldNames = new String[fields.size()] ;
 
-        //’ºŒª∑˚∫≈
+        //
         StringBuilder head = new StringBuilder("") ;
         StringBuilder tail = new StringBuilder("") ;
         for (int index = 0,max = fields.size()-1 ;index <= max ;max ++ ) {
@@ -58,7 +58,7 @@ public abstract class PageViewUtil {
         List<Field> fields = pv.getFields();
         String[] fieldNames = new String[fields.size()] ;
 
-        //’ºŒª∑˚∫≈
+        //
         StringBuilder body = new StringBuilder("") ;
         for (int index = 0,max = fields.size()-1 ;index <= max ;max ++ ) {
             fieldNames[index] = fields.get(index).getName() ;
@@ -76,29 +76,39 @@ public abstract class PageViewUtil {
         List<Field> fields = pv.getFields();
         Map<String,String> values = pv.getForm().getValues() ;
 
-        String[] fieldNames = new String[fields.size()+values.size()] ;
+        String[] fieldNames = new String[values.size()] ;
 
-        //’ºŒª∑˚∫≈
+        //
         StringBuilder body = new StringBuilder("") ;
         StringBuilder where = new StringBuilder("") ;
-        for (int index = 0,max = fields.size()-1 ;index <= max ;max ++ ) {
-            fieldNames[index] = fields.get(index).getName() ;
-            body.append(ObjectTableUtil.toTableFieldFormat(fieldNames[index])).append(" = ").append("?");
-            if(index != max -1){
+        for (int index = 0,max = fields.size()-1 ;index <= max ;index++ ) {
+//            fieldNames[index] = fields.get(index).getName() ;
+            body.append(ObjectTableUtil.toTableFieldFormat(fields.get(index).getName()));
+            if(index != max){
                 body.append(",") ;
             }
         }
 
-        int start = fields.size() ;
+        int start = 0 ;
         for(Map.Entry<String,String> entry : values.entrySet()){
             fieldNames[start ++] = entry.getKey() ;
-            where.append(" ").append(fieldNames[start -1]).append(" = ?");
-            if(start != fieldNames.length -1){
+            where.append(" ").append(fieldNames[start -1]).append(" ").append(getOperator(pv.getField(fieldNames[start -1]).getOp()));
+            if(start != fieldNames.length){
                 where.append(" AND") ;
             }
 
         }
         return new SqlContext(body.toString(),where.toString(),fieldNames);
+    }
+    
+    private static String getOperator(String op){
+    	String result = " = ?" ;
+    	if("LIKE".equals(op)){
+    		result = "LIKE ?" ;
+    	}else if("GREATER".equals(op)){
+    		result = " > ? " ;
+    	}
+    	return result ;
     }
 
     public enum SqlType {

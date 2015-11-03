@@ -57,6 +57,45 @@
                                 </div>
                             </div>
                         </form>
+
+                        <form id="searchForm" search class="container-fluid form-horizontal hide" dataset="form" role="form">
+                            <div class="form-group">
+                                <label class="col-sm-1 control-label">菜单名称</label>
+                                <div class="col-sm-5">
+                                    <input id="name" name="name" type="text" datatype="String" class="form-control" palceholder="name">
+                                </div>
+                                <label class="col-sm-1 control-label">菜单路径</label>
+                                <div class="col-sm-5">
+                                    <input id="url" name="url" type="text" datatype="String" class="form-control" palceholder="url">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-1 control-label">父菜单</label>
+                                <div class="col-sm-5">
+                                    <div class="input-group">
+                                        <input type="search" datatype="String" key="notions" ajax name="parentId" id="parentId" aria-label="Text input with dropdown button" class="form-control">
+                                        <div class="input-group-btn">
+                                            <button aria-expanded="false" aria-haspopup="true" data-toggle="dropdown" class="btn btn-default dropdown-toggle" type="button"><span class="caret"></span></button>
+                                            <ul class="dropdown-menu dropdown-menu-right">
+                                                <li><div><table class="table table-hover"><thead><tr><th name="name">菜单名称</th><th name="url">菜单路径</th><th class="hide" name="id">菜单ID</th></tr></thead><tbody><tr><td>系统管理</td><td></td><td>菜单管理</td><td class="hide" >abcdef</td></tr></tbody></table><div></li>
+                                                <!--li><ul class="pager pager-sm"><li class="previous"><a href="#">&larr;上一页</a></li><li class="next"><a href="#">下一页&rarr;</a></li></ul></li-->
+                                            </ul>
+                                        </div><!-- /btn-group -->
+                                    </div>
+                                    <!--input id="parentId" name="parentId" type="text" datatype="String" class="form-control" palceholder="parentId"-->
+                                </div>
+                            </div>
+                            <div class="form-group" name="toolbar">
+                                <div class="row">
+                                    <div class="col-md-6 col-md-offset-6">
+                                        <div class="btn-group btn-group-justified" aria-label="Justified button group" role="group">
+                                            <a class="btn btn-default btn-info" role="button" href="#" name="search">确定</a>
+                                            <a class="btn btn-default btn-warning" role="button" href="#" name="cancle">取消</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
                         <div id="menu" name="grid" tree>
                             <div class="row" name="toolbar">
                                 <div class="col-sm-9">

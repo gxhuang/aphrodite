@@ -3,11 +3,11 @@ package org.apache.aphrodite.dataset.sys;
 import org.apache.aphrodite.dataset.BaseInfo;
 
 /**
- * ÀàÃèÊö£º²Ëµ¥
+ * ç±»æè¿°ï¼šèœå• æ€»å…±æœ‰ä¸¤çº§ç›®å½•
  *
  * @author: huang.yuewen
  * <p>
- * History:  2015Äê05ÔÂ07ÈÕ 15:33   huang.yuewen   Created.
+ * History:  2015å¹´05æœˆ07æ—¥ 15:33   huang.yuewen   Created.
  */
 public class Menu extends BaseInfo{
 
@@ -16,10 +16,23 @@ public class Menu extends BaseInfo{
     private String url ;
 
     private String name ;
+    
+    /**
+     * èœå•ç±»å‹
+     */
+    private String menuType ;
 
     private String parentId ;
+    
+    public String getMenuType() {
+		return menuType;
+	}
 
-    public String getId() {
+	public void setMenuType(String menuType) {
+		this.menuType = menuType;
+	}
+
+	public String getId() {
         return id;
     }
 

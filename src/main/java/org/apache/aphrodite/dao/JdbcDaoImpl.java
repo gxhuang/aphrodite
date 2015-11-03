@@ -26,12 +26,15 @@ import java.util.Map;
  */
 public class JdbcDaoImpl implements JdbcDao {
 
-    private DataSource ds;
+    private DataSource dataSource;
 
-    private ThreadLocal<Connection> tlocals = new ThreadLocal<Connection>();
+    private ThreadLocal<Connection> tlocals = new ThreadLocal<Connection>() ;
 
+	public void setDataSource(DataSource dataSource) {
+		this.dataSource = dataSource;
+	}
 
-    public void begin(){
+	public void begin(){
         try {
             getConnection().setAutoCommit(false);
         } catch (SQLException e) {
@@ -59,7 +62,7 @@ public class JdbcDaoImpl implements JdbcDao {
         try {
             getConnection().close();
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new DaoException(e.getMessage(), e) ;
         }
     }
 
@@ -74,6 +77,7 @@ public class JdbcDaoImpl implements JdbcDao {
         } catch (SQLException e) {
             throw new DaoException(e.getMessage(), e);
         } finally {
+        	close();
             close(null, pstmt);
         }
 
@@ -91,6 +95,15 @@ public class JdbcDaoImpl implements JdbcDao {
             pstmt.addBatch();
         }
     }
+    
+    private void setSelectParam(SqlContext sqlContext, PageView pv, PreparedStatement pstmt) throws SQLException {
+        String[] fieldNames = sqlContext.getFieldNames();
+        Map<String, String> values = pv.getForm().getValues(); 
+        for (int j = 1, len = fieldNames.length; j <= len; j++) {
+            setParam(pstmt, j, pv.getField(fieldNames[j - 1]), values.get(fieldNames[j - 1]));
+        }
+        pstmt.addBatch();
+    }
 
     private void setParam(PreparedStatement pstmt, int index, Field field, String value) throws SQLException {
         if ("date".equals(field.getDataType())) {
@@ -102,11 +115,19 @@ public class JdbcDaoImpl implements JdbcDao {
         } else if ("bigdecimal".equals(field.getDataType())) {
             pstmt.setBigDecimal(index, new BigDecimal(value));
         } else {
-            pstmt.setString(index, value);
+            pstmt.setString(index, getExpression(field,value));
         }
     }
+    
+    private String getExpression(Field field, String value){
+    	String expression = value ;
+    	if("LIKE".equals(field.getOp())){
+    		expression = "%"+value+"%" ;
+    	}
+    	return expression ;
+    }
 
-    //����ֶζ࣬������û�б�������µ�������Ƿ��Ӱ������
+    //
     public int update(PageView pv) {
         PreparedStatement pstmt = null;
         SqlContext sqlContext = PageViewUtil.getSql(PageViewUtil.SqlType.UPDATE, pv);
@@ -117,6 +138,7 @@ public class JdbcDaoImpl implements JdbcDao {
         } catch (SQLException e) {
             throw new DaoException(e.getMessage(), e);
         } finally {
+        	close();
             close(null, pstmt);
         }
 
@@ -136,13 +158,14 @@ public class JdbcDaoImpl implements JdbcDao {
 
         SqlContext sqlContext = PageViewUtil.getSql(PageViewUtil.SqlType.SELECT, pv);
         try {
-            pstmt = getConnection().prepareStatement(String.format(Constants.SELECT_FORMAT, ObjectTableUtil.toTableFieldFormat(pv.getName()), sqlContext.getHead(), sqlContext.getTail()));
-            setInsertParam(sqlContext, pv, pstmt);
+            pstmt = getConnection().prepareStatement(String.format(Constants.SELECT_FORMAT, sqlContext.getHead(),ObjectTableUtil.toTableFieldFormat(pv.getName()), sqlContext.getTail()));
+            setSelectParam(sqlContext, pv, pstmt);
             rs = pstmt.executeQuery();
             toPageView(rs, pv);
         } catch (SQLException e) {
             throw new DaoException(e.getMessage(), e);
         } finally {
+        	close();
             close(rs, pstmt);
         }
     }
@@ -156,12 +179,12 @@ public class JdbcDaoImpl implements JdbcDao {
             record = new Record();
             for (Field field : fields) {
                 if ("date".equals(field.getDataType())) {
-                    Date date = rs.getDate(field.getName());
+                    Date date = rs.getDate(ObjectTableUtil.toTableFieldFormat(field.getName()));
                     record.addRecordVal(field.getName(), DateUtil.toString(field.getFormat(), date));
                 } else if ("bigdecimal".equals(field.getDataType())) {
-                    record.addRecordVal(field.getName(), rs.getBigDecimal(field.getName()).toString());
+                    record.addRecordVal(field.getName(), rs.getBigDecimal(ObjectTableUtil.toTableFieldFormat(field.getName())).toString());
                 } else {
-                    record.addRecordVal(field.getName(), rs.getString(field.getName()));
+                    record.addRecordVal(field.getName(), rs.getString(ObjectTableUtil.toTableFieldFormat(field.getName())));
                 }
             }
             records.add(record);
@@ -190,7 +213,7 @@ public class JdbcDaoImpl implements JdbcDao {
     private Connection getConnection() throws SQLException {
         Connection conn = tlocals.get();
         if (conn == null) {
-            conn = ds.getConnection();
+            conn = dataSource.getConnection();
             tlocals.set(conn);
         }
         return conn;
