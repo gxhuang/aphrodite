@@ -7,8 +7,8 @@
 		// this.datasets =  ;
 		this.binding = undefined ;
 		this.pageViews = new Array();
-		this.action = undefined ;
-		this.service = undefined ;
+		this.action = "submit" ;
+		this.service = "jdbcService" ;
 	} ;
 
 	Dataset.prototype={

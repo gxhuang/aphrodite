@@ -63,25 +63,24 @@
 						var form = _jqgrid.siblings("form[neworedit]").getForm().setData(obj) ;
 
 					}
-				}else if(op == "submit"){
-					function filterValue(key,value){
-
-						if(key == "pageView" || key == "binding" || key == "fieldIndexs" || typeof(value) == "function" || value == undefined || value == ""){
-							return undefined ;
-						}
-						
-
-						return value ;
-					}
-					var grid = _jqgrid.getGrid();
+				}else if(op == "submit"){					
+					var dataset = _jqgrid.getGrid().dataset ;
 					//提交
-					var request = JSON.stringify(grid.pageView,filterValue) ;
+					var request = aphroditeSubmit(dataset) ;
 					console.log(request)
 				}else if(op == "search"){
 					_jqgrid.addClass("hide") ;
 					_jq.parents(".tab-pane").find("form[search]").removeClass("hide") ;
 					var jqNeForm = _jq.siblings("form[neworedit]") ;
 					if(!jqNeForm.hasClass("hide")) jqNeForm.addClass("hide") ;
+				}else{
+					var dataset = _jqgrid.getGrid().dataset;
+					var _func = _jq.attr("function") ;
+					if(_func != undefined){
+						_func(dataset) ;
+						//_func实现的功能必须指定action与service操作都是有哪些？
+						//根据service获取得到service bean
+					}					
 				}
 			}) ;
 		},
