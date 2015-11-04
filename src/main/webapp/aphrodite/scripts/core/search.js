@@ -43,7 +43,6 @@
         _initEvent:function(){
             
             this.binding.on("keyup",function(e){
-
                 //回车时候触发查询
                 if(e.which == 13) {
                     // alert(1111) ;
@@ -59,18 +58,20 @@
                             }
                             return value ;
                         }
-                        var search = JSON.stringify(_jq.getSearch(),searchFilter) ;
-                        var result = ajax("searchControlServlet",search) ;
+
+                        function ajaxCallback(search,data){
+                            var obj = JSON.parse(data) ;
+                            var records = obj.records ;
+                            search.setData(records) ;
+                        }
+                        var searchJson = JSON.stringify(_jq.getSearch(),searchFilter) ;
+                        var result = ajax("searchControlServlet",searchJson,ajaxCallback,search) ;
                         console.log(JSON.stringify(result)) ;
                         // _jq.getSearch.setGridData(data.grid) ;
                     }else{
                         _jq.getSearch().filter(_jq.val()) ;
-                    }
-                    
-
-                   _jq.getSearch().binding.next("div").find("ul").dropdown("toggle")
+                    }                  
                 }
-
                 //alert($(this).val())
                 
             }) ;
@@ -85,35 +86,47 @@
 
 //            this.setData(arr) ;
         },
-        setGridData:function(jqGrid,records){
-            if(records == undefined || records.length == 0){
-                return ;
-            }
-
-            jqGrid.find("th")
-
-        },
         setData:function(records){
 //            this.records = records ;
             if(records == undefined || records.length == 0){
                 return ;
             }
 
-            var selhtml = "" ;
-            for(var code in records){
+            if(this.grid){
+                var datahtml = "" ;
+                for(var record in records){
+                    datahtml += "<tr>" ;
+                    for(var index in fields){
+                        if(!fields[index].isHide){
+                            datahtml += "<td>"+record[fields[index].name]+"</td>" ;
+                        }                        
+                    }
+                    datahtml += "</tr>" ;
+                }
+                var jqtbody = this.binding.next("div").find("tbody").empty() ;
+                jqtbody.append(datahtml) ;
+                jqtbody.find("tr").on("click",function(e){
+                    alert("click") ;
+                }) ; 
 
-                selhtml += "<li><a href=\"#"+code+"\">"+records[code]+"<a></li>" ;
+            }else {
+                var selhtml = "" ;
+                for(var code in records){
+                    selhtml += "<li><a href=\"#"+code+"\">"+records[code]+"<a></li>" ;
+                }
+
+
+                this.binding.next("div").find("ul").empty().append(selhtml) ;
+                this.binding.next("div").find("ul").find("li").find("a").on("click",function(e){
+                    var _jq = $(this) ;
+                    var input=_jq.parents("div.input-group-btn").prev("input[type=search]").getField() ;
+                    //alert(_jq.attr("href"))
+                    input.binding.val(_jq.text());
+                    input.value=_jq.attr("href") ;
+                }) ;
             }
 
-
-            this.binding.next("div").find("ul").empty().append(selhtml) ;
-            this.binding.next("div").find("ul").find("li").find("a").on("click",function(e){
-                var _jq = $(this) ;
-                var input=_jq.parents("div.input-group-btn").prev("input[type=search]").getField() ;
-                //alert(_jq.attr("href"))
-                input.binding.val(_jq.text());
-                input.value=_jq.attr("href") ;
-            }) ;
+            _jq.getSearch().binding.next("div").find("ul").dropdown("toggle")            
         }
     };
 

@@ -23,7 +23,7 @@
 		this.fromValue = undefined ;//开始日期
 		this.toValue = undefined ;//结束日期
 		this.minView = undefined ;
-		this.isHide = this.binding.attr("class") ;
+		this.isHide = this.binding.attr("class") != undefined ? true:false ;
 		//如果是th则不需要这个初始化动作
 		if(this.type != "th"){
 			this._init() ;

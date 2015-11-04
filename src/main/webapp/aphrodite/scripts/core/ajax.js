@@ -1,20 +1,16 @@
-function ajax(url,message,callback,setting){
+function ajax(url,message,callback,jq){
     console.log("ajax message:"+message) ;
-    var result = undefined ;
     $.ajax({
         type:"post",
         url:url,
         data:message
     }).done(function(data){
        if(callback != undefined){
-           callback(data) ;
-       } else{
-           result = data ;
-       }
+           callback(jq,data) ;
+       } 
     }).fail(function(data){
         alert("fail") ;
     }) ;
-    return result ;
 }
 
 function get(url,message){
