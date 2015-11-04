@@ -1,7 +1,5 @@
 package org.apache.aphrodite.service;
 
-import org.apache.aphrodite.callback.Callback;
-import org.apache.aphrodite.dataset.Dataset;
 import org.apache.aphrodite.dataset.PageView;
 
 /**
@@ -20,13 +18,5 @@ public interface JdbcService {
     public void select(PageView pv) ;
 
     public void delete(PageView pv) ;
-
-    public void doService(Callback callback) ;
-    
-//    public void commit() ;
-//    
-//    public void close();
-//    
-//    public void rollback();
 
 }

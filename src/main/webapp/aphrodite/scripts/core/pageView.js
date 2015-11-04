@@ -1,10 +1,11 @@
 (function(){
-    var PageView = function(binding){
+    var PageView = function(binding,dataset){
         this.binding = binding ;
         this.fields = new Array() ;
         this.fieldIndexs = new Array();
         this.form = undefined ;
         this.grid = undefined ;
+        this.dataset = dataset ;
     } ;
     PageView.prototype = {
         setFields:function(fields){
@@ -66,9 +67,9 @@
     } ;
 
     $.fn.extend ({
-        _pageView:function(){
+        _pageView:function(dataset){
             //$(document)
-            var pageView = new PageView(this) ;
+            var pageView = new PageView(this,dataset) ;
             this.data("pageView",pageView) ;
             return pageView ;
         },

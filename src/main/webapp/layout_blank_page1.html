@@ -374,6 +374,7 @@ License: You must have a valid license purchased only from themeforest(the above
 <script src="aphrodite/scripts/core/form.js"></script>
 <script src="aphrodite/scripts/core/grid.js"></script>
 <script src="aphrodite/scripts/core/pageView.js"></script>
+<script src="aphrodite/scripts/core/dataset.js"></script>
 <script src="aphrodite/scripts/core/ajax.js"></script>
 <script>
       jQuery(document).ready(function() {
@@ -383,17 +384,18 @@ License: You must have a valid license purchased only from themeforest(the above
 
 			var pageContent = $(".page-content") ;
 		 	pageContent.empty() ;
-		 	pageContent.load($(e.target).attr("href"),function(a,b,c){
+		 	pageContent.load($(e.target).attr("href"),function(){
 		 		var tablist = pageContent.find("[role=tablist]") ;
 				var tabs = tablist.find("li") ;
+				var dataset = $(this)._dataset();
 				$.each(tabs,function(index,tab){
 					//tabindex 通过tabindex区别是否是主
 					var jqlitab = $(tab) ;
 					var href = jqlitab.find("a").attr("href") ;
-
 					var jqtab = $(href) ;
 
-					var pageView = jqtab._pageView() ;
+					var pageView = jqtab._pageView(dataset) ;
+					dataset.addPageView(pageView) ;
 					var jqForm = jqtab.find("form") ;
 					var form = jqForm._form(pageView) ;
 					pageView.form = form ;

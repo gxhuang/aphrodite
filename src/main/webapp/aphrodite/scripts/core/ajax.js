@@ -32,6 +32,3 @@ function getData(arr,callback){
 function load(){
 }
 
-function replace(key,value){
-    return typeof(value) == "function" ? undefined:value  ;
-}

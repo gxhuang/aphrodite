@@ -1,9 +1,7 @@
 package org.apache.aphrodite.dataset;
 
-import java.math.BigDecimal;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
 
 /**
  * 类描述：
@@ -96,17 +94,6 @@ public class Field {
 
     public void setFormat(String format) {
         this.format = format;
-    }
-
-    public Class getClassType(){
-        Class clazz = String.class ;
-        if("date".equals(this.dataType)){
-            clazz = Date.class ;
-        }else if("bigdecimal".equals(this.dataType)){
-            clazz = BigDecimal.class ;
-        }
-
-        return clazz ;
     }
 
     public Object toObject(){

@@ -1,6 +1,5 @@
 package org.apache.aphrodite.service;
 
-import org.apache.aphrodite.callback.Callback;
 import org.apache.aphrodite.dao.JdbcDao;
 import org.apache.aphrodite.dataset.PageView;
 
@@ -35,9 +34,6 @@ public class JdbcServiceImpl implements JdbcService {
 
 	}
 
-	public void doService(Callback callback) {
-		callback.doCall();
-	}
 
 
 }
