@@ -1,11 +1,7 @@
 package org.apache.aphrodite.mvc;
 
-import org.apache.aphrodite.dataset.Dataset;
-import org.apache.aphrodite.service.BaseService;
-import org.apache.aphrodite.callback.Callback;
-import org.apache.aphrodite.util.ApplicationContextUtil;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 
 import javax.servlet.ServletException;
 import javax.servlet.ServletInputStream;
@@ -13,8 +9,9 @@ import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 /**
  * 类描述：
@@ -25,7 +22,12 @@ import java.io.IOException;
  */
 public abstract class AphroditeServlet extends HttpServlet {
 
-    private static final Logger LOGGER = LogManager.getLogger(AphroditeServlet.class) ;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1930099318146715455L;
+	
+	private static final Logger LOGGER = LogManager.getLogger(AphroditeServlet.class) ;
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         //字符集+消息

@@ -14,6 +14,11 @@ import org.apache.aphrodite.util.GsonUtil;
  */
 public class SearchContolServlet extends AphroditeServlet {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	@Override
 	public String doService(String message) {
 

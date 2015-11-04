@@ -21,7 +21,12 @@ public class CommonServlet extends AphroditeServlet {
 
 
 
-    @Override
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	@Override
     public String doService(String message) {
 
         Type type = new TypeToken<List<String>>(){}.getType() ;
