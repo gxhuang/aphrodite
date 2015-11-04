@@ -18,7 +18,6 @@ import org.apache.aphrodite.dataset.PageView;
 import org.apache.aphrodite.dataset.Record;
 import org.apache.aphrodite.dataset.SqlContext;
 import org.apache.aphrodite.exception.DaoException;
-import org.apache.aphrodite.service.JdbcService;
 import org.apache.aphrodite.service.JdbcServiceImpl;
 import org.apache.aphrodite.util.Constants;
 import org.apache.aphrodite.util.DateUtil;
