@@ -2,6 +2,8 @@ package org.apache.aphrodite.mvc;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 
 import javax.servlet.ServletException;
 import javax.servlet.ServletInputStream;
@@ -10,6 +12,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.aphrodite.dataset.Dataset;
+import org.apache.aphrodite.dataset.PageView;
+import org.apache.aphrodite.util.ApplicationContextUtil;
+import org.apache.aphrodite.util.GsonUtil;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -41,12 +47,12 @@ public abstract class AphroditeServlet extends HttpServlet {
             baos.write(data,0,length);
         }
         sis.close();
-        String message = new String(baos.toByteArray(),reqCharset) ;
-        LOGGER.debug("receive message {}",message);
+        String request = new String(baos.toByteArray(),reqCharset) ;
+        LOGGER.debug("request message {}",request);
 
-        String output = doService(message) ;
+        String output = doService(request) ;
 
-        LOGGER.debug("send message {}",output);
+        LOGGER.debug("response message {}",output);
 
         resp.setCharacterEncoding("UTF-8");
         ServletOutputStream sos = resp.getOutputStream() ;
@@ -54,7 +60,21 @@ public abstract class AphroditeServlet extends HttpServlet {
         sos.close();
     }
 
-    public abstract String doService(String message) ;
+    public String doService(String message) {
+    	String response = "" ;
+    	Dataset dataset = GsonUtil.toObject(message, Dataset.class) ;
+    	Object object = ApplicationContextUtil.getApplicationContext().getBean(dataset.getService())  ;
+    	try {
+			Method method = object.getClass().getMethod(dataset.getActioin(), Dataset.class) ;
+			Object result = method.invoke(object, dataset) ;
+			response = GsonUtil.toJson(result) ;
+		} catch (NoSuchMethodException | SecurityException | IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    	
+    	return response ;
+    } 
 
 
     @Override

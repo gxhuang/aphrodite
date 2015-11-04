@@ -3,7 +3,8 @@
 
 */
 function aphroditeSubmit(dataset){
-	JSON.stringify(grid.pageView,replace) ;
+	var request = JSON.stringify(grid.pageView,replace) ;
+	var url = "aphroditeServlet"
 }
 
 function aphroditeSelect(dataset){
@@ -28,9 +29,13 @@ function ajax(url,message,callback,jq){
         url:url,
         data:message
     }).done(function(data){
-       if(callback != undefined){
+       if(jq != undefined && callback != undefined){
            callback(jq,data) ;
-       } 
+       } else if(callback != undefined){
+       	   callback(data) ;
+       }else{
+       	   alert("submit sucessful!") ;
+       }
     }).fail(function(data){
         alert("fail") ;
     }) ;

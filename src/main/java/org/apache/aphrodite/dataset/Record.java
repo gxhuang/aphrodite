@@ -14,6 +14,7 @@ public class Record {
 
     private Map<String,String> recordVal ;
 
+    //status的取值与sqlType一致，但并不会取到select值
     private String status ;
 
     public Map<String, String> getRecordVal() {

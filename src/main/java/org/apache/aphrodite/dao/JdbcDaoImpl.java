@@ -1,5 +1,6 @@
 package org.apache.aphrodite.dao;
 
+import java.lang.reflect.Method;
 import java.math.BigDecimal;
 import java.sql.Connection;
 import java.sql.Date;
@@ -17,12 +18,16 @@ import org.apache.aphrodite.dataset.PageView;
 import org.apache.aphrodite.dataset.Record;
 import org.apache.aphrodite.dataset.SqlContext;
 import org.apache.aphrodite.exception.DaoException;
+import org.apache.aphrodite.service.JdbcService;
+import org.apache.aphrodite.service.JdbcServiceImpl;
 import org.apache.aphrodite.util.Constants;
 import org.apache.aphrodite.util.DateUtil;
 import org.apache.aphrodite.util.ObjectTableUtil;
 import org.apache.aphrodite.util.PageViewUtil;
+import org.apache.aphrodite.util.SqlType;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+
 
 /**
  * 类描述：
@@ -80,9 +85,9 @@ public class JdbcDaoImpl implements JdbcDao {
         //tableName
         PreparedStatement pstmt = null;
         try {
-            SqlContext sqlContext = PageViewUtil.getSql(PageViewUtil.SqlType.INSERT, pv);
+            SqlContext sqlContext = PageViewUtil.getSql(SqlType.INSERT, pv);
             pstmt = getConnection().prepareStatement(String.format(Constants.INSERT_FORMAT, ObjectTableUtil.toTableFieldFormat(pv.getName()), sqlContext.getHead(), sqlContext.getTail()));
-            setInsertParam(sqlContext, pv, pstmt);
+            setInsertParam(sqlContext, pv, pstmt,SqlType.INSERT);
             int[] results = pstmt.executeBatch();
         } catch (SQLException e) {
             throw new DaoException(e.getMessage(), e);
@@ -93,15 +98,19 @@ public class JdbcDaoImpl implements JdbcDao {
         return 0;
     }
 
-    private void setInsertParam(SqlContext sqlContext, PageView pv, PreparedStatement pstmt) throws SQLException {
+    private void setInsertParam(SqlContext sqlContext, PageView pv, PreparedStatement pstmt,SqlType sqlType) throws SQLException {
         List<Record> records = pv.getGrid().getRecords();
         String[] fieldNames = sqlContext.getFieldNames();
+        Record record = null ;
         for (int index = 0, max = records.size() - 1; index <= max; index++) {
-            Map<String, String> values = records.get(index).getRecordVal();
-            for (int j = 1, len = fieldNames.length; j <= len; j++) {
-                setParam(pstmt, j, pv.getField(fieldNames[j - 1]), values.get(fieldNames[j - 1]));
-            }
-            pstmt.addBatch();
+        	record = records.get(index) ;
+        	if(sqlType.name().equals(record.getStatus())){
+        		Map<String, String> values = records.get(index).getRecordVal();
+                for (int j = 1, len = fieldNames.length; j <= len; j++) {
+                    setParam(pstmt, j, pv.getField(fieldNames[j - 1]), values.get(fieldNames[j - 1]));
+                }
+                pstmt.addBatch();
+        	}            
         }
     }
     
@@ -140,10 +149,10 @@ public class JdbcDaoImpl implements JdbcDao {
     //
     public int update(PageView pv) {
         PreparedStatement pstmt = null;
-        SqlContext sqlContext = PageViewUtil.getSql(PageViewUtil.SqlType.UPDATE, pv);
+        SqlContext sqlContext = PageViewUtil.getSql(SqlType.UPDATE, pv);
         try {
             pstmt = getConnection().prepareStatement(String.format(Constants.UPDATE_FORMAT, ObjectTableUtil.toTableFieldFormat(pv.getName()), sqlContext.getHead(), sqlContext.getTail()));
-            setInsertParam(sqlContext, pv, pstmt);
+            setInsertParam(sqlContext, pv, pstmt,SqlType.UPDATE);
             int[] results = pstmt.executeBatch();
         } catch (SQLException e) {
             throw new DaoException(e.getMessage(), e);
@@ -166,7 +175,7 @@ public class JdbcDaoImpl implements JdbcDao {
         PreparedStatement pstmt = null;
         ResultSet rs = null;
 
-        SqlContext sqlContext = PageViewUtil.getSql(PageViewUtil.SqlType.SELECT, pv);
+        SqlContext sqlContext = PageViewUtil.getSql(SqlType.SELECT, pv);
         try {
         	String sql = String.format(Constants.SELECT_FORMAT, sqlContext.getHead(),ObjectTableUtil.toTableFieldFormat(pv.getName()), sqlContext.getTail());
         	LOGGER.debug("select sql:"+sql);
@@ -232,8 +241,11 @@ public class JdbcDaoImpl implements JdbcDao {
 
 
 
-    public static void main(String[] args) {
-        String format = "INSERT %1s";
-        System.out.println(String.format(format, "TABLE"));
+    public static void main(String[] args) throws NoSuchMethodException, SecurityException {
+//        String format = "INSERT %1s";
+//        System.out.println(String.format(format, "TABLE"));
+    	Object jdbcService = new JdbcServiceImpl() ;
+    	Method method = jdbcService.getClass().getMethod("update", PageView.class) ;
+    	System.out.println(method.toString()) ;
     }
 }

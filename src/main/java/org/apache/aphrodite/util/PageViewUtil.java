@@ -111,7 +111,4 @@ public abstract class PageViewUtil {
     	return result ;
     }
 
-    public enum SqlType {
-        INSERT, DELETE, UPDATE, SELECT
-    }
 }

@@ -2,6 +2,7 @@ package org.apache.aphrodite.service;
 
 import java.util.HashMap;
 
+import org.apache.aphrodite.dao.JdbcDao;
 import org.apache.aphrodite.dataset.Form;
 import org.apache.aphrodite.dataset.Grid;
 import org.apache.aphrodite.dataset.PageView;
@@ -20,8 +21,8 @@ public class SearchControlService {
 		pv.getField(search.getKey()).setOp(search.getOp());
 		pv.setName(search.getTableName());
 		
-		JdbcService jdbcService = (JdbcService) ServiceProxyFactory.getInstance(ApplicationContextUtil.getApplicationContext().getBean("jdbcService",JdbcService.class)) ;
-		jdbcService.select(pv);
+		JdbcDao jdbcDao = (JdbcDao) ServiceProxyFactory.getInstance(ApplicationContextUtil.getApplicationContext().getBean("jdbcDao",JdbcDao.class)) ;
+		jdbcDao.select(pv);
 		search.setRecords(pv.getGrid().getRecords());
 	}
 

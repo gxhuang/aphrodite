@@ -1,11 +1,11 @@
 package org.apache.aphrodite.util;
 
 /**
- * ��������
+ * 
  *
  * @author: huang.yuewen
  * <p>
- * History:  2015��05��07�� 15:33   huang.yuewen   Created.
+ * History:  2015年05月07日 15:33   huang.yuewen   Created.
  */
 public abstract class Constants {
 
@@ -18,5 +18,13 @@ public abstract class Constants {
     public static final String UPDATE_FORMAT = "UPDATE %1s SET %2s WHERE %3s";
 
     public static final String SELECT_FORMAT = "SELECT %1s FROM %2s WHERE %3s";
+    
+    public static final String INSERT = "INSERT" ;
+    
+    public static final String DELETE = "DELETE" ;
+    
+    public static final String UPDATE = "UPDATE" ;
+    
+    public static final String SELECT = "SELECT" ;
 
 }

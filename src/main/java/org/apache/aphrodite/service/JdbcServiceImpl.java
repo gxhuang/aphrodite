@@ -1,7 +1,9 @@
 package org.apache.aphrodite.service;
 
 import org.apache.aphrodite.dao.JdbcDao;
+import org.apache.aphrodite.dataset.Dataset;
 import org.apache.aphrodite.dataset.PageView;
+import org.apache.aphrodite.util.SqlType;
 
 /**
  * 类描述：
@@ -18,22 +20,25 @@ public class JdbcServiceImpl implements JdbcService {
 		this.jdbcDao = jdbcDao;
 	}
 
-	public void save(PageView pv) {
-		jdbcDao.insert(pv);
+	public void update(Dataset dataset) {
+		for(PageView pv : dataset.getPvs()){
+			if (pv.exsits(SqlType.INSERT)) {
+				jdbcDao.insert(pv);
+			}
+			if (pv.exsits(SqlType.UPDATE)) {
+				jdbcDao.update(pv);
+			}
+
+			if (pv.exsits(SqlType.DELETE)) {
+				jdbcDao.delete(pv);
+			}
+		}
+		
 	}
 
-	public void update(PageView pv) {
-		jdbcDao.update(pv);
+	public void select(Dataset dataset) {
+		for(PageView pv : dataset.getPvs()){
+			jdbcDao.select(pv);
+		}
 	}
-
-	public void select(PageView pv) {
-		jdbcDao.select(pv);
-	}
-
-	public void delete(PageView pv) {
-
-	}
-
-
-
 }

@@ -1,5 +1,6 @@
 package org.apache.aphrodite.service;
 
+import org.apache.aphrodite.dataset.Dataset;
 import org.apache.aphrodite.dataset.PageView;
 
 /**
@@ -11,12 +12,8 @@ import org.apache.aphrodite.dataset.PageView;
  */
 public interface JdbcService {
 
-    public void save(PageView pv) ;
+    public void update(Dataset dataset) ;
 
-    public void update(PageView pv) ;
-
-    public void select(PageView pv) ;
-
-    public void delete(PageView pv) ;
+    public void select(Dataset dataset) ;
 
 }
