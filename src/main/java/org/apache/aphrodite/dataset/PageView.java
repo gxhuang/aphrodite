@@ -78,7 +78,6 @@ public class PageView {
                 result = field ;
             }
         }
-
         return result ;
     }
 
