@@ -51,7 +51,7 @@ public class JdbcDaoImpl implements JdbcDao {
         try {
             getConnection().setAutoCommit(false);
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new DaoException(e.getMessage(), e) ;
         }
     }
 
@@ -59,7 +59,7 @@ public class JdbcDaoImpl implements JdbcDao {
         try {
             getConnection().rollback();
         } catch (SQLException e) {
-            e.printStackTrace();
+        	throw new DaoException(e.getMessage(), e) ;
         }
     }
 
@@ -67,7 +67,7 @@ public class JdbcDaoImpl implements JdbcDao {
         try {
             getConnection().commit();
         } catch (SQLException e) {
-            e.printStackTrace();
+        	throw new DaoException(e.getMessage(), e) ;
         }
     }
 
