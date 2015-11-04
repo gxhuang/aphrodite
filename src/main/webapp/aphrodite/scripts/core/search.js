@@ -94,11 +94,11 @@
 
             if(this.grid){
                 var datahtml = "" ;
-                for(var record in records){
+                for(var i = 0 ,max = records.length ;i<max ;i++){
                     datahtml += "<tr>" ;
-                    for(var index in fields){
-                        if(!fields[index].isHide){
-                            datahtml += "<td>"+record[fields[index].name]+"</td>" ;
+                    for(var j = 0 ,len = this.fields.length ;j<len ;j++){
+                        if(!this.fields[j].isHide){
+                            datahtml += "<td>"+records[i].recordVal[this.fields[j].name]+"</td>" ;
                         }                        
                     }
                     datahtml += "</tr>" ;
@@ -126,7 +126,7 @@
                 }) ;
             }
 
-            _jq.getSearch().binding.next("div").find("ul").dropdown("toggle")            
+            this.binding.getSearch().binding.next("div").find("ul").dropdown("toggle")            
         }
     };
 

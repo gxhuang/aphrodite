@@ -174,3 +174,58 @@
 2015.11.04 at 10:09:11 CST DEBUG org.apache.aphrodite.dao.JdbcDaoImpl 172 select - select sql:SELECT NAME,URL,ID FROM SYS_MENU WHERE  name  = ?
 2015.11.04 at 10:09:11 CST DEBUG org.apache.aphrodite.dao.JdbcDaoImpl 111 setSelectParam - input params:{name=dddd}
 2015.11.04 at 10:09:11 CST DEBUG org.apache.aphrodite.mvc.AphroditeServlet 49 doPost - send message {"fields":[{"name":"name"},{"name":"url"},{"name":"id"}],"tableName":"sysMenu","key":"name","condition":"dddd","records":[]}
+2015.11.04 at 10:41:43 CST DEBUG org.apache.aphrodite.mvc.AphroditeServlet 35 doPost - request charset utf-8
+2015.11.04 at 10:41:43 CST DEBUG org.apache.aphrodite.mvc.AphroditeServlet 45 doPost - receive message {"tableName":"sysMenu","grid":true,"key":"name","condition":"ddd","fields":[{"name":"name","selector":"","isHide":false},{"name":"url","selector":"","isHide":false},{"name":"id","selector":"","isHide":true}]}
+2015.11.04 at 10:41:43 CST DEBUG org.apache.aphrodite.dao.JdbcDaoImpl 172 select - select sql:SELECT NAME,URL,ID FROM SYS_MENU WHERE  name  = ?
+2015.11.04 at 10:41:43 CST DEBUG org.apache.aphrodite.dao.JdbcDaoImpl 111 setSelectParam - input params:{name=ddd}
+2015.11.04 at 10:41:44 CST DEBUG org.apache.aphrodite.mvc.AphroditeServlet 49 doPost - send message {"fields":[{"name":"name"},{"name":"url"},{"name":"id"}],"tableName":"sysMenu","key":"name","condition":"ddd","records":[]}
+2015.11.04 at 10:42:24 CST DEBUG org.apache.aphrodite.mvc.AphroditeServlet 35 doPost - request charset utf-8
+2015.11.04 at 10:42:24 CST DEBUG org.apache.aphrodite.mvc.AphroditeServlet 45 doPost - receive message {"tableName":"sysMenu","grid":true,"key":"name","condition":"系统管理","fields":[{"name":"name","selector":"","isHide":false},{"name":"url","selector":"","isHide":false},{"name":"id","selector":"","isHide":true}]}
+2015.11.04 at 10:42:24 CST DEBUG org.apache.aphrodite.dao.JdbcDaoImpl 172 select - select sql:SELECT NAME,URL,ID FROM SYS_MENU WHERE  name  = ?
+2015.11.04 at 10:42:24 CST DEBUG org.apache.aphrodite.dao.JdbcDaoImpl 111 setSelectParam - input params:{name=系统管理}
+2015.11.04 at 10:42:24 CST DEBUG org.apache.aphrodite.mvc.AphroditeServlet 49 doPost - send message {"fields":[{"name":"name"},{"name":"url"},{"name":"id"}],"tableName":"sysMenu","key":"name","condition":"系统管理","records":[{"recordVal":{"name":"系统管理","id":"1","url":"sys"}}]}
+2015.11.04 at 11:19:00 CST DEBUG org.apache.aphrodite.mvc.AphroditeServlet 35 doPost - request charset utf-8
+2015.11.04 at 11:19:00 CST DEBUG org.apache.aphrodite.mvc.AphroditeServlet 45 doPost - receive message {"tableName":"sysMenu","grid":true,"key":"name","condition":"系统管理","fields":[{"name":"name","selector":"","isHide":false},{"name":"url","selector":"","isHide":false},{"name":"id","selector":"","isHide":true}]}
+2015.11.04 at 11:19:01 CST DEBUG org.apache.aphrodite.dao.JdbcDaoImpl 172 select - select sql:SELECT NAME,URL,ID FROM SYS_MENU WHERE  name  = ?
+2015.11.04 at 11:19:01 CST DEBUG org.apache.aphrodite.dao.JdbcDaoImpl 111 setSelectParam - input params:{name=系统管理}
+2015.11.04 at 11:19:01 CST DEBUG org.apache.aphrodite.mvc.AphroditeServlet 49 doPost - send message {"fields":[{"name":"name"},{"name":"url"},{"name":"id"}],"tableName":"sysMenu","key":"name","condition":"系统管理","records":[{"recordVal":{"name":"系统管理","id":"1","url":"sys"}}]}
+2015.11.04 at 11:20:51 CST DEBUG org.apache.aphrodite.mvc.AphroditeServlet 35 doPost - request charset utf-8
+2015.11.04 at 11:20:51 CST DEBUG org.apache.aphrodite.mvc.AphroditeServlet 45 doPost - receive message {"tableName":"sysMenu","grid":true,"key":"name","condition":"系统管理","fields":[{"name":"name","selector":"","isHide":false},{"name":"url","selector":"","isHide":false},{"name":"id","selector":"","isHide":true}]}
+2015.11.04 at 11:20:51 CST DEBUG org.apache.aphrodite.dao.JdbcDaoImpl 172 select - select sql:SELECT NAME,URL,ID FROM SYS_MENU WHERE  name  = ?
+2015.11.04 at 11:20:51 CST DEBUG org.apache.aphrodite.dao.JdbcDaoImpl 111 setSelectParam - input params:{name=系统管理}
+2015.11.04 at 11:20:51 CST DEBUG org.apache.aphrodite.mvc.AphroditeServlet 49 doPost - send message {"fields":[{"name":"name"},{"name":"url"},{"name":"id"}],"tableName":"sysMenu","key":"name","condition":"系统管理","records":[{"recordVal":{"name":"系统管理","id":"1","url":"sys"}}]}
+2015.11.04 at 11:22:59 CST DEBUG org.apache.aphrodite.mvc.AphroditeServlet 35 doPost - request charset utf-8
+2015.11.04 at 11:22:59 CST DEBUG org.apache.aphrodite.mvc.AphroditeServlet 45 doPost - receive message {"tableName":"sysMenu","grid":true,"key":"name","condition":"系统管理","fields":[{"name":"name","selector":"","isHide":false},{"name":"url","selector":"","isHide":false},{"name":"id","selector":"","isHide":true}]}
+2015.11.04 at 11:23:00 CST DEBUG org.apache.aphrodite.dao.JdbcDaoImpl 172 select - select sql:SELECT NAME,URL,ID FROM SYS_MENU WHERE  name  = ?
+2015.11.04 at 11:23:00 CST DEBUG org.apache.aphrodite.dao.JdbcDaoImpl 111 setSelectParam - input params:{name=系统管理}
+2015.11.04 at 11:23:00 CST DEBUG org.apache.aphrodite.mvc.AphroditeServlet 49 doPost - send message {"fields":[{"name":"name"},{"name":"url"},{"name":"id"}],"tableName":"sysMenu","key":"name","condition":"系统管理","records":[{"recordVal":{"name":"系统管理","id":"1","url":"sys"}}]}
+2015.11.04 at 11:24:22 CST DEBUG org.apache.aphrodite.mvc.AphroditeServlet 35 doPost - request charset utf-8
+2015.11.04 at 11:24:22 CST DEBUG org.apache.aphrodite.mvc.AphroditeServlet 45 doPost - receive message {"tableName":"sysMenu","grid":true,"key":"name","condition":"系统管理","fields":[{"name":"name","selector":"","isHide":false},{"name":"url","selector":"","isHide":false},{"name":"id","selector":"","isHide":true}]}
+2015.11.04 at 11:24:23 CST DEBUG org.apache.aphrodite.dao.JdbcDaoImpl 172 select - select sql:SELECT NAME,URL,ID FROM SYS_MENU WHERE  name  = ?
+2015.11.04 at 11:24:23 CST DEBUG org.apache.aphrodite.dao.JdbcDaoImpl 111 setSelectParam - input params:{name=系统管理}
+2015.11.04 at 11:24:23 CST DEBUG org.apache.aphrodite.mvc.AphroditeServlet 49 doPost - send message {"fields":[{"name":"name"},{"name":"url"},{"name":"id"}],"tableName":"sysMenu","key":"name","condition":"系统管理","records":[{"recordVal":{"name":"系统管理","id":"1","url":"sys"}}]}
+2015.11.04 at 11:26:35 CST DEBUG org.apache.aphrodite.mvc.AphroditeServlet 35 doPost - request charset utf-8
+2015.11.04 at 11:26:35 CST DEBUG org.apache.aphrodite.mvc.AphroditeServlet 45 doPost - receive message {"tableName":"sysMenu","grid":true,"key":"name","condition":"系统管理","fields":[{"name":"name","selector":"","isHide":false},{"name":"url","selector":"","isHide":false},{"name":"id","selector":"","isHide":true}]}
+2015.11.04 at 11:26:35 CST DEBUG org.apache.aphrodite.dao.JdbcDaoImpl 172 select - select sql:SELECT NAME,URL,ID FROM SYS_MENU WHERE  name  = ?
+2015.11.04 at 11:26:35 CST DEBUG org.apache.aphrodite.dao.JdbcDaoImpl 111 setSelectParam - input params:{name=系统管理}
+2015.11.04 at 11:26:35 CST DEBUG org.apache.aphrodite.mvc.AphroditeServlet 49 doPost - send message {"fields":[{"name":"name"},{"name":"url"},{"name":"id"}],"tableName":"sysMenu","key":"name","condition":"系统管理","records":[{"recordVal":{"name":"系统管理","id":"1","url":"sys"}}]}
+2015.11.04 at 11:35:21 CST DEBUG org.apache.aphrodite.mvc.AphroditeServlet 35 doPost - request charset utf-8
+2015.11.04 at 11:35:21 CST DEBUG org.apache.aphrodite.mvc.AphroditeServlet 45 doPost - receive message {"tableName":"sysMenu","grid":true,"key":"name","condition":"系统管理","fields":[{"name":"name","selector":"","isHide":false},{"name":"url","selector":"","isHide":false},{"name":"id","selector":"","isHide":true}]}
+2015.11.04 at 11:35:21 CST DEBUG org.apache.aphrodite.dao.JdbcDaoImpl 172 select - select sql:SELECT NAME,URL,ID FROM SYS_MENU WHERE  name  = ?
+2015.11.04 at 11:35:21 CST DEBUG org.apache.aphrodite.dao.JdbcDaoImpl 111 setSelectParam - input params:{name=系统管理}
+2015.11.04 at 11:35:21 CST DEBUG org.apache.aphrodite.mvc.AphroditeServlet 49 doPost - send message {"fields":[{"name":"name"},{"name":"url"},{"name":"id"}],"tableName":"sysMenu","key":"name","condition":"系统管理","records":[{"recordVal":{"name":"系统管理","id":"1","url":"sys"}}]}
+2015.11.04 at 11:38:27 CST DEBUG org.apache.aphrodite.mvc.AphroditeServlet 35 doPost - request charset utf-8
+2015.11.04 at 11:38:27 CST DEBUG org.apache.aphrodite.mvc.AphroditeServlet 45 doPost - receive message {"tableName":"sysMenu","grid":true,"key":"name","condition":"系统管理","fields":[{"name":"name","selector":"","isHide":false},{"name":"url","selector":"","isHide":false},{"name":"id","selector":"","isHide":true}]}
+2015.11.04 at 11:38:27 CST DEBUG org.apache.aphrodite.dao.JdbcDaoImpl 172 select - select sql:SELECT NAME,URL,ID FROM SYS_MENU WHERE  name  = ?
+2015.11.04 at 11:38:27 CST DEBUG org.apache.aphrodite.dao.JdbcDaoImpl 111 setSelectParam - input params:{name=系统管理}
+2015.11.04 at 11:38:27 CST DEBUG org.apache.aphrodite.mvc.AphroditeServlet 49 doPost - send message {"fields":[{"name":"name"},{"name":"url"},{"name":"id"}],"tableName":"sysMenu","key":"name","condition":"系统管理","records":[{"recordVal":{"name":"系统管理","id":"1","url":"sys"}}]}
+2015.11.04 at 11:38:56 CST DEBUG org.apache.aphrodite.mvc.AphroditeServlet 35 doPost - request charset utf-8
+2015.11.04 at 11:38:56 CST DEBUG org.apache.aphrodite.mvc.AphroditeServlet 45 doPost - receive message {"tableName":"sysMenu","grid":true,"key":"name","condition":"系统管理","fields":[{"name":"name","selector":"","isHide":false},{"name":"url","selector":"","isHide":false},{"name":"id","selector":"","isHide":true}]}
+2015.11.04 at 11:38:56 CST DEBUG org.apache.aphrodite.dao.JdbcDaoImpl 172 select - select sql:SELECT NAME,URL,ID FROM SYS_MENU WHERE  name  = ?
+2015.11.04 at 11:38:56 CST DEBUG org.apache.aphrodite.dao.JdbcDaoImpl 111 setSelectParam - input params:{name=系统管理}
+2015.11.04 at 11:38:56 CST DEBUG org.apache.aphrodite.mvc.AphroditeServlet 49 doPost - send message {"fields":[{"name":"name"},{"name":"url"},{"name":"id"}],"tableName":"sysMenu","key":"name","condition":"系统管理","records":[{"recordVal":{"name":"系统管理","id":"1","url":"sys"}}]}
+2015.11.04 at 11:39:58 CST DEBUG org.apache.aphrodite.mvc.AphroditeServlet 35 doPost - request charset utf-8
+2015.11.04 at 11:39:58 CST DEBUG org.apache.aphrodite.mvc.AphroditeServlet 45 doPost - receive message {"tableName":"sysMenu","grid":true,"key":"name","condition":"系统管理","fields":[{"name":"name","selector":"","isHide":false},{"name":"url","selector":"","isHide":false},{"name":"id","selector":"","isHide":true}]}
+2015.11.04 at 11:39:58 CST DEBUG org.apache.aphrodite.dao.JdbcDaoImpl 172 select - select sql:SELECT NAME,URL,ID FROM SYS_MENU WHERE  name  = ?
+2015.11.04 at 11:39:58 CST DEBUG org.apache.aphrodite.dao.JdbcDaoImpl 111 setSelectParam - input params:{name=系统管理}
+2015.11.04 at 11:39:58 CST DEBUG org.apache.aphrodite.mvc.AphroditeServlet 49 doPost - send message {"fields":[{"name":"name"},{"name":"url"},{"name":"id"}],"tableName":"sysMenu","key":"name","condition":"系统管理","records":[{"recordVal":{"name":"系统管理","id":"1","url":"sys"}}]}

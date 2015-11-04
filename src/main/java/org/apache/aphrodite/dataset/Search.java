@@ -74,7 +74,7 @@ public class Search {
 	}
 
 	public void setCondition(String condition) {
-		this.condition = condition;
+		this.condition = condition;		
 	}
 	
 	
