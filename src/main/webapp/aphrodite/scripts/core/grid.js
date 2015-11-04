@@ -64,7 +64,7 @@
 
 					}
 				}else if(op == "submit"){					
-					var dataset = _jqgrid.getGrid().dataset ;
+					var dataset = _jqgrid.getGrid().pageView.dataset ;
 					//提交
 					var request = aphroditeSubmit(dataset) ;
 					console.log(request)

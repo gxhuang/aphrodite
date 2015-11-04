@@ -21,7 +21,7 @@ public class JdbcServiceImpl implements JdbcService {
 	}
 
 	public void update(Dataset dataset) {
-		for(PageView pv : dataset.getPvs()){
+		for(PageView pv : dataset.getPageViews()){
 			if (pv.exsits(SqlType.INSERT)) {
 				jdbcDao.insert(pv);
 			}
@@ -37,7 +37,7 @@ public class JdbcServiceImpl implements JdbcService {
 	}
 
 	public void select(Dataset dataset) {
-		for(PageView pv : dataset.getPvs()){
+		for(PageView pv : dataset.getPageViews()){
 			jdbcDao.select(pv);
 		}
 	}

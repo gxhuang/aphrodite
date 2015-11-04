@@ -20,6 +20,10 @@
         <servlet-class>org.apache.aphrodite.mvc.LoginServlet</servlet-class>
     </servlet>
     <servlet>
+        <servlet-name>aphroditeServlet</servlet-name>
+        <servlet-class>org.apache.aphrodite.mvc.AphroditeServlet</servlet-class>
+    </servlet>
+    <servlet>
         <servlet-name>commonServlet</servlet-name>
         <servlet-class>org.apache.aphrodite.mvc.CommonServlet</servlet-class>
     </servlet>
@@ -27,6 +31,10 @@
         <servlet-name>searchControlServlet</servlet-name>
         <servlet-class>org.apache.aphrodite.mvc.SearchContolServlet</servlet-class>
     </servlet>
+     <servlet-mapping>
+        <servlet-name>aphroditeServlet</servlet-name>
+        <url-pattern>/aphroditeServlet</url-pattern>
+    </servlet-mapping>
     <servlet-mapping>
         <servlet-name>loginServlet</servlet-name>
         <url-pattern>/loginServlet</url-pattern>

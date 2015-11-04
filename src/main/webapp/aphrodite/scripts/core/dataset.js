@@ -7,7 +7,7 @@
 		// this.datasets =  ;
 		this.binding = undefined ;
 		this.pageViews = new Array();
-		this.action = "submit" ;
+		this.action = "update" ;
 		this.service = "jdbcService" ;
 	} ;
 

@@ -3,26 +3,26 @@ package org.apache.aphrodite.dataset;
 import java.util.List;
 
 /**
- * ÀàÃèÊö£º
+ * ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
  *
  * @author: huang.yuewen
  * <p>
- * History:  2015Äê05ÔÂ07ÈÕ 15:33   huang.yuewen   Created.
+ * History:  2015ï¿½ï¿½05ï¿½ï¿½07ï¿½ï¿½ 15:33   huang.yuewen   Created.
  */
 public class Dataset {
 
-    private String actioin ;
+    private String action ;
 
     private String service ;
 
-    private List<PageView> pvs ;
+    private List<PageView> pageViews ;
 
-    public String getActioin() {
-        return actioin;
+    public String getAction() {
+        return action;
     }
 
-    public void setActioin(String actioin) {
-        this.actioin = actioin;
+    public void setAction(String action) {
+        this.action = action;
     }
 
     public String getService() {
@@ -33,11 +33,13 @@ public class Dataset {
         this.service = service;
     }
 
-    public List<PageView> getPvs() {
-        return pvs;
-    }
+	public List<PageView> getPageViews() {
+		return pageViews;
+	}
 
-    public void setPvs(List<PageView> pvs) {
-        this.pvs = pvs;
-    }
+	public void setPageViews(List<PageView> pageViews) {
+		this.pageViews = pageViews;
+	}
+
+    
 }

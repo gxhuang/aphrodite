@@ -4,7 +4,8 @@
 */
 function aphroditeSubmit(dataset){
 	var request = JSON.stringify(dataset,replace) ;
-	var url = "aphroditeServlet"
+	var url = "aphroditeServlet" 
+	ajax(url , request) ;
 }
 
 function aphroditeSelect(dataset){

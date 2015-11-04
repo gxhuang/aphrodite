@@ -13,7 +13,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.aphrodite.dataset.Dataset;
-import org.apache.aphrodite.dataset.PageView;
 import org.apache.aphrodite.util.ApplicationContextUtil;
 import org.apache.aphrodite.util.GsonUtil;
 import org.apache.logging.log4j.LogManager;
@@ -26,7 +25,7 @@ import org.apache.logging.log4j.Logger;
  * <p>
  * History:  2015Äê05ÔÂ07ÈÕ 15:33   huang.yuewen   Created.
  */
-public abstract class AphroditeServlet extends HttpServlet {
+public class AphroditeServlet extends HttpServlet {
 
     /**
 	 * 
@@ -65,12 +64,12 @@ public abstract class AphroditeServlet extends HttpServlet {
     	Dataset dataset = GsonUtil.toObject(message, Dataset.class) ;
     	Object object = ApplicationContextUtil.getApplicationContext().getBean(dataset.getService())  ;
     	try {
-			Method method = object.getClass().getMethod(dataset.getActioin(), Dataset.class) ;
+			Method method = object.getClass().getMethod(dataset.getAction(), Dataset.class) ;
 			Object result = method.invoke(object, dataset) ;
 			response = GsonUtil.toJson(result) ;
 		} catch (NoSuchMethodException | SecurityException | IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			response = e.getMessage() ;
+			LOGGER.error(e.getMessage(),e);
 		}
     	
     	return response ;
