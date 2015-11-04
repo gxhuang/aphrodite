@@ -1,8 +1,5 @@
 package org.apache.aphrodite.util;
 
-import org.apache.aphrodite.dataset.sys.Menu;
-import org.apache.aphrodite.dataset.sys.User;
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -10,12 +7,13 @@ import java.io.IOException;
 import java.lang.reflect.Field;
 import java.nio.charset.Charset;
 
+
 /**
- * ÀàÃèÊö£º
+ * ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
  *
  * @author: huang.yuewen
  * <p>
- * History:  2015Äê05ÔÂ07ÈÕ 15:33   huang.yuewen   Created.
+ * History:  2015ï¿½ï¿½05ï¿½ï¿½07ï¿½ï¿½ 15:33   huang.yuewen   Created.
  */
 public abstract class PageUtil {
 
@@ -123,10 +121,10 @@ public abstract class PageUtil {
         toolbarhtml.append(getSpace(level)).append("<div class=\"row\" name=\"toolbar\">").append(ENTER)
                 .append(getSpace(level + 1)).append("<div class=\"col-sm-9\">").append(ENTER)
                 .append(getSpace(level + 2)).append("<div class=\"btn-group\">").append(ENTER)
-                .append(getSpace(level + 3)).append("<button type=\"button\" class=\"btn btn-success\" name=\"new\">ÐÂ½¨</button>").append(ENTER)
-                .append(getSpace(level + 3)).append("<button type=\"button\" class=\"btn btn-primary\" name=\"edit\">±à¼­</button>").append(ENTER)
-                .append(getSpace(level+3)).append("<button type=\"button\" class=\"btn btn-warning\" name=\"delete\">É¾³ý</button>").append(ENTER)
-                .append(getSpace(level+3)).append("<button type=\"button\" class=\"btn btn-info\" name=\"search\">¸ü¶àÑ¡Ïî</button>").append(ENTER)
+                .append(getSpace(level + 3)).append("<button type=\"button\" class=\"btn btn-success\" name=\"new\">ï¿½Â½ï¿½</button>").append(ENTER)
+                .append(getSpace(level + 3)).append("<button type=\"button\" class=\"btn btn-primary\" name=\"edit\">ï¿½à¼­</button>").append(ENTER)
+                .append(getSpace(level+3)).append("<button type=\"button\" class=\"btn btn-warning\" name=\"delete\">É¾ï¿½ï¿½</button>").append(ENTER)
+                .append(getSpace(level+3)).append("<button type=\"button\" class=\"btn btn-info\" name=\"search\">ï¿½ï¿½ï¿½ï¿½Ñ¡ï¿½ï¿½</button>").append(ENTER)
                 .append(getSpace(level+3)).append("<button type=\"button\" class=\"btn btn-warning\">warning</button>").append(ENTER)
                 .append(getSpace(level + 2)).append("</div>").append(ENTER)
                 .append(getSpace(level+1)).append("</div>").append(ENTER)
@@ -170,18 +168,18 @@ public abstract class PageUtil {
         StringBuilder pagenationhtml = new StringBuilder() ;
         pagenationhtml.append(getSpace(level)).append("<ul class=\"pager\">").append(ENTER)
                 .append(getSpace(level+1)).append("<li class=\"previous\">").append(ENTER)
-                .append(getSpace(level+2)).append("<a href=\"#\">&larr;ÉÏÒ»Ò³</a>").append(ENTER)
+                .append(getSpace(level+2)).append("<a href=\"#\">&larr;ï¿½ï¿½Ò»Ò³</a>").append(ENTER)
                 .append(getSpace(level + 1)).append("</li>").append(ENTER)
-                .append(getSpace(level+1)).append("<span class=\"info\">µÚ2Ò³/¹²20Ò³</span>").append(ENTER)
+                .append(getSpace(level+1)).append("<span class=\"info\">ï¿½ï¿½2Ò³/ï¿½ï¿½20Ò³</span>").append(ENTER)
                 .append(getSpace(level+1)).append("<li class=\"next\">").append(ENTER)
-                .append(getSpace(level+2)).append("<a href=\"#\">ÏÂÒ»Ò³&rarr;</a>").append(ENTER)
+                .append(getSpace(level+2)).append("<a href=\"#\">ï¿½ï¿½Ò»Ò³&rarr;</a>").append(ENTER)
                 .append(getSpace(level+1)).append("</li>").append(ENTER)
                 .append(getSpace(level)).append("</ul>").append(ENTER) ;
         return pagenationhtml.toString() ;
     }
 
     public static void main(String[] args){
-        String html = PageUtil.html(Menu.class) ;
+        String html = PageUtil.html(PageUtil.class) ;
         File file = new File("D:\\workspace-luna\\aphrodite\\src\\main\\webapp\\menu.html") ;
         FileOutputStream fos = null ;
         try {
