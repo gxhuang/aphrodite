@@ -74,7 +74,7 @@
 					var jqNeForm = _jq.siblings("form[neworedit]") ;
 					if(!jqNeForm.hasClass("hide")) jqNeForm.addClass("hide") ;
 				}else{
-					var dataset = _jqgrid.getGrid().dataset;
+					var dataset = _jqgrid.getGrid().pageView.dataset;
 					var _func = _jq.attr("function") ;
 					if(_func != undefined){
 						_func(dataset) ;
@@ -103,23 +103,23 @@
 
 			var allUndefined = true ;
 			var htmltbody ="<tr>"
-			for(var id in record){
-				var field = this.pageView.getField(id) ;
-				if (field.isHide != undefined && field.isHide.contains("hide")) {
+			for(var name in record){
+				var field = this.pageView.getField(name) ;
+				if (field.isHide) {
 					console.log("hide")
 					continue ;
 				}
 
-				if(record[id] != undefined && record[id]  != ""){
+				if(record[name] != undefined && record[name]  != ""){
 					allUndefined = false ;
 				}
 
 				//ID是后台生成还是前台生成
-				htmltbody += "<td name="+id +">" ;				
+				htmltbody += "<td name="+name +">" ;				
 				if(field.type == "search"){
 					htmltbody += field.binding.val();
 				}else{
-					htmltbody += (record[id] == undefined ?"":record[id]) ;
+					htmltbody += (record[name] == undefined ?"":record[name]) ;
 				}
 				htmltbody +="</td>"
 			}

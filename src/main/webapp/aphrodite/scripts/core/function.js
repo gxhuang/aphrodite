@@ -3,7 +3,7 @@
 
 */
 function aphroditeSubmit(dataset){
-	var request = JSON.stringify(grid.pageView,replace) ;
+	var request = JSON.stringify(dataset,replace) ;
 	var url = "aphroditeServlet"
 }
 
