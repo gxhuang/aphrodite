@@ -23,10 +23,10 @@ public interface JdbcService {
 
     public void doService(Callback callback) ;
     
-    public void commit() ;
-    
-    public void close();
-    
-    public void rollback();
+//    public void commit() ;
+//    
+//    public void close();
+//    
+//    public void rollback();
 
 }

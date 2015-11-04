@@ -19,22 +19,6 @@ public class JdbcServiceImpl implements JdbcService {
 		this.jdbcDao = jdbcDao;
 	}
 
-	public void begin() {
-		jdbcDao.begin();
-	}
-
-	public void rollback() {
-		jdbcDao.rollback();
-	}
-
-	public void commit() {
-		jdbcDao.commit();
-	}
-
-	public void close() {
-		jdbcDao.close();
-	}
-
 	public void save(PageView pv) {
 		jdbcDao.insert(pv);
 	}
@@ -52,16 +36,7 @@ public class JdbcServiceImpl implements JdbcService {
 	}
 
 	public void doService(Callback callback) {
-		try {
-			begin();
-			callback.doCall();
-			commit();
-		} catch (Throwable e) {
-			rollback();
-		} finally {
-			close();
-		}
-
+		callback.doCall();
 	}
 
 

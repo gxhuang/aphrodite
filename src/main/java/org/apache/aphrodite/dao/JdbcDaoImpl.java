@@ -70,7 +70,7 @@ public class JdbcDaoImpl implements JdbcDao {
     public void close(){
         try {
             getConnection().close();
-//            tlocals.remove();
+            tlocals.remove();
         } catch (SQLException e) {
             throw new DaoException(e.getMessage(), e) ;
         }
@@ -87,7 +87,6 @@ public class JdbcDaoImpl implements JdbcDao {
         } catch (SQLException e) {
             throw new DaoException(e.getMessage(), e);
         } finally {
-        	close();
             close(null, pstmt);
         }
 
@@ -178,7 +177,6 @@ public class JdbcDaoImpl implements JdbcDao {
         } catch (SQLException e) {
             throw new DaoException(e.getMessage(), e);
         } finally {
-        	close();
             close(rs, pstmt);
         }
     }

@@ -3,7 +3,11 @@ package org.apache.aphrodite.service;
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
 
+import org.apache.aphrodite.dao.JdbcDao;
 import org.apache.aphrodite.exception.ServiceException;
+import org.apache.aphrodite.util.ApplicationContextUtil;
+
+import com.sun.glass.ui.Application;
 
 /**
  * 
@@ -12,24 +16,28 @@ import org.apache.aphrodite.exception.ServiceException;
  * <p>
  * History:  2015年05月07日 15:33   huang.yuewen   Created.
  */
-public class JdbcServiceProxy implements InvocationHandler{
+public class ServiceProxy implements InvocationHandler{
 	
-	private JdbcService jdbcService ;
+	private Object service ;
 	
-    public void setJdbcService(JdbcService jdbcService) {
-		this.jdbcService = jdbcService;
+	private JdbcDao jdbcDao ;    
+
+	public void setService(Object service) {
+		this.service = service;
+		jdbcDao = ApplicationContextUtil.getApplicationContext().getBean("jdbcDao", JdbcDao.class) ;
 	}
 
 	public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
-        System.out.println("invoke......");
+		jdbcDao.begin();
+		System.out.println("invoke......");
         Object result = null ;
         try{
-        	result = method.invoke(jdbcService,args);
+        	result = method.invoke(service,args);
         }catch(Throwable t){
-        	jdbcService.rollback();
+        	jdbcDao.rollback();
         	throw new ServiceException(t.getMessage(), t.getCause()) ;
         }finally{
-        	jdbcService.close();
+        	jdbcDao.close();
         }
         return result ;
     }

@@ -19,9 +19,8 @@ public class SearchControlService {
 		pv.getForm().getValues().put(search.getKey(), search.getCondition());
 		pv.getField(search.getKey()).setOp(search.getOp());
 		pv.setName(search.getTableName());
-//		aphrodi
 		
-		JdbcService jdbcService = ApplicationContextUtil.getApplicationContext().getBean("jdbcService",JdbcService.class) ; ;
+		JdbcService jdbcService = (JdbcService) ServiceProxyFactory.getInstance(ApplicationContextUtil.getApplicationContext().getBean("jdbcService",JdbcService.class)) ;
 		jdbcService.select(pv);
 		search.setRecords(pv.getGrid().getRecords());
 	}
