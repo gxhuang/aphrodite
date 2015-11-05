@@ -200,7 +200,7 @@
 
 					
 					record.status = _this.status ;
-					_this.records[_this.records.length] = record ;
+					_this.records[_this.records.length] = records[i] ;
 					_this.status = undefined ;
 				}
 				
@@ -213,43 +213,11 @@
 					});
 					
 				}	
-			}
-			
-
-					
+			}					
 		},
 		update:function(record){
 			//找到相应的记录，更新掉记录的值
 		}
-		/*,
-		_loadData:function(records){
-			this.records = records ;
-			if(records == undefined || records.length == 0){
-				return ;
-			}
-			//records 是一个数组
-			var htmltbody = "" ;
-			$.each(records,function(index,record){
-				//应该是record.recordVal
-				htmltbody+="<tr>"
-				for(var field in record.recordVal){
-					htmltbody += "<td name="+field+">" ;
-					htmltbody +=record[field] ;
-					htmltbody +="</td>"
-				}
-				htmltbody+="</tr>"
-			});
-
-			var jqTbody = this.binding.find("tbody") ;
-			jqTbody.find("tr").unbind("click");
-			jqTbody.empty();
-			jqTbody.append(htmltbody) ;
-			jqTbody.find("tr").on("click",function(e){
-				var _jqthis = $(this) ;
-				_jqthis.parent("tbody").find("tr[class=success]").removeClass("success") ;
-				_jqthis.addClass("success") ;
-			});
-		}*/
 	};
 
 	$.fn.extend ({
