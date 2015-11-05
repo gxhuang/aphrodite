@@ -12,6 +12,7 @@
         this.key = binding.attr("key") ;
         //根据code取标准代码
         this.code = binding.attr("code") ;
+        this.conditionName = binding.attr("cname")
         this.condition = undefined ;
         this.fields = new Array();
         this._init();

@@ -112,25 +112,38 @@
 				return ;
 			}
 
-			var conditionVal = "" ;
-			var pfield = this.pageView.getField("id") ;
-			for(var index = 0 ,size = records.length ;index < size ;index ++){
-				var pVal = records[index].recordVal["parentId"] 
-				if(pVal != undefined && pVal != "" && !conditionVal.contains(pVal)){
-					if(pfield.datatype == "string"){
-						conditionVal += "'"+pVal+"'" ;
+			var fields = this.pageView.fields ;
+			for(var pos =0 ,limit = fields.length ;pos < limit ;pos++){
+				if(fields[pos].type == "search"){
+					// 
+					var conditionVal = "" ;
+					var pfield = fields[pos] ;
+					var jqsearch = pfield.binding.getSearch() ;
+					var key = jqsearch.key ;
+					for(var index = 0 ,size = records.length ;index < size ;index ++){
+						var pVal = records[index].recordVal[pfield.name] 
+						if(pVal != undefined && pVal != "" && !conditionVal.contains(pVal)){
+							if(pfield.datatype == "string"){
+								conditionVal += "'"+pVal+"'" ;
+							}
+							if(index != size -1){
+								conditionVal += "," ;
+							}			
+						}				
 					}
-					if(index != size -1){
-						conditionVal += "," ;
-					}			
-				}				
-			}
-			conditionVal = conditionVal.substring(1,conditionVal.length-2) ;
+					conditionVal = conditionVal.substring(1,conditionVal.length-2) ;
+					pfield.op = "IN" ;
 
-			pfield.op = "IN" ;
-			var obj = new Object();
-			obj[pfield.name] = conditionVal ;
-			toDataset(pfield,obj,"sysMenu","select","jdbcService") ;
+					var obj = new Object() ;
+					obj[jqsearch.conditionName] = conditionVal ;
+
+					var arrfields = new Array();
+					arrfields[0] = pfield ;
+					arrfields[1] = this.pageView.getField(jqsearch.conditionName) ;
+
+					toDataset(arrfields,obj,"sysMenu","select","jdbcService") ;
+				}
+			}
 
 
 			var htmltbody = "" ;

@@ -74,7 +74,7 @@ function toDataset(fields,pObj,table,action,service,url ){
 	dataset.service = service ;
 
 	var pageView = new Object();
-	if(typeof(fields) == "array"){
+	if(fields instanceof Array){
 		pageView.fields = fields ;
 	}else if(typeof(fields) == "object"){
 		var arr = new Array();
