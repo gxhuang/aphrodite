@@ -10,6 +10,9 @@
 		this.pageView = pageView ;
 		this.editRecord = undefined ;
 		this.records = new Array() ;
+
+		//DELETE,INSERT,UPDATE,SELECT
+		this.status = undefined ;
 		this._init();
 	};
 	Grid.prototype = {
@@ -42,9 +45,10 @@
 				var op = _jq.attr("name") ;
 				if(op == "new"){
 					//_jqgrid.addClass("hide").prev("br").prev("form").removeClass("hide") ;
-					var jqSForm = _jqgrid.siblings("form[search]") ;
-					if(!jqSForm.hasClass("hide")) jqSForm.addClass("hide")
+					// var jqSForm = _jqgrid.siblings("form[search]") ;
+					// if(!jqSForm.hasClass("hide")) jqSForm.addClass("hide")
 					_jqgrid.addClass("hide") ;
+					_jqgrid.getGrid().status = "INSERT" ;
 					_jq.parents(".tab-pane").find("form[neworedit]").removeClass("hide") ;
 				}else if(op == "edit"){
 					var active = _jqgrid.find("tbody").find("tr").filter(".success") ;
@@ -63,6 +67,7 @@
 						var form = _jqgrid.siblings("form[neworedit]").getForm().setData(obj) ;
 
 					}
+					_jqgrid.getGrid().status = "UPDATE" ;
 				}else if(op == "submit"){					
 					var dataset = _jqgrid.getGrid().pageView.dataset ;
 					//提交
@@ -73,6 +78,10 @@
 					_jq.parents(".tab-pane").find("form[search]").removeClass("hide") ;
 					var jqNeForm = _jq.siblings("form[neworedit]") ;
 					if(!jqNeForm.hasClass("hide")) jqNeForm.addClass("hide") ;
+
+
+					_jqgrid.getGrid().status = "SELECT" ;
+					_jqgrid.getGrid().pageView.dataset.action = "select" ;
 				}else{
 					var dataset = _jqgrid.getGrid().pageView.dataset;
 					var _func = _jq.attr("function") ;
@@ -95,7 +104,7 @@
 		_initEvent:function(){
 
 		},
-		addData:function(record){
+		insert:function(record){
 			if(record == undefined){
 				return ;
 			}
@@ -131,10 +140,15 @@
 					_jqthis.parent("tbody").find("tr[class=success]").removeClass("success") ;
 					_jqthis.addClass("success") ;
 				});
-				this.records[this.records.length] = record ;
-			}
-
-			
+				var r = new Object();
+				r.status = this.status ;
+				r.recordVal = record ;
+				this.records[this.records.length] = r ;
+				this.status = undefined ;
+			}			
+		},
+		update:function(record){
+			//找到相应的记录，更新掉记录的值
 		},
 		_loadData:function(records){
 			this.records = records ;
@@ -144,14 +158,14 @@
 			//records 是一个数组
 			var htmltbody = "" ;
 			$.each(records,function(index,record){
+				//应该是record.recordVal
 				htmltbody+="<tr>"
-				for(var field in record){
+				for(var field in record.recordVal){
 					htmltbody += "<td name="+field+">" ;
 					htmltbody +=record[field] ;
 					htmltbody +="</td>"
 				}
 				htmltbody+="</tr>"
-
 			});
 
 			var jqTbody = this.binding.find("tbody") ;

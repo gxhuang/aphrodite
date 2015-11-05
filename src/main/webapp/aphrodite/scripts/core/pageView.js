@@ -3,6 +3,7 @@
         this.binding = binding ;
         this.fields = new Array() ;
         this.fieldIndexs = new Array();
+        this.name = binding.attr("id")
         this.form = undefined ;
         this.grid = undefined ;
         this.dataset = dataset ;

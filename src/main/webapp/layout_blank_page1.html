@@ -396,9 +396,12 @@ License: You must have a valid license purchased only from themeforest(the above
 
 					var pageView = jqtab._pageView(dataset) ;
 					dataset.addPageView(pageView) ;
-					var jqForm = jqtab.find("form") ;
-					var form = jqForm._form(pageView) ;
-					pageView.form = form ;
+					var jqforms = jqtab.find("form") ;
+					$.each(jqforms,function(index,jqform){
+						var form = $(jqform)._form(pageView) ;
+						pageView.form = form ;
+					}) ;
+					
 					//var namefield = pageView.form.fields["name"];
 					//namefield.binding.val("黄跃文") ;
 

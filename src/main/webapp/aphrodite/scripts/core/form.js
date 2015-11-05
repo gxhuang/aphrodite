@@ -1,7 +1,7 @@
 (function(){
 	var Form = function(binding,pageView){
 		this.binding = binding ;
-		this.id = this.binding.attr("id") ;
+		this.id = binding.attr("id") ;
 		this.type="form" ;
 		this.isSearch = (binding.attr("search") != undefined ? true : false) ;
 		//this.fields = new Array();
@@ -49,9 +49,13 @@
 					console.log(JSON.stringify(obj)) ;
 					var isSearch = form.getForm().isSearch ;
 					if(isSearch){
+						function selectCallback(jqgrid,records) {
 
+						}
+
+						aphroditeSelect(form.getForm().pageView.dataset,selectCallback) ;
 					}else{
-						form.siblings("[name=grid]").removeClass("hide").getGrid().addData(obj);
+						form.siblings("[name=grid]").removeClass("hide").getGrid().insert(obj);
 						//form.addClass("")
 						form.addClass("hide") ;
 					}

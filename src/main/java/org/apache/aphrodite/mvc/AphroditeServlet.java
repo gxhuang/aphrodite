@@ -65,8 +65,8 @@ public class AphroditeServlet extends HttpServlet {
     	Object object = ApplicationContextUtil.getApplicationContext().getBean(dataset.getService())  ;
     	try {
 			Method method = object.getClass().getMethod(dataset.getAction(), Dataset.class) ;
-			Object result = method.invoke(object, dataset) ;
-			response = GsonUtil.toJson(result) ;
+			method.invoke(object, dataset) ;
+			response = GsonUtil.toJson(dataset) ;
 		} catch (NoSuchMethodException | SecurityException | IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
 			response = e.getMessage() ;
 			LOGGER.error(e.getMessage(),e);

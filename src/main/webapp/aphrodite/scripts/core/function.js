@@ -8,8 +8,10 @@ function aphroditeSubmit(dataset){
 	ajax(url , request) ;
 }
 
-function aphroditeSelect(dataset){
-
+function aphroditeSelect(dataset,callback,jqgrid){
+	var request = JSON.stringify(dataset,replace) ;
+	var url = "aphroditeServlet" 
+	ajax(url , request,callback,jqgrid) ;
 }
 
 /*

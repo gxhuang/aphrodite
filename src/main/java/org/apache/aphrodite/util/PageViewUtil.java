@@ -1,11 +1,13 @@
 package org.apache.aphrodite.util;
 
+import java.util.List;
+import java.util.Map;
+
 import org.apache.aphrodite.dataset.Field;
 import org.apache.aphrodite.dataset.PageView;
 import org.apache.aphrodite.dataset.SqlContext;
-
-import java.util.List;
-import java.util.Map;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 /**
  * 类描述 ：
@@ -15,6 +17,8 @@ import java.util.Map;
  * History:  2015年05月07日 15:33   huang.yuewen   Created.
  */
 public abstract class PageViewUtil {
+	
+	private static final Logger LOGGER = LogManager.getLogger(PageViewUtil.class) ; 
 
     public static SqlContext getSql(Enum<SqlType> sqlType, PageView pv) {
         SqlContext sql = null ;
@@ -39,12 +43,12 @@ public abstract class PageViewUtil {
         //
         StringBuilder head = new StringBuilder("") ;
         StringBuilder tail = new StringBuilder("") ;
-        for (int index = 0,max = fields.size()-1 ;index <= max ;max ++ ) {
+        for (int index = 0,max = fields.size()-1 ;index <= max ;index ++ ) {
             fieldNames[index] = fields.get(index).getName() ;
 
             head.append(ObjectTableUtil.toTableFieldFormat(fieldNames[index]));
             tail.append("?");
-            if(index != max -1){
+            if(index != max){
                 head.append(",") ;
                 tail.append(",") ;
             }
@@ -60,10 +64,10 @@ public abstract class PageViewUtil {
 
         //
         StringBuilder body = new StringBuilder("") ;
-        for (int index = 0,max = fields.size()-1 ;index <= max ;max ++ ) {
+        for (int index = 0,max = fields.size()-1 ;index <= max ;index ++ ) {
             fieldNames[index] = fields.get(index).getName() ;
             body.append(ObjectTableUtil.toTableFieldFormat(fieldNames[index])).append(" = ").append("?");
-            if(index != max -1){
+            if(index != max){
                 body.append(",") ;
             }
         }
@@ -76,7 +80,7 @@ public abstract class PageViewUtil {
         List<Field> fields = pv.getFields();
         Map<String,String> values = pv.getForm().getValues() ;
 
-        String[] fieldNames = new String[values.size()] ;
+        
 
         //
         StringBuilder body = new StringBuilder("") ;
@@ -90,14 +94,22 @@ public abstract class PageViewUtil {
         }
 
         int start = 0 ;
-        for(Map.Entry<String,String> entry : values.entrySet()){
-            fieldNames[start ++] = entry.getKey() ;
-            where.append(" ").append(fieldNames[start -1]).append(" ").append(getOperator(pv.getField(fieldNames[start -1]).getOp()));
-            if(start != fieldNames.length){
-                where.append(" AND") ;
-            }
-
+        String[] fieldNames = null ;
+        if(values != null && values.size() > 0){
+        	fieldNames = new String[values.size()] ;
+	    	 for(Map.Entry<String,String> entry : values.entrySet()){
+	             fieldNames[start ++] = entry.getKey() ;
+	             where.append(" ").append(fieldNames[start -1]).append(" ").append(getOperator(pv.getField(fieldNames[start -1]).getOp()));
+	             if(start != fieldNames.length){
+	                 where.append(" AND") ;
+	             }
+	
+	         }
+        }else {
+        	LOGGER.info("no condition param.");
+        	where.append(" 1=1 ") ;
         }
+       
         return new SqlContext(body.toString(),where.toString(),fieldNames);
     }
     
