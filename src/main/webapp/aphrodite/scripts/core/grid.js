@@ -112,14 +112,38 @@
 				return ;
 			}
 
+			var conditionVal = "" ;
+			var pfield = this.pageView.getField("id") ;
+			for(var index = 0 ,size = records.length ;index < size ;index ++){
+				var pVal = records[index].recordVal["parentId"] 
+				if(pVal != undefined && pVal != "" && !conditionVal.contains(pVal)){
+					if(pfield.datatype == "string"){
+						conditionVal += "'"+pVal+"'" ;
+					}
+					if(index != size -1){
+						conditionVal += "," ;
+					}			
+				}				
+			}
+			conditionVal = conditionVal.substring(1,conditionVal.length-2) ;
+
+			pfield.op = "IN" ;
+			var obj = new Object();
+			obj[pfield.name] = conditionVal ;
+			toDataset(pfield,obj,"sysMenu","select","jdbcService") ;
+
+
 			var htmltbody = "" ;
 			for(var i = 0 ,max = records.length ;i < max ;i++){
 				var allUndefined = true ;
 				htmltbody +="<tr>" ;
 				var record = records[i].recordVal ;
-				for(var name in record){
-					console.log(name)
-					var field = this.pageView.getField(name) ;
+				var fields = this.pageView.fields ;
+				for(var j = 0,len = fields.length ;j < len ;j++){
+					var field = fields[j] ;
+					var name = field.name ;
+					//console.log(name)
+					//var field = this.pageView.getField(name) ;
 					if (field.isHide) {
 						console.log("hide")
 						continue ;
@@ -132,7 +156,8 @@
 					//ID是后台生成还是前台生成
 					htmltbody += "<td name="+name +">" ;				
 					if(field.type == "search"){
-						htmltbody += field.binding.val();
+						htmltbody += (record[name] == undefined ?"":record[name])
+						//htmltbody += field.binding.val();
 					}else{
 						htmltbody += (record[name] == undefined ?"":record[name]) ;
 					}
@@ -148,7 +173,7 @@
 			
 
 			if(!allUndefined){
-				this.binding.find("tbody").empty().append(htmltbody).find("tr").last().on("click",function(e){
+				this.binding.find("tbody").empty().append(htmltbody).find("tr").on("click",function(e){
 					var _jqthis = $(this) ;
 					_jqthis.parent("tbody").find("tr[class=success]").removeClass("success") ;
 					_jqthis.addClass("success") ;

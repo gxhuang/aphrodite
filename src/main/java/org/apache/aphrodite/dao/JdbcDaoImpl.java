@@ -15,6 +15,7 @@ import java.util.UUID;
 import javax.sql.DataSource;
 
 import org.apache.aphrodite.dataset.Field;
+import org.apache.aphrodite.dataset.Grid;
 import org.apache.aphrodite.dataset.PageView;
 import org.apache.aphrodite.dataset.Record;
 import org.apache.aphrodite.dataset.SqlContext;
@@ -217,6 +218,9 @@ public class JdbcDaoImpl implements JdbcDao {
                 }
             }
             records.add(record);
+        }
+        if(pv.getGrid() == null){
+        	pv.setGrid(new Grid());
         }
         pv.getGrid().setRecords(records);
     }

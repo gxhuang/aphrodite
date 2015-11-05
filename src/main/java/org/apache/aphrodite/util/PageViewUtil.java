@@ -119,6 +119,8 @@ public abstract class PageViewUtil {
     		result = "LIKE ?" ;
     	}else if("GREATER".equals(op)){
     		result = " > ? " ;
+    	}else if("IN".equals(op)){
+    		result = " IN(?)" ;
     	}
     	return result ;
     }

@@ -19,11 +19,11 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 /**
- * ��������
+ * 类描述 ：
  *
  * @author: huang.yuewen
  * <p>
- * History:  2015��05��07�� 15:33   huang.yuewen   Created.
+ * History:  2015年05月07日 15:33   huang.yuewen   Created.
  */
 public class AphroditeServlet extends HttpServlet {
 
@@ -35,7 +35,8 @@ public class AphroditeServlet extends HttpServlet {
 	private static final Logger LOGGER = LogManager.getLogger(AphroditeServlet.class) ;
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        //�ַ���+��Ϣ
+    	long start = System.currentTimeMillis() ;
+        //
         String reqCharset = req.getCharacterEncoding() ;
         LOGGER.debug("request charset {}",reqCharset);
         ServletInputStream sis = req.getInputStream() ;
@@ -57,6 +58,7 @@ public class AphroditeServlet extends HttpServlet {
         ServletOutputStream sos = resp.getOutputStream() ;
         sos.write(output.getBytes("UTF-8"));
         sos.close();
+        LOGGER.info("request cost:{}",(System.currentTimeMillis()-start));
     }
 
     public String doService(String message) {

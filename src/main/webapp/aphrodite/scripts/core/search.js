@@ -45,13 +45,11 @@
             this.binding.on("keyup",function(e){
                 //回车时候触发查询
                 if(e.which == 13) {
-                    // alert(1111) ;
 
                     var _jq = $(this) ;
-
                     var search = _jq.getSearch();
                     search.condition = _jq.val() ;
-                    if(search.grid){
+                    if( search.grid ){
                         function searchFilter(key,value){
                             if(key == "binding"){
                                 return undefined
@@ -59,14 +57,17 @@
                             return value ;
                         }
 
-                        function ajaxCallback(search,data){
+                        function searchCallback(search,data){
                             var obj = JSON.parse(data) ;
                             var records = obj.records ;
                             search.setData(records) ;
                         }
+
+                        //前台组成一个dataset
+
                         var searchJson = JSON.stringify(_jq.getSearch(),searchFilter) ;
-                        var result = ajax("searchControlServlet",searchJson,ajaxCallback,search) ;
-                        console.log(JSON.stringify(result)) ;
+                        var result = aphroditeSelect("searchControlServlet",searchJson,searchCallback,search) ;
+                        //console.log(JSON.stringify(result)) ;
                         // _jq.getSearch.setGridData(data.grid) ;
                     }else{
                         _jq.getSearch().filter(_jq.val()) ;
