@@ -10,6 +10,8 @@
 		this.pageView = pageView ;
 		this.editRecord = undefined ;
 		this.records = new Array() ;
+		//使用规则codevalue->codevalue object -> code table当中不一定在form中出现
+		this.codevalue = new Object();
 
 		//DELETE,INSERT,UPDATE,SELECT
 		this.status = undefined ;
@@ -105,6 +107,32 @@
 
 		},
 		append:function(record){
+			//追加在最后 last函数
+			//添加监听事件
+
+			var jqtbody = this.binding.find("tbody") ;
+			//这个能保证顺序与table的一致吗
+			var fields = this.fields ;
+
+			//方便定位每一行，标记不同颜色或者或更新操作
+			var trhtml = "<tr id="+record["id"]+">" ;
+			var value = undefined ;
+			for(var index = 0,len = fields.length ; i < len ;i++){
+				value = record[fields[index].name] ;
+
+				//code-value转换规则
+				if(fields[index] == "search"){
+
+				}
+				trhtml += "<td>"+(value == undefined ?"":value)+"</td>" ;
+				value = undefined ;
+			}
+			trhtml += "</tr>" ;
+			this.binding.find("tbody").append(trhtml).on("click",function(){
+				var _jqthis = $(this) ;
+				_jqthis.parent("tbody").find("tr[class=success]").removeClass("success") ;
+				_jqthis.addClass("success") ;
+			}) ;
 
 		},
 		insert:function(records){
@@ -152,9 +180,7 @@
 					dataset.action = "select" ;
 					dataset.service = "jdbcService" ;
 
-					aphroditeSelect(dataset,callback,this.pageView.dataset.binding);
-
-					
+					aphroditeSelect(dataset,callback,this.pageView.dataset.binding);					
 				}
 			}
 
@@ -164,7 +190,9 @@
 					keycode[jData[i].recordVal[jqsearch.conditionName]] = jData[i].recordVal[jqsearch.key]
 				}
 
-				//alert(JSON.stringify(keycode));
+				//下面这段代码可以改调用append就可以了
+				//先清空再调用append
+				//
 
 				var htmltbody = "" ;
 				for(var i = 0 ,max = records.length ;i < max ;i++){
