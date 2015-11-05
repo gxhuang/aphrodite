@@ -48,16 +48,20 @@
 
 					console.log(JSON.stringify(obj)) ;
 					var isSearch = form.getForm().isSearch ;
+					form.addClass("hide") ;
+					var jqgrid = form.siblings("[name=grid]").removeClass("hide").getGrid() ;
 					if(isSearch){
-						function selectCallback(jqgrid,records) {
-
+						function selectCallback(jqgrid,data) {
+							var records = JSON.parse(data) ;
+							jqgrid.insert(records)  ;
 						}
 
-						aphroditeSelect(form.getForm().pageView.dataset,selectCallback) ;
+						aphroditeSelect(form.getForm().pageView.dataset,selectCallback,jqgrid) ;
 					}else{
-						form.siblings("[name=grid]").removeClass("hide").getGrid().insert(obj);
-						//form.addClass("")
-						form.addClass("hide") ;
+						var records = new Array() ;
+						records[0].recordValue = obj ;
+						jqgrid.insert(records);
+						//form.addClass("")						
 					}
 				}
 			})

@@ -104,52 +104,62 @@
 		_initEvent:function(){
 
 		},
-		insert:function(record){
-			if(record == undefined){
+		append:function(record){
+
+		},
+		insert:function(records){
+			if(records == undefined || records.length <= 0){
 				return ;
 			}
 
+			var htmltbody = "" ;
+			for(var i = 0 ,max = records.length ;i < max ;i++){
+				var allUndefined = true ;
+				htmltbody +="<tr>" ;
+				var record = records[i].recordVal ;
+				for(var name in record){
+					console.log(name)
+					var field = this.pageView.getField(name) ;
+					if (field.isHide) {
+						console.log("hide")
+						continue ;
+					}
 
-			var allUndefined = true ;
-			var htmltbody ="<tr>"
-			for(var name in record){
-				var field = this.pageView.getField(name) ;
-				if (field.isHide) {
-					console.log("hide")
-					continue ;
-				}
+					if(record[name] != undefined && record[name]  != ""){
+						allUndefined = false ;
+					}
 
-				if(record[name] != undefined && record[name]  != ""){
-					allUndefined = false ;
+					//ID是后台生成还是前台生成
+					htmltbody += "<td name="+name +">" ;				
+					if(field.type == "search"){
+						htmltbody += field.binding.val();
+					}else{
+						htmltbody += (record[name] == undefined ?"":record[name]) ;
+					}
+					htmltbody +="</td>" ;
 				}
+				htmltbody+="</tr>" ;
 
-				//ID是后台生成还是前台生成
-				htmltbody += "<td name="+name +">" ;				
-				if(field.type == "search"){
-					htmltbody += field.binding.val();
-				}else{
-					htmltbody += (record[name] == undefined ?"":record[name]) ;
-				}
-				htmltbody +="</td>"
+				
+				record.status = this.status ;
+				this.records[this.records.length] = record ;
+				this.status = undefined ;
 			}
-			htmltbody+="</tr>"
+			
 
 			if(!allUndefined){
-				this.binding.find("tbody").append(htmltbody).find("tr").last().on("click",function(e){
+				this.binding.find("tbody").empty().append(htmltbody).find("tr").last().on("click",function(e){
 					var _jqthis = $(this) ;
 					_jqthis.parent("tbody").find("tr[class=success]").removeClass("success") ;
 					_jqthis.addClass("success") ;
 				});
-				var r = new Object();
-				r.status = this.status ;
-				r.recordVal = record ;
-				this.records[this.records.length] = r ;
-				this.status = undefined ;
+				
 			}			
 		},
 		update:function(record){
 			//找到相应的记录，更新掉记录的值
-		},
+		}
+		/*,
 		_loadData:function(records){
 			this.records = records ;
 			if(records == undefined || records.length == 0){
@@ -177,7 +187,7 @@
 				_jqthis.parent("tbody").find("tr[class=success]").removeClass("success") ;
 				_jqthis.addClass("success") ;
 			});
-		}
+		}*/
 	};
 
 	$.fn.extend ({

@@ -19,11 +19,11 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 /**
- * ÀàÃèÊö£º
+ * ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
  *
  * @author: huang.yuewen
  * <p>
- * History:  2015Äê05ÔÂ07ÈÕ 15:33   huang.yuewen   Created.
+ * History:  2015ï¿½ï¿½05ï¿½ï¿½07ï¿½ï¿½ 15:33   huang.yuewen   Created.
  */
 public class AphroditeServlet extends HttpServlet {
 
@@ -35,7 +35,7 @@ public class AphroditeServlet extends HttpServlet {
 	private static final Logger LOGGER = LogManager.getLogger(AphroditeServlet.class) ;
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        //×Ö·û¼¯+ÏûÏ¢
+        //ï¿½Ö·ï¿½ï¿½ï¿½+ï¿½ï¿½Ï¢
         String reqCharset = req.getCharacterEncoding() ;
         LOGGER.debug("request charset {}",reqCharset);
         ServletInputStream sis = req.getInputStream() ;
@@ -65,8 +65,8 @@ public class AphroditeServlet extends HttpServlet {
     	Object object = ApplicationContextUtil.getApplicationContext().getBean(dataset.getService())  ;
     	try {
 			Method method = object.getClass().getMethod(dataset.getAction(), Dataset.class) ;
-			method.invoke(object, dataset) ;
-			response = GsonUtil.toJson(dataset) ;
+			Object result = method.invoke(object, dataset) ;
+			response = GsonUtil.toJson(result) ;
 		} catch (NoSuchMethodException | SecurityException | IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
 			response = e.getMessage() ;
 			LOGGER.error(e.getMessage(),e);

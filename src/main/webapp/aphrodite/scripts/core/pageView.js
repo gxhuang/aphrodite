@@ -16,8 +16,8 @@
             return this.fields[this.fieldIndexs[id]] ;
         },
         addField:function(field){
-            if(this.fieldIndexs[field.id] == undefined){                
-                this.fieldIndexs[field.id] = this.fields.length
+            if(this.fieldIndexs[field.name] == undefined){                
+                this.fieldIndexs[field.name] = this.fields.length
                 this.fields[this.fields.length] = field ;
             }
             
