@@ -175,10 +175,8 @@
 					for(var j = 0,len = fields.length ;j < len ;j++){
 						var field = fields[j] ;
 						var name = field.name ;
-						//console.log(name)
-						//var field = this.pageView.getField(name) ;
 						if (field.isHide) {
-							console.log("hide")
+							htmltbody += "<td class=\"hide\" "+field.name+"="+record[name]+"></td>" ;
 							continue ;
 						}
 
