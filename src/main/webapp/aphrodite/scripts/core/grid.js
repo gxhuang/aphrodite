@@ -112,14 +112,18 @@
 				return ;
 			}
 
+			var keycode = new Object()  ;
+
 			var fields = this.pageView.fields ;
+			var _this = this ;
+
 			for(var pos =0 ,limit = fields.length ;pos < limit ;pos++){
 				if(fields[pos].type == "search"){
 					// 
 					var conditionVal = "" ;
 					var pfield = fields[pos] ;
-					var jqsearch = pfield.binding.getSearch() ;
-					var key = jqsearch.key ;
+					
+					// var key = jqsearch.key ;
 					for(var index = 0 ,size = records.length ;index < size ;index ++){
 						var pVal = records[index].recordVal[pfield.name] 
 						if(pVal != undefined && pVal != "" && !conditionVal.contains(pVal)){
@@ -134,65 +138,81 @@
 					conditionVal = conditionVal.substring(1,conditionVal.length-2) ;
 					pfield.op = "IN" ;
 
+					var jqsearch = pfield.binding.getSearch() ;
 					var obj = new Object() ;
 					obj[jqsearch.conditionName] = conditionVal ;
 
 					var arrfields = new Array();
-					arrfields[0] = pfield ;
+					arrfields[0] = this.pageView.getField(jqsearch.key) ;
 					arrfields[1] = this.pageView.getField(jqsearch.conditionName) ;
 
-					toDataset(arrfields,obj,"sysMenu","select","jdbcService") ;
+					
+
+					toDataset(arrfields,obj,"sysMenu","select","jdbcService",fcallback,this.pageView.dataset.binding) ;
+
+					
 				}
 			}
 
-
-			var htmltbody = "" ;
-			for(var i = 0 ,max = records.length ;i < max ;i++){
-				var allUndefined = true ;
-				htmltbody +="<tr>" ;
-				var record = records[i].recordVal ;
-				var fields = this.pageView.fields ;
-				for(var j = 0,len = fields.length ;j < len ;j++){
-					var field = fields[j] ;
-					var name = field.name ;
-					//console.log(name)
-					//var field = this.pageView.getField(name) ;
-					if (field.isHide) {
-						console.log("hide")
-						continue ;
-					}
-
-					if(record[name] != undefined && record[name]  != ""){
-						allUndefined = false ;
-					}
-
-					//ID是后台生成还是前台生成
-					htmltbody += "<td name="+name +">" ;				
-					if(field.type == "search"){
-						htmltbody += (record[name] == undefined ?"":record[name])
-						//htmltbody += field.binding.val();
-					}else{
-						htmltbody += (record[name] == undefined ?"":record[name]) ;
-					}
-					htmltbody +="</td>" ;
+			function fcallback(data,jq) {						
+				var jData = JSON.parse(data) ;
+				for(var i =0 ,max = jData.length ;i < max ;i++){
+					keycode[jData[i].recordVal[jqsearch.conditionName]] = jData[i].recordVal[jqsearch.key]
 				}
-				htmltbody+="</tr>" ;
 
+				alert(JSON.stringify(keycode));
+
+				var htmltbody = "" ;
+				for(var i = 0 ,max = records.length ;i < max ;i++){
+					var allUndefined = true ;
+					htmltbody +="<tr>" ;
+					var record = records[i].recordVal ;
+					// var fields = .fields ;
+					for(var j = 0,len = fields.length ;j < len ;j++){
+						var field = fields[j] ;
+						var name = field.name ;
+						//console.log(name)
+						//var field = this.pageView.getField(name) ;
+						if (field.isHide) {
+							console.log("hide")
+							continue ;
+						}
+
+						if(record[name] != undefined && record[name]  != ""){
+							allUndefined = false ;
+						}
+
+						//ID是后台生成还是前台生成
+						htmltbody += "<td name="+name +">" ;				
+						if(field.type == "search"){
+							htmltbody += (record[name] == undefined ?"":keycode[record[name]])
+							//htmltbody += field.binding.val();
+						}else{
+							htmltbody += (record[name] == undefined ?"":record[name]) ;
+						}
+						htmltbody +="</td>" ;
+					}
+					htmltbody+="</tr>" ;
+
+					
+					record.status = _this.status ;
+					_this.records[_this.records.length] = record ;
+					_this.status = undefined ;
+				}
 				
-				record.status = this.status ;
-				this.records[this.records.length] = record ;
-				this.status = undefined ;
+
+				if(!allUndefined){
+					_this.binding.find("tbody").empty().append(htmltbody).find("tr").on("click",function(e){
+						var _jqthis = $(this) ;
+						_jqthis.parent("tbody").find("tr[class=success]").removeClass("success") ;
+						_jqthis.addClass("success") ;
+					});
+					
+				}	
 			}
 			
 
-			if(!allUndefined){
-				this.binding.find("tbody").empty().append(htmltbody).find("tr").on("click",function(e){
-					var _jqthis = $(this) ;
-					_jqthis.parent("tbody").find("tr[class=success]").removeClass("success") ;
-					_jqthis.addClass("success") ;
-				});
-				
-			}			
+					
 		},
 		update:function(record){
 			//找到相应的记录，更新掉记录的值

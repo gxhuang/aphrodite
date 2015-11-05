@@ -68,7 +68,7 @@ function load(){
 }
 
 
-function toDataset(fields,pObj,table,action,service,url ){
+function toDataset(fields,pObj,table,action,service,callback,jq ){
 	var dataset = new Object();
 	dataset.action = action ;
 	dataset.service = service ;
@@ -90,11 +90,9 @@ function toDataset(fields,pObj,table,action,service,url ){
 	pageViews[0] = pageView ;
 	dataset.pageViews = pageViews ;
 
-	function fcallback(data) {
-		alert(data) ;
-	}
+	
 
-	aphroditeSelect(dataset,fcallback) ;
+	aphroditeSelect(dataset,callback,jq) ;
 	//alert(result) ;
 	//return result ;
 }
