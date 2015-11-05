@@ -148,19 +148,23 @@
 
 					
 
-					toDataset(arrfields,obj,"sysMenu","select","jdbcService",fcallback,this.pageView.dataset.binding) ;
+					var dataset = toDataset(arrfields,obj,"sysMenu") ;
+					dataset.action = "select" ;
+					dataset.service = "jdbcService" ;
+
+					aphroditeSelect(dataset,callback,this.pageView.dataset.binding);
 
 					
 				}
 			}
 
-			function fcallback(data,jq) {						
+			function callback(data,jq) {						
 				var jData = JSON.parse(data) ;
 				for(var i =0 ,max = jData.length ;i < max ;i++){
 					keycode[jData[i].recordVal[jqsearch.conditionName]] = jData[i].recordVal[jqsearch.key]
 				}
 
-				alert(JSON.stringify(keycode));
+				//alert(JSON.stringify(keycode));
 
 				var htmltbody = "" ;
 				for(var i = 0 ,max = records.length ;i < max ;i++){
