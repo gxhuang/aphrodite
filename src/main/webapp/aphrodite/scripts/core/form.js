@@ -51,17 +51,13 @@
 					form.addClass("hide") ;
 					var jqgrid = form.siblings("[name=grid]").removeClass("hide").getGrid() ;
 					if(isSearch){
-						function selectCallback(jqgrid,data) {
+						function callback(jqgrid,data) {
 							var records = JSON.parse(data) ;
 							jqgrid.insert(records)  ;
 						}
-
-						aphroditeSelect(form.getForm().pageView.dataset,selectCallback,jqgrid) ;
+						aphroditeSelect(form.getForm().pageView.dataset,callback,jqgrid) ;
 					}else{
-						var records = new Array() ;
-						records[0].recordValue = obj ;
-						jqgrid.insert(records);
-						//form.addClass("")						
+						jqgrid.append(obj);					
 					}
 				}
 			})

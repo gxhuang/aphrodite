@@ -112,27 +112,38 @@
 
 			var jqtbody = this.binding.find("tbody") ;
 			//这个能保证顺序与table的一致吗
-			var fields = this.fields ;
+			var fields = this.pageView.fields ;
 
 			//方便定位每一行，标记不同颜色或者或更新操作
-			var trhtml = "<tr id="+record["id"]+">" ;
+			//新增的数据没有ID的
+			var trhtml = "<tr id="+record["id"]+" class=\"warning\">" ;
 			var value = undefined ;
-			for(var index = 0,len = fields.length ; i < len ;i++){
+			for(var index = 0,len = fields.length ; index < len ;index++){
 				value = record[fields[index].name] ;
 
 				//code-value转换规则
 				if(fields[index] == "search"){
 
 				}
-				trhtml += "<td>"+(value == undefined ?"":value)+"</td>" ;
+				if(fields[index].isHide){
+					trhtml += "<td class=\"hide\">"+(value == undefined ?"":value)+"</td>" ;
+				}else{
+					trhtml += "<td>"+(value == undefined ?"":value)+"</td>" ;
+				}
+				
 				value = undefined ;
 			}
 			trhtml += "</tr>" ;
-			this.binding.find("tbody").append(trhtml).on("click",function(){
+			this.binding.find("tbody").append(trhtml).find("tr").last().on("click",function(){
 				var _jqthis = $(this) ;
 				_jqthis.parent("tbody").find("tr[class=success]").removeClass("success") ;
 				_jqthis.addClass("success") ;
 			}) ;
+
+			var r = new Object() ;
+			r.recordVal = record ;
+			r.status = this.status ;
+			this.status = undefined ;
 
 		},
 		insert:function(records){
