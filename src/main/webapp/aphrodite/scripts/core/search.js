@@ -121,7 +121,9 @@
                     var input =_jq.parents("div.input-group-btn").prev("input[type=search]");
                     //alert(_jq.attr("href"))
                     input.val(_jq.text()) ;
-                    input.value = _jq.attr("href").substring(1,_jq.attr("href").length) ; 
+                    
+                    // input.value = 
+                    input.parents("form").getForm().pageView.getField(input.attr("name")).value = _jq.attr("href").substring(1,_jq.attr("href").length) ; 
                 }) ;
             }
 

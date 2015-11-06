@@ -181,8 +181,8 @@
 			for(var index = 0,len = fields.length ; index < len ;index++){
 				value = record[fields[index].name] ;
 				//code-value转换规则
-				if(fields[index] == "search"){
-
+				if(fields[index].type == "search" && value != undefined && value != ""){
+					value = this.pageView.codeValue[this.pageView.forms[0].fieldbindings[fields[index].name].getSearch().key][value] ;
 				}
 				if(fields[index].isHide){
 					tdhtml += "<td class=\"hide\">"+(value == undefined ?"":value)+"</td>" ;
