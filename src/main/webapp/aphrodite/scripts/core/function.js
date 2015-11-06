@@ -37,7 +37,7 @@ function ajax(url,message,callback,jq){
         data:message
     }).done(function(data){
        if(jq != undefined && callback != undefined){
-           callback(jq,data) ;
+           callback(data,jq) ;
        } else if(callback != undefined){
        	   callback(data) ;
        }else{

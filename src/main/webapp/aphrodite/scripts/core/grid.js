@@ -116,10 +116,27 @@
 
 			//方便定位每一行，标记不同颜色或者或更新操作
 			//新增的数据没有ID的
-			var trhtml = "<tr id="+record["id"]+" class=\"warning\">" ;
+			function getStatus(status){
+				var strClass = "" ;
+				if(status == "INSERT") {
+
+				}else if(status == "UPDATE") {
+
+				}else if(status == "DELETE") {
+
+				}
+				return strClass ;
+			}
+
+			var trhtml = "<tr id="+record["id"]+getStatus(this.status)+">" ;
 			var value = undefined ;
+			var allUndefined = true ;
 			for(var index = 0,len = fields.length ; index < len ;index++){
 				value = record[fields[index].name] ;
+
+				if(value != undefined && value != ""){
+					allUndefined = false ;
+				}
 
 				//code-value转换规则
 				if(fields[index] == "search"){
@@ -132,26 +149,30 @@
 				}
 				
 				value = undefined ;
-			}
-			trhtml += "</tr>" ;
-			this.binding.find("tbody").append(trhtml).find("tr").last().on("click",function(){
-				var _jqthis = $(this) ;
-				_jqthis.parent("tbody").find("tr[class=success]").removeClass("success") ;
-				_jqthis.addClass("success") ;
-			}) ;
 
-			var r = new Object() ;
-			r.recordVal = record ;
-			r.status = this.status ;
-			this.status = undefined ;
+			}
+
+			if(!allUndefined){
+				//新增的时候如果所有控件都没有值 ，则无需要新增一行
+				trhtml += "</tr>" ;
+				this.binding.find("tbody").append(trhtml).find("tr").last().on("click",function(){
+					var _jqthis = $(this) ;
+					_jqthis.parent("tbody").find("tr[class=success]").removeClass("success") ;
+					_jqthis.addClass("success") ;
+				}) ;
+
+				var r = new Object() ;
+				r.recordVal = record ;
+				r.status = this.status ;
+				this.status = undefined ;
+			}
+			
 
 		},
 		insert:function(records){
 			if(records == undefined || records.length <= 0){
 				return ;
 			}
-
-			var keycode = new Object()  ;
 
 			var fields = this.pageView.fields ;
 			var _this = this ;
@@ -191,15 +212,20 @@
 					dataset.action = "select" ;
 					dataset.service = "jdbcService" ;
 
-					aphroditeSelect(dataset,callback,this.pageView.dataset.binding);					
+					aphroditeSelect(dataset,callback,this.pageView.grid.binding);					
 				}
 			}
 
-			function callback(data,jq) {						
+			function callback(data,jq) {
+				//后续data的结构要改成与codevalue结构一致						
 				var jData = JSON.parse(data) ;
+
+				var keycode = new Object()  ;
 				for(var i =0 ,max = jData.length ;i < max ;i++){
 					keycode[jData[i].recordVal[jqsearch.conditionName]] = jData[i].recordVal[jqsearch.key]
 				}
+
+				jq.getGrid().codevalue.jqsearch.conditionName = keycode ;
 
 				//下面这段代码可以改调用append就可以了
 				//先清空再调用append
@@ -207,49 +233,9 @@
 
 				var htmltbody = "" ;
 				for(var i = 0 ,max = records.length ;i < max ;i++){
-					var allUndefined = true ;
-					htmltbody +="<tr>" ;
-					var record = records[i].recordVal ;
-					// var fields = .fields ;
-					for(var j = 0,len = fields.length ;j < len ;j++){
-						var field = fields[j] ;
-						var name = field.name ;
-						if (field.isHide) {
-							htmltbody += "<td class=\"hide\" "+field.name+"="+record[name]+"></td>" ;
-							continue ;
-						}
-
-						if(record[name] != undefined && record[name]  != ""){
-							allUndefined = false ;
-						}
-
-						//ID是后台生成还是前台生成
-						htmltbody += "<td name="+name +">" ;				
-						if(field.type == "search"){
-							htmltbody += (record[name] == undefined ?"":keycode[record[name]])
-							//htmltbody += field.binding.val();
-						}else{
-							htmltbody += (record[name] == undefined ?"":record[name]) ;
-						}
-						htmltbody +="</td>" ;
-					}
-					htmltbody+="</tr>" ;
-
-					
-					record.status = _this.status ;
-					_this.records[_this.records.length] = records[i] ;
-					_this.status = undefined ;
+					jq.getGrid().append(records[i].recordVal) ;
 				}
-				
-
-				if(!allUndefined){
-					_this.binding.find("tbody").empty().append(htmltbody).find("tr").on("click",function(e){
-						var _jqthis = $(this) ;
-						_jqthis.parent("tbody").find("tr[class=success]").removeClass("success") ;
-						_jqthis.addClass("success") ;
-					});
 					
-				}	
 			}					
 		},
 		update:function(record){

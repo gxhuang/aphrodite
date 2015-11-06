@@ -5,25 +5,25 @@ import java.util.List;
 import org.apache.aphrodite.util.SqlType;
 
 /**
- * ÀàÃèÊö£ºÃ¿¸öTABÒ³¶ÔÓ¦Ò»¸öPageView,×ÓTABµÄ²éÑ¯Ìõ¼şÀ´×ÔÄãTABÒ³Ñ¡ÖĞµÄrecord£¬¿ÉÒÔÍ¨¹ıÍâ¼üÀ´×ö¹ØÁª£¬Ò²¿ÉÒÔÍ¨¹ıÊ¹ÓÃrecordµÄ²éÑ¯Ìõ¼ş¡£
- * Ã¿¸öpageviewÃ¿Ìõ¼ÇÂ¼±»¸ü¸Äºó£¬±£»ØÔ­À´µÄGridÀïµÄ¶ÔÓ¦µÄ¼ÇÂ¼£¬ÕâÑù±ã¿ÉÒÔ¼ÇÂ¼Ã¿¸öĞŞ¸ÄµÄÊı¾İ
+ * ç±»æè¿°ï¼šæ¯ä¸ªTABé¡µå¯¹åº”ä¸€ä¸ªPageView,å­TABçš„æŸ¥è¯¢æ¡ä»¶æ¥è‡ªä½ TABé¡µé€‰ä¸­çš„recordï¼Œå¯ä»¥é€šè¿‡å¤–é”®æ¥åšå…³è”ï¼Œä¹Ÿå¯ä»¥é€šè¿‡ä½¿ç”¨recordçš„æŸ¥è¯¢æ¡ä»¶ã€‚
+ * æ¯ä¸ªpageviewæ¯æ¡è®°å½•è¢«æ›´æ”¹åï¼Œä¿å›åŸæ¥çš„Gridé‡Œçš„å¯¹åº”çš„è®°å½•ï¼Œè¿™æ ·ä¾¿å¯ä»¥è®°å½•æ¯ä¸ªä¿®æ”¹çš„æ•°æ®
  * @author: huang.yuewen
  * <p>
- * History:  2015Äê05ÔÂ07ÈÕ 15:33   huang.yuewen   Created.
+ * History:  2015å¹´05æœˆ07æ—¥ 15:33   huang.yuewen   Created.
  */
 public class PageView {
 
 
-    //¶Ô¾Ípackage+class
+    //å¯¹å°±package+class
     private String id ;
 
     //tableName
     private String name ;
 
-    //´æ´¢Ïà¹Ø×Ö¶ÎµÄÊı¾İÀàĞÍ¼°²éÑ¯²Ù×÷(like or equal)µÈĞÅÏ¢
+    //å­˜å‚¨ç›¸å…³å­—æ®µçš„æ•°æ®ç±»å‹åŠæŸ¥è¯¢æ“ä½œ(like or equal)ç­‰ä¿¡æ¯
     private List<Field> fields ;
 
-    //²éÑ¯¼°Êı¾İÕ¹ÏÖÓÃµÄ
+    //æŸ¥è¯¢åŠæ•°æ®å±•ç°ç”¨çš„
     private Form form ;
 
     private Grid grid ;
@@ -69,7 +69,7 @@ public class PageView {
     }
 
     /**
-     * ĞÔÄÜÈç¹ûÓĞÎÊÌâ£¬»¹ÊÇµÃ¸ÄÑ½
+     * æ€§èƒ½å¦‚æœæœ‰é—®é¢˜ï¼Œè¿˜æ˜¯å¾—æ”¹å‘€
      * @param fieldName
      * @return
      */

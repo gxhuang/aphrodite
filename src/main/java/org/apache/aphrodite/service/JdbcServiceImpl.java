@@ -1,11 +1,8 @@
 package org.apache.aphrodite.service;
 
-import java.util.List;
-
 import org.apache.aphrodite.dao.JdbcDao;
 import org.apache.aphrodite.dataset.Dataset;
 import org.apache.aphrodite.dataset.PageView;
-import org.apache.aphrodite.dataset.Record;
 import org.apache.aphrodite.util.SqlType;
 
 /**
@@ -42,13 +39,18 @@ public class JdbcServiceImpl implements JdbcService {
 	/**
 	 * 每次只查询一个表的数据，主表、子表情况通过异步实现
 	 */
-	public List<Record> select(Dataset dataset) {
-		List<Record> records = null ;
+	public Dataset select(Dataset dataset) {
+		Dataset result = new Dataset() ;
 		for(PageView pv : dataset.getPageViews()){
 			jdbcDao.select(pv);
 		}
+		result.setPageViews(dataset.getPageViews());
 		
-		records = dataset.getPageViews().get(0).getGrid().getRecords() ;
-		return records ;
+		for(PageView pv : result.getPageViews()){
+			pv.setForm(null);
+			pv.setFields(null);
+		}
+		
+		return result ;
 	}
 }

@@ -51,7 +51,7 @@
 					form.addClass("hide") ;
 					var jqgrid = form.siblings("[name=grid]").removeClass("hide").getGrid() ;
 					if(isSearch){
-						function callback(jqgrid,data) {
+						function callback(data,jqgrid) {
 							var records = JSON.parse(data) ;
 							jqgrid.insert(records)  ;
 						}
