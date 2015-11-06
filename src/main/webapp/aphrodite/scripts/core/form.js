@@ -4,7 +4,8 @@
 		//this.id = binding.attr("id") ;
 		this.type="form" ;
 		this.isSearch = (binding.attr("search") != undefined ? true : false) ;
-		//this.fields = new Array();
+		this.fieldbindings = new Array();
+
 		this.pageView = pageView ;
 		this._init();
 	};
@@ -18,9 +19,11 @@
 			var _fields = this.binding.find(".form-control") ;
 
 			var pageView = this.pageView
+			var bindings = this.fieldbindings ;
 			$.each(_fields,function(index,_field){
 				//$()
 				var jqField = $(_field) ;
+				bindings[jqField.attr("name")] = jqField ;
 				var field = pageView.getField(jqField.attr("name")) ;
 				if(field == undefined ){
 					field = jqField._field();
@@ -99,11 +102,12 @@
 			})
 		},
 		setData:function(record){
-			for(var prop in record){
-				var field = this.pageView.fields[prop] ;
+			var values = record.recordVal ;
+			for(var prop in values){
+				var field = this.fieldbindings[prop];
 				if(field != undefined){
-					field.binding.val(record[prop]) ;
-					field.value = record[prop] ;
+					field.val(values[prop]) ;
+					field.value = values[prop] ;
 				}
 			}
 		},
