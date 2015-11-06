@@ -55,15 +55,6 @@ http://www.springframework.org/schema/beans/spring-beans.xsd">
     <bean id="jdbcService" class="org.apache.aphrodite.service.JdbcServiceImpl">
         <property name="jdbcDao" ref="jdbcDao" />
     </bean>
-    
-    <bean id="searchControlService" class="org.apache.aphrodite.service.SearchControlService">
-        
-    </bean>
-    
-    
-
-   
-
     <!-- bean id="test" class="org.apache.aphrodite.test.TestCallBack">
         <property name="baseService" ref="baseService" />
     </bean-->

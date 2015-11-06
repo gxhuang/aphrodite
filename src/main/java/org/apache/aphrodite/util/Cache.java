@@ -30,9 +30,8 @@ public abstract class Cache {
     public static void init(){
         //
         Map<String,String> map = new HashMap<String, String>() ;
-        map.put("yc","永春") ;
-        map.put("nh","宁化") ;
-        map.put("dh","德化") ;
-        cache.put("location",map) ;
+        map.put("00","无效") ;
+        map.put("01","有效") ;
+        cache.put("valid",map) ;
     }
 }

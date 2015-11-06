@@ -105,10 +105,20 @@
 		_initEvent:function(){
 
 		},
-		append:function(record){
-			//追加在最后 last函数
-			//添加监听事件
+		getStatus:function (status){
+			//方便定位每一行，标记不同颜色或者或更新操作
+			//新增的数据没有ID的
+			var strClass = "" ;
+			if(status == "INSERT") {
 
+			}else if(status == "UPDATE") {
+
+			}else if(status == "DELETE") {
+
+			}
+			return strClass ;
+		},
+		append:function(record){
 			//判断是否是空记录
 			var allUndefined = true ;
 			for(var p in record){
@@ -117,31 +127,11 @@
 					break ;
 				}
 			}
-			if(allUndefined){
-				return ;
-			}
-
+			if(allUndefined) return ;
 
 			var jqtbody = this.binding.find("tbody") ;
 			//这个能保证顺序与table的一致吗
-			var fields = this.pageView.fields ;
-
-			//方便定位每一行，标记不同颜色或者或更新操作
-			//新增的数据没有ID的
-			function getStatus(status){
-				var strClass = "" ;
-				if(status == "INSERT") {
-
-				}else if(status == "UPDATE") {
-
-				}else if(status == "DELETE") {
-
-				}
-				return strClass ;
-			}
-
-			
-			var value = undefined ;
+			var fields = this.pageView.fields ;		
 			var trhtml = "<tr id="+record["id"]+getStatus(this.status)+">" ;
 			trhtml += this.tdhtml(record) ;
 			trhtml += "</tr>" ;
@@ -149,21 +139,18 @@
 			
 			//新增的时候如果所有控件都没有值 ，则无需要新增一行
 			
-			var jqtr = this.binding.find("tbody").append(trhtml).find("tr").last() ;
-			jqtr.on("click",function(){
+			var jqtr = this.binding.find("tbody").append(trhtml).find("tr").last().on("click",function(){
 				var _jqthis = $(this) ;
 				_jqthis.parent("tbody").find("tr[class=active]").removeClass("active") ;
 				_jqthis.addClass("active") ;
-			}) ;
-			
+			}) ;			
 
 			var r = new Object() ;
 			r.recordVal = record ;
 			r.status = this.status ;
 			this.records[this.records.length] = r ;
 			jqtr.data("record",r) ;
-			this.status = undefined ;
-			
+			this.status = undefined ;			
 
 		},
 		insert:function(records){

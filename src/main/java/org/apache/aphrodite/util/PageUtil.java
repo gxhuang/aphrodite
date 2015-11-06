@@ -6,6 +6,16 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.lang.reflect.Field;
 import java.nio.charset.Charset;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
+import java.sql.SQLException;
+
+import javax.sql.DataSource;
+
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 
 /**
@@ -28,6 +38,25 @@ public abstract class PageUtil {
         int i = 1 ;
         html.append(formhtml(fields,i)).append(gridhtml(fields,i)) ;
         return html.toString() ;
+    }
+    
+    public static void getFields(String table ) throws SQLException{
+    	  ApplicationContext cxt = new ClassPathXmlApplicationContext("applicationContext.xml") ;
+    	  DataSource ds = cxt.getBean("dataSource",DataSource.class) ;
+    	  Connection conn = ds.getConnection() ;
+    	  
+    	  PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM "+table +" limit 1") ;
+    	  ResultSet rs = pstmt.executeQuery() ;
+    	  ResultSetMetaData rsmd = rs.getMetaData() ;
+    	  int count = rsmd.getColumnCount() ;
+    	  for(int i = 1 ;i<=count ;i++ ){
+    		  System.out.println("columnType:"+rsmd.getColumnTypeName(i)+" columnName:"+rsmd.getColumnName(i)) ;
+    	  }
+    	  rs.close() ;
+    	  pstmt.close();
+    	  conn.close();
+    	  
+    	  
     }
 
     public static String getSpace(int level){
@@ -156,39 +185,41 @@ public abstract class PageUtil {
         StringBuilder pagenationhtml = new StringBuilder() ;
         pagenationhtml.append(getSpace(level)).append("<ul class=\"pager\">").append(ENTER)
                 .append(getSpace(level+1)).append("<li class=\"previous\">").append(ENTER)
-                .append(getSpace(level+2)).append("<a href=\"#\">&larr;��һҳ</a>").append(ENTER)
+                .append(getSpace(level+2)).append("<a href=\"#\">&larr;</a>").append(ENTER)
                 .append(getSpace(level + 1)).append("</li>").append(ENTER)
-                .append(getSpace(level+1)).append("<span class=\"info\">��2ҳ/��20ҳ</span>").append(ENTER)
+                .append(getSpace(level+1)).append("<span class=\"info\"></span>").append(ENTER)
                 .append(getSpace(level+1)).append("<li class=\"next\">").append(ENTER)
-                .append(getSpace(level+2)).append("<a href=\"#\">��һҳ&rarr;</a>").append(ENTER)
+                .append(getSpace(level+2)).append("<a href=\"#\">&rarr;</a>").append(ENTER)
                 .append(getSpace(level+1)).append("</li>").append(ENTER)
                 .append(getSpace(level)).append("</ul>").append(ENTER) ;
         return pagenationhtml.toString() ;
     }
 
-    public static void main(String[] args){
-        String html = PageUtil.html(PageUtil.class) ;
-        File file = new File("D:\\workspace-luna\\aphrodite\\src\\main\\webapp\\menu.html") ;
-        FileOutputStream fos = null ;
-        try {
-            fos = new FileOutputStream(file) ;
-            byte[] data = html.getBytes(Charset.forName("utf-8")) ;
-            fos.write(data);
-            fos.flush();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } finally {
-            if(fos != null){
-                try {
-                    fos.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
-
-        System.out.print(html);
+    public static void main(String[] args) throws Exception{
+//        String html = PageUtil.html(PageUtil.class) ;
+//        File file = new File("D:\\workspace-luna\\aphrodite\\src\\main\\webapp\\menu.html") ;
+//        FileOutputStream fos = null ;
+//        try {
+//            fos = new FileOutputStream(file) ;
+//            byte[] data = html.getBytes(Charset.forName("utf-8")) ;
+//            fos.write(data);
+//            fos.flush();
+//        } catch (FileNotFoundException e) {
+//            e.printStackTrace();
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        } finally {
+//            if(fos != null){
+//                try {
+//                    fos.close();
+//                } catch (IOException e) {
+//                    e.printStackTrace();
+//                }
+//            }
+//        }
+//
+//        System.out.print(html);
+    	
+    	PageUtil.getFields("DICTIONARY");
     }
 }

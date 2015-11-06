@@ -24,9 +24,27 @@
                                 <div class="col-sm-5">
                                     <input id="name" name="name" type="text" datatype="string" class="form-control" palceholder="name">
                                 </div>
+                                <label class="col-sm-1 control-label">菜单编号</label>
+                                <div class="col-sm-5">
+                                    <input id="code" name="code" type="text" datatype="string" class="form-control" palceholder="url">
+                                </div>
+                            </div>
+                            <div class="form-group">
                                 <label class="col-sm-1 control-label">菜单路径</label>
                                 <div class="col-sm-5">
                                     <input id="url" name="url" type="text" datatype="string" class="form-control" palceholder="url">
+                                </div>
+                                <label class="col-sm-1 control-label">是否有效</label>
+                                <div class="col-sm-5">
+                                    <div class="input-group">
+                                        <input type="search" key="status" id="status" name="status" aria-label="Text input with dropdown button" class="form-control">
+                                        <div class="input-group-btn">
+                                            <button aria-expanded="false" aria-haspopup="true" data-toggle="dropdown" class="btn btn-default dropdown-toggle" type="button"><span class="caret"></span></button>
+                                            <ul class="dropdown-menu dropdown-menu-right">
+                                                <li><a href="#">wwwww</a></li>
+                                            </ul>
+                                        </div><!-- /btn-group -->
+                                    </div>
                                 </div>
                             </div>
                             <div class="form-group">
@@ -38,15 +56,13 @@
                                             <button aria-expanded="false" aria-haspopup="true" data-toggle="dropdown" class="btn btn-default dropdown-toggle" type="button"><span class="caret"></span></button>
                                             <ul class="dropdown-menu dropdown-menu-right">
                                                 <li><div><table class="table table-hover"><thead><tr><th name="name">菜单名称</th><th name="url">菜单路径</th><th class="hide" name="id">菜单ID</th></tr></thead><tbody></tbody></table><div></li>
-                                                <!--li><ul class="pager pager-sm"><li class="previous"><a href="#">&larr;上一页</a></li><li class="next"><a href="#">下一页&rarr;</a></li></ul></li-->
-                                                <!--<tr><td>系统管理</td><td></td><td>菜单管理</td><td class="hide" >abcdef</td></tr>-->
                                             </ul>
                                         </div><!-- /btn-group -->
                                     </div>
                                     <!--input id="parentId" name="parentId" type="text" datatype="String" class="form-control" palceholder="parentId"-->
-                                </div>
-
+                                </div>                                
                             </div>
+                            
                             <div class="form-group" name="toolbar">
                                 <div class="row">
                                     <div class="col-md-6 col-md-offset-6">
@@ -65,12 +81,30 @@
                                 <div class="col-sm-5">
                                     <input id="name" name="name" type="text" datatype="String" class="form-control" palceholder="name">
                                 </div>
+                                <label class="col-sm-1 control-label">菜单编号</label>
+                                <div class="col-sm-5">
+                                    <input id="code" name="code" type="text" datatype="string" class="form-control" palceholder="url">
+                                </div>                                
+                            </div>
+                            <div class="form-group">
                                 <label class="col-sm-1 control-label">菜单路径</label>
                                 <div class="col-sm-5">
                                     <input id="url" name="url" type="text" datatype="String" class="form-control" palceholder="url">
                                 </div>
+                                <label class="col-sm-1 control-label">是否有效</label>
+                                <div class="col-sm-5">
+                                    <div class="input-group">
+                                        <input type="search" key="status" id="status" name="status" aria-label="Text input with dropdown button" class="form-control">
+                                        <div class="input-group-btn">
+                                            <button aria-expanded="false" aria-haspopup="true" data-toggle="dropdown" class="btn btn-default dropdown-toggle" type="button"><span class="caret"></span></button>
+                                            <ul class="dropdown-menu dropdown-menu-right">
+                                                <li><a href="#">wwwww</a></li>
+                                            </ul>
+                                        </div><!-- /btn-group -->
+                                    </div>
+                                </div>
                             </div>
-                            <div class="form-group">
+                            <div class="form-group">                                
                                 <label class="col-sm-1 control-label">父菜单</label>
                                 <div class="col-sm-5">
                                     <div class="input-group">
@@ -119,8 +153,10 @@
                                             <tr>
                                                 <th class="hide" width="80px" name="id" datatype="string"></th>
                                                 <th width="80px" name="name" datatype="string">菜单名称</th>
+                                                <th width="80px" name="code" datatype="string">菜单编号</th>
                                                 <th width="80px" name="url" datatype="string">菜单路径</th>
-                                                <th width="80px" name="parentId" datatype="string">父类菜单</th>
+                                                <th width="80px" name="url" datatype="string">是否生效</th>
+                                                <th class="hide" width="80px" name="parentId" datatype="string">父类菜单</th>
                                             </tr>
                                         </thead>
 
