@@ -132,7 +132,7 @@
 			var jqtbody = this.binding.find("tbody") ;
 			//这个能保证顺序与table的一致吗
 			var fields = this.pageView.fields ;		
-			var trhtml = "<tr id="+record["id"]+getStatus(this.status)+">" ;
+			var trhtml = "<tr id="+record["id"]+" "+this.getStatus(this.status)+">" ;
 			trhtml += this.tdhtml(record) ;
 			trhtml += "</tr>" ;
 

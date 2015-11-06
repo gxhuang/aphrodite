@@ -19,9 +19,6 @@ import com.google.gson.reflect.TypeToken;
  * History:  2015年05月07日 15:33   huang.yuewen   Created.
  */
 public class CommonServlet extends AphroditeServlet {
-
-
-
     /**
 	 * 
 	 */
