@@ -54,11 +54,13 @@
 					}) ;
 				}else if(this.type=="search"){
 					//如果是搜索复合组件 对按钮的响应事件
-
+					//alert(this.id) ;
 					var search = jqField._search();
-					if(search.tableName == undefined && search.tableName == ""){
-						pageView.codeValue[search.key] = undefined ;
-					}
+					// if(search.tableName == undefined || search.tableName == ""){
+					// 	if(pageView.codeValue[search.key] == undefined){
+					// 		pageView.codeValue[search.key] = "" ;
+					// 	}						
+					// }
 				}
 			}) ;
 		},

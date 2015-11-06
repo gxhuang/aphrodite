@@ -33,6 +33,8 @@
               var form = $(jqform)._form(pageView) ;
                 pageView.forms[pageView.forms.length] = form ;
             }) ;
+
+            pageView.init();
 			
 		},
 		addPageView:function(pageView){

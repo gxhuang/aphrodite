@@ -32,6 +32,6 @@ public abstract class Cache {
         Map<String,String> map = new HashMap<String, String>() ;
         map.put("00","无效") ;
         map.put("01","有效") ;
-        cache.put("valid",map) ;
+        cache.put("isOrNot",map) ;
     }
 }

@@ -58,10 +58,10 @@ function login(dataset,callback){
     ajax(url,body,callback) ;
 }
 
-function getData(arr,callback){
+function getData(arr,callback,obj){
     var url = "commonServlet" ;
     var message = JSON.stringify(arr) ;
-    ajax(url,message,callback) ;
+    ajax(url,message,callback,obj) ;
 }
 
 function load(){

@@ -16,7 +16,36 @@
     } ;
     PageView.prototype = {
         init:function(){
-           
+           //alert(JSON.stringify(this.codeValue)) ;
+           var keys = new Array() ;
+           for(var i = 0,max = this.forms.length ;i<max ;i++){
+                var formbindings = this.forms[i].fieldbindings ;
+                for(var j in formbindings){
+                    if(formbindings[j].attr("type") == "search" && (formbindings[j].attr("tableName") == undefined || formbindings[j].attr("tableName")=="")){
+                        var value = this.codeValue[formbindings[j].attr("key")] ;
+                        if(value == undefined){
+                            this.codeValue[formbindings[j].attr("key")] = "" ;
+                            keys[keys.length] = formbindings[j].attr("key") ;
+                        }
+                    }
+                }
+           }
+           function callback(data,pageView){
+                var obj = JSON.parse(data) ;
+                for(var prop in obj){
+                    pageView.codeValue[prop] = obj[prop] ;
+                }
+                for(var i = 0,max = pageView.forms.length ;i<max ;i++){
+                var formbindings = pageView.forms[i].fieldbindings ;
+                for(var j in formbindings){
+                    if(formbindings[j].attr("type") == "search" && (formbindings[j].attr("tableName") == undefined || formbindings[j].attr("tableName")=="")){
+                        formbindings[j].getSearch().setData(obj[formbindings[j].attr("key")]) ;
+                    }
+                }
+           }
+           }
+           getData(keys,callback,this) ;
+
         },
         setFields:function(fields){
             this.fields = fields ;
