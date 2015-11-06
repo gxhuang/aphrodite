@@ -30,10 +30,8 @@
                 $.each(jqfields,function(index,jqfield){
                     var _this = $(jqfield) ;
                     //var field = _this.getField();
-                    var field = _fields[_fieldIndexs[_this.attr("name")]]
-                    if(field == undefined) field = _this._field() ;
-                    //是否可以直接这样子使用
-                    _fields[_fields.length] = field ;
+                    _fieldIndexs[_this.attr("name")] = _fields.length ;
+                    _fields[_fields.length] = _this ;
                 }) ;
             }
 
