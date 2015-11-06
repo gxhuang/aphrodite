@@ -395,36 +395,9 @@ License: You must have a valid license purchased only from themeforest(the above
 			var pageContent = $(".page-content") ;
 		 	pageContent.empty() ;
 		 	pageContent.load($(e.target).attr("href"),function(){
-		 		var tablist = pageContent.find("[role=tablist]") ;
-				var tabs = tablist.find("li") ;
-				var dataset = $(this)._dataset();
-				$.each(tabs,function(index,tab){
-					//tabindex 通过tabindex区别是否是主
-					var jqlitab = $(tab) ;
-					var href = jqlitab.find("a").attr("href") ;
-					var jqtab = $(href) ;
-
-					var pageView = jqtab._pageView(dataset) ;
-					dataset.addPageView(pageView) ;
-
-					var jqgrid = jqtab.find("div[name=grid]") ;
-					var grid = jqgrid._grid(pageView);
-					pageView.grid = grid 
-
-					var jqforms = jqtab.find("form") ;
-					$.each(jqforms,function(index,jqform){
-						var form = $(jqform)._form(pageView) ;
-						pageView.form = form ;
-					}) ;
-					
-					//var namefield = pageView.form.fields["name"];
-					//namefield.binding.val("黄跃文") ;
-
-					
-				 }) ;
-
+		 		var dataset = $(this)._dataset();
 		 	}) ;
-		 	 return false ;
+		 	return false ;
 		 	//alert("success")
 		}) ;
     });

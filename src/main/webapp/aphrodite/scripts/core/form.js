@@ -57,7 +57,6 @@
 					//如果是搜索复合组件 对按钮的响应事件
 
 					//var search = jqField._search();
-
 				}
 			}) ;
 		},

@@ -3,15 +3,37 @@
 
 //--------------------------dataset start-------------------------
 (function(){
-	var Dataset = function(){
+	var Dataset = function(binding){
 		// this.datasets =  ;
-		this.binding = undefined ;
+		this.binding = binding ;
 		this.pageViews = new Array();
 		this.action = "update" ;
 		this.service = "jdbcService" ;
+		this._init();
 	} ;
 
 	Dataset.prototype={
+		_init:function(){
+			var tablist = this.binding.find("[role=tablist]") ;
+			
+			var tab = tablist.find("li.active") ;
+			var href = tab.find("a").attr("href") ;
+			var jqtab = $(href) ;
+
+			var pageView = jqtab._pageView(this) ;
+			// dataset.addPageView(pageView) ;
+
+			var jqgrid = jqtab.find("div[name=grid]") ;
+			var grid = jqgrid._grid(pageView);
+			pageView.grid = grid 
+
+			var jqforms = jqtab.find("form") ;
+			$.each(jqforms,function(index,jqform){
+				var form = $(jqform)._form(pageView) ;
+				pageView.form = form ;
+			}) ;
+			
+		},
 		addPageView:function(pageView){
 			this.pageViews[this.pageViews.length] = pageView ;
 		}
