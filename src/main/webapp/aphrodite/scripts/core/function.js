@@ -29,15 +29,15 @@ function replace(key,value){
 }
 
 
-function ajax(url,message,callback,jq){
+function ajax(url,message,callback,obj){
     console.log("ajax message:"+message) ;
     $.ajax({
         type:"post",
         url:url,
         data:message
     }).done(function(data){
-       if(jq != undefined && callback != undefined){
-           callback(data,jq) ;
+       if(obj != undefined && callback != undefined){
+           callback(data,obj) ;
        } else if(callback != undefined){
        	   callback(data) ;
        }else{

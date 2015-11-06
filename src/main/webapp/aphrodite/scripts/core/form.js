@@ -67,9 +67,10 @@
 				}else if("submit" == name){
 					//区分新增或者是修改
 					var obj = {} ;
-					var form =_jq.parents("form") ;
+					var jqForm = _jq.parents("form") ;
+					var form =jqForm.getForm() ;
 
-					var pageView = form.getForm().pageView ;
+					var pageView = form.pageView ;
 					var fields = pageView.fields ;
 					for(var index =0 ,max = fields.length ;index < max ;index++){
 						var _field = fields[index] ;
@@ -78,19 +79,19 @@
 
 					console.log(JSON.stringify(obj)) ;
 					var isSearch = form.isSearch ;
-					form.addClass("hide") ;
-					var jqgrid = form.siblings("[name=grid]").removeClass("hide").getGrid() ;
+					jqForm.addClass("hide") ;
+					var grid = jqForm.siblings("[name=grid]").removeClass("hide").getGrid() ;
 					if(isSearch){
-						function callback(data,jqgrid) {
+						function callback(data,grid) {
 							var dataset= JSON.parse(data) ;
-							jqgrid.insert(dataset.pageViews[0].grid.records)  ;
+							grid.insert(dataset.pageViews[0].grid.records)  ;
 						}
-						aphroditeSelect(pageView.dataset,callback,jqgrid) ;
+						aphroditeSelect(pageView.dataset,callback,grid) ;
 					}else{
 						if("INSERT" == pageView.grid.status){
-							jqgrid.append(obj);	
+							grid.append(obj);	
 						}else{
-							jqgrid.update(obj);	
+							grid.update(obj);	
 						}
 										
 					}

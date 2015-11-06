@@ -170,64 +170,10 @@
 			if(records == undefined || records.length <= 0){
 				return ;
 			}
-
-			var fields = this.pageView.fields ;
-			var _this = this ;
-
-			var dataset = new Object();
-			dataset.action = "select" ;
-			dataset.service = "jdbcService" ;	
-			dataset.pageViews = new Array();
-			for(var pos =0 ,limit = fields.length ;pos < limit ;pos++){
-
-				if(fields[pos].type == "search"){					// 
-					var conditionVal = "" ;
-					var pfield = fields[pos] ;
-					
-					// var key = jqsearch.key ;
-					for(var index = 0 ,size = records.length ;index < size ;index ++){
-						var pVal = records[index].recordVal[pfield.name] 
-						if(pVal != undefined && pVal != "" && !conditionVal.contains(pVal)){
-							if(pfield.datatype == "string"){
-								conditionVal += "'"+pVal+"'" ;
-							}
-							if(index != size -1){
-								conditionVal += "," ;
-							}			
-						}				
-					}
-					conditionVal = conditionVal.substring(1,conditionVal.length-2) ;
-					pfield.op = "IN" ;
-
-					var jqsearch = pfield.binding.getSearch() ;
-					//var obj = new Object() ;
-					//obj[jqsearch.conditionName] = conditionVal ;
-
-					var arrfields = new Array();
-					arrfields[0] = this.pageView.getField(jqsearch.key) ;
-					arrfields[1] = this.pageView.getField(jqsearch.conditionName) ;
-					arrfields[1].value = conditionVal ;
-					
-					var pageView = toPageView(arrfields,jqsearch.tableName)
-					dataset.pageViews[dataset.pageViews.length] = pageView ;
-				}
-			}			
-
-			aphroditeSelect(dataset,callback,this.pageView.grid.binding);	
-
-			function callback(data,jq) {
-				//后续data的结构要改成与codevalue结构一致	
-				alert(data) ;	
-				var dataset = JSON.parse(data) ;				
-
-				//下面这段代码可以改调用append就可以了
-				//先清空再调用append
-				//
-				for(var i = 0 ,max = records.length ;i < max ;i++){
-					jq.getGrid().append(records[i].recordVal) ;
-				}
-					
-			}					
+			for(var i=0,max =records.length ;i<max ;i++){
+				this.append(records[i].recordVal) ;			
+			}
+			
 		},
 		update:function(record){
 			//找到相应的记录，更新掉记录的值
