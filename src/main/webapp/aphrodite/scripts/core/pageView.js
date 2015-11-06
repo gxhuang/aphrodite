@@ -9,6 +9,8 @@
         this.name = binding.attr("id")
         this.form = undefined ;
         this.grid = undefined ;
+        //使用规则codevalue->codevalue object -> code table当中不一定在form中出现
+        this.codeValue = new Object();
         this.dataset = dataset ;
     } ;
     PageView.prototype = {

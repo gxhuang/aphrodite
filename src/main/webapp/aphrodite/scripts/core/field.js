@@ -11,24 +11,21 @@
 (function(){
 	var Field = function(binding){
 		//this.binding = binding ;
-		var selector = this.binding.selector ;
-		this.id = this.binding.attr("id") ;
-		this.name = this.binding.attr("name");
-		this.op = this.binding.attr("op");//查询操作才有这个
-		this.type = this.binding.attr("type") ;
-		this.selector= selector ;
+		// this.selector = this.binding.selector ;
+		this.id = binding.attr("id") ;
+		this.name = binding.attr("name");
+		this.op = binding.attr("op");//查询操作才有这个
+		//用来区分响应事件的
+		this.type = binding.attr("type") ;
 		this.value = undefined ;
-		this.datatype = this.binding.attr("datatype") ;
-		this.format = this.binding.attr("format") ;//日期及数据精度模式
+		this.datatype = binding.attr("datatype") ;
+		this.format = binding.attr("format") ;//日期及数据精度模式
 		this.fromValue = undefined ;//开始日期
 		this.toValue = undefined ;//结束日期
 		this.minView = undefined ;
-		this.isHide = this.binding.hasClass("hide") ;
+		this.isHide = binding.hasClass("hide") ;
 		//如果是th则不需要这个初始化动作
-		if(this.type != "th"){
-			this._init() ;
-		}
-
+		this._init() ;
 	};
 	Field.prototype = {
 		// body...

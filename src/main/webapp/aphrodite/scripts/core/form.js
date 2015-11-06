@@ -22,8 +22,13 @@
 				//$()
 				var jqField = $(_field) ;
 				var field = pageView.getField(jqField.attr("name")) ;
-				field.type = jqField.attr("type") ;
-				field.format = jqField.attr("format") ;
+				if(field == undefined ){
+					field = jqField._field();
+				}else {
+					field.type = jqField.attr("type") ;
+					field.format = jqField.attr("format") ;
+				}
+
 				if(field.datatype == "date"){
 					jqField.closest(".form_date").datetimepicker({
 						format : "yyyy-mm-dd",
@@ -40,15 +45,15 @@
 					});
 					//event
 				}else if(this.type == "text"){
-					jqField.on("change",function(e){
+					jqField.on("keyup",function(e){
 						var _jq = $(this) ;
-						var oField = _jq.data(_jq.attr("id")) ;
+						var oField = pageView.getField(_jq.attr("name")) ;
 						oField.value = _jq.val();
 					}) ;
 				}else if(this.type=="search"){
 					//如果是搜索复合组件 对按钮的响应事件
 
-					var search = jqField._search();
+					//var search = jqField._search();
 
 				}
 			}) ;
@@ -60,17 +65,19 @@
 				if("cancle" == name){
 					_jq.parents("form").addClass("hide").siblings("[name=grid]").removeClass("hide") ;
 				}else if("submit" == name){
+					//区分新增或者是修改
 					var obj = {} ;
 					var form =_jq.parents("form") ;
 
-					var fields = form.getForm().pageView.fields ;
-					for(var index in fields){
+					var pageView = form.getForm().pageView ;
+					var fields = pageView.fields ;
+					for(var index =0 ,max = fields.length ;index < max ;index++){
 						var _field = fields[index] ;
-						obj[_field.id] = _field.value ;
-					}
+						obj[_field.name] = _field.value ;
+					}					
 
 					console.log(JSON.stringify(obj)) ;
-					var isSearch = form.getForm().isSearch ;
+					var isSearch = form.isSearch ;
 					form.addClass("hide") ;
 					var jqgrid = form.siblings("[name=grid]").removeClass("hide").getGrid() ;
 					if(isSearch){
@@ -78,9 +85,14 @@
 							var dataset= JSON.parse(data) ;
 							jqgrid.insert(dataset.pageViews[0].grid.records)  ;
 						}
-						aphroditeSelect(form.getForm().pageView.dataset,callback,jqgrid) ;
+						aphroditeSelect(pageView.dataset,callback,jqgrid) ;
 					}else{
-						jqgrid.append(obj);					
+						if("INSERT" == pageView.grid.status){
+							jqgrid.append(obj);	
+						}else{
+							jqgrid.update(obj);	
+						}
+										
 					}
 				}
 			})
@@ -103,11 +115,11 @@
 	$.fn.extend ({
 		_form:function(pageView){
 			var form = new Form(this,pageView) ;
-			$(this).data(form.id,form) ;
+			$(this).data("aphrodite.form",form) ;
 			return form ;
 		},
 		getForm:function(){
-			return $(this).data(this.attr("id")) ;
+			return $(this).data("aphrodite.form") ;
 		}
 	});
 })();

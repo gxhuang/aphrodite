@@ -10,8 +10,8 @@
 		this.pageView = pageView ;
 		this.editRecord = undefined ;
 		this.records = new Array() ;
-		//使用规则codevalue->codevalue object -> code table当中不一定在form中出现
-		this.codevalue = new Object();
+		
+		//this.codevalue = new Object();
 
 		//DELETE,INSERT,UPDATE,SELECT
 		this.status = undefined ;
@@ -31,7 +31,7 @@
 					_field = jqField._field() ;
 					pv.addField(_field) ;
 				} else{
-
+					_field.datatype = jqField.attr("datatype") ;
 				}
 				
 			});
@@ -60,12 +60,7 @@
 					if(active == undefined || active.length == 0){
 						alert("please select!") ;
 					}else{
-						var obj = {};
-						active.find("td").each(function(index,ele){
-							//按顺序填
-							var _this = $(ele) ;
-							obj[_this.attr("name")] = _this.text();
-						}) ;
+						var obj = active.data("record") ;						
 						//如果是grid的时候，search或者neworedit都是hide状态
 						// var jqNeForm = _jqgrid.siblings("form[neworedit]") ;
 						// if(!jqNeForm.hasClass("hide")) jqNeForm.addClass("hide")
@@ -159,15 +154,19 @@
 			if(!allUndefined){
 				//新增的时候如果所有控件都没有值 ，则无需要新增一行
 				trhtml += "</tr>" ;
-				this.binding.find("tbody").append(trhtml).find("tr").last().on("click",function(){
+				var jqtr = this.binding.find("tbody").append(trhtml).find("tr").last() ;
+				jqtr.on("click",function(){
 					var _jqthis = $(this) ;
 					_jqthis.parent("tbody").find("tr[class=active]").removeClass("active") ;
 					_jqthis.addClass("active") ;
 				}) ;
+				
 
 				var r = new Object() ;
 				r.recordVal = record ;
 				r.status = this.status ;
+				this.records[this.records.length] = r ;
+				jqtr.data("record",r) ;
 				this.status = undefined ;
 			}
 			
@@ -240,6 +239,43 @@
 		},
 		update:function(record){
 			//找到相应的记录，更新掉记录的值
+			var tr = this.binding.find("tbody").find("tr.active");
+			tr.empty() ;
+			var fields = this.pageView.fields ;
+			var tdhtml = "" ;
+			var value = undefined ;
+			var allUndefined = true ;
+			for(var index = 0,len = fields.length ; index < len ;index++){
+				value = record[fields[index].name] ;
+
+				if(value != undefined && value != ""){
+					allUndefined = false ;
+				}
+
+				//code-value转换规则
+				if(fields[index] == "search"){
+
+				}
+				if(fields[index].isHide){
+					tdhtml += "<td class=\"hide\">"+(value == undefined ?"":value)+"</td>" ;
+				}else{
+					tdhtml += "<td>"+(value == undefined ?"":value)+"</td>" ;
+				}
+				
+				value = undefined ;
+
+			}
+			tr.append(tdhtml).on("click",function(){
+
+				var _jqthis = $(this) ;
+				_jqthis.parent("tbody").find("tr[class=active]").removeClass("active") ;
+				_jqthis.addClass("active") ;				
+			}) ;
+
+			var oldrecord = tr.data("record") ;
+			oldrecord.recordVal = record ;
+			oldrecord.status = this.status ;
+			this.status = undefined ;
 		}
 	};
 
