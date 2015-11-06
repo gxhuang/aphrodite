@@ -16,6 +16,7 @@
         this.conditionName = binding.attr("cname")
         this.condition = undefined ;
         this.fields = new Array();
+        this.fieldIndexs = new Array();
         this._init();
 
     } ;
@@ -25,9 +26,11 @@
                 var jqfields = this.binding.next(".input-group-btn").find("ul").find("th") ;
                 this.tablename = this.binding.next(".input-group-btn").find("ul").find("table").attr("tablename") ;
                 var _fields = this.fields  ;
+                var _fieldIndexs = this.fieldIndexs  ;
                 $.each(jqfields,function(index,jqfield){
                     var _this = $(jqfield) ;
-                    var field = _this.getField();
+                    //var field = _this.getField();
+                    var field = _fields[_fieldIndexs[_this.attr("name")]]
                     if(field == undefined) field = _this._field() ;
                     //是否可以直接这样子使用
                     _fields[_fields.length] = field ;

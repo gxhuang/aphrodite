@@ -15,6 +15,9 @@
         //this._init() ;
     } ;
     PageView.prototype = {
+        init:function(){
+           
+        },
         setFields:function(fields){
             this.fields = fields ;
         },

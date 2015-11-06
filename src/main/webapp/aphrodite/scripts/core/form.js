@@ -21,7 +21,6 @@
 			var pageView = this.pageView
 			var bindings = this.fieldbindings ;
 			$.each(_fields,function(index,_field){
-				//$()
 				var jqField = $(_field) ;
 				bindings[jqField.attr("name")] = jqField ;
 				var field = pageView.getField(jqField.attr("name")) ;
@@ -56,7 +55,10 @@
 				}else if(this.type=="search"){
 					//如果是搜索复合组件 对按钮的响应事件
 
-					//var search = jqField._search();
+					var search = jqField._search();
+					if(search.tableName == undefined && search.tableName == ""){
+						pageView.codeValue[search.key] = undefined ;
+					}
 				}
 			}) ;
 		},
