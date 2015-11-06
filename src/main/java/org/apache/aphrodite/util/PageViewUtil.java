@@ -1,7 +1,7 @@
 package org.apache.aphrodite.util;
 
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 import org.apache.aphrodite.dataset.Field;
 import org.apache.aphrodite.dataset.PageView;
@@ -78,7 +78,7 @@ public abstract class PageViewUtil {
     private static SqlContext getSelectSql(PageView pv) {
 
         List<Field> fields = pv.getFields();
-        Map<String,String> values = pv.getForm().getValues() ;
+//        Map<String,String> values = pv.getForm().getValues() ;
 
         
 
@@ -93,24 +93,23 @@ public abstract class PageViewUtil {
             }
         }
 
-        int start = 0 ;
-        String[] fieldNames = null ;
-        if(values != null && values.size() > 0){
-        	fieldNames = new String[values.size()] ;
-	    	 for(Map.Entry<String,String> entry : values.entrySet()){
-	             fieldNames[start ++] = entry.getKey() ;
-	             where.append(" ").append(fieldNames[start -1]).append(" ").append(getOperator(pv.getField(fieldNames[start -1]).getOp()));
-	             if(start != fieldNames.length){
-	                 where.append(" AND") ;
-	             }
-	
-	         }
-        }else {
-        	LOGGER.info("no condition param.");
-        	where.append(" 1=1 ") ;
-        }
+    	List<String> fieldNames = new ArrayList<String>() ;
+    	 for(int i = 0,max = fields.size() ;i< max ;i++){
+    		 if(fields.get(i).getValue() != null && !"".equals(fields.get(i).getValue())){
+    			 
+    			 fieldNames.add(fields.get(i).getName()) ;
+    			 where.append(" ").append(fields.get(i).getName()).append(" ").append(getOperator(fields.get(i).getOp())).append(" AND");
+    		 }
+         }
+    	 if(where.length() > 0){
+    		 where.delete(where.length()-4, where.length()) ;
+    	 }else{
+    		 LOGGER.info("no condition found.");
+    		 where.append(" 1=1 ") ;
+    	 }
+        
        
-        return new SqlContext(body.toString(),where.toString(),fieldNames);
+        return new SqlContext(body.toString(),where.toString(),fieldNames.toArray(new String[0]));
     }
     
     private static String getOperator(String op){
@@ -124,5 +123,12 @@ public abstract class PageViewUtil {
     	}
     	return result ;
     }
+    
+    
+    public static void main(String[] args) {
+		StringBuilder str = new StringBuilder("abcd AND") ;
+		System.out.println(str.delete(str.length()-4, str.length()));
+		
+	}
 
 }

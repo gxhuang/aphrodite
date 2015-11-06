@@ -26,11 +26,14 @@
 			var pv = this.pageView
 			$.each(ths,function(index,th){
 				var jqField = $(this) ;
-				var _field = jqField.getField() ;
+				var _field = pv.getField() ;
 				if(_field == undefined){
 					_field = jqField._field() ;
-				} 
-				pv.addField(_field) ;
+					pv.addField(_field) ;
+				} else{
+
+				}
+				
 			});
 
 			//init head toolbar
@@ -53,12 +56,13 @@
 					_jqgrid.getGrid().status = "INSERT" ;
 					_jq.parents(".tab-pane").find("form[neworedit]").removeClass("hide") ;
 				}else if(op == "edit"){
-					var active = _jqgrid.find("tbody").find("tr").filter(".success") ;
+					var active = _jqgrid.find("tbody").find("tr").filter(".active") ;
 					if(active == undefined || active.length == 0){
 						alert("please select!") ;
 					}else{
 						var obj = {};
 						active.find("td").each(function(index,ele){
+							//按顺序填
 							var _this = $(ele) ;
 							obj[_this.attr("name")] = _this.text();
 						}) ;
@@ -157,8 +161,8 @@
 				trhtml += "</tr>" ;
 				this.binding.find("tbody").append(trhtml).find("tr").last().on("click",function(){
 					var _jqthis = $(this) ;
-					_jqthis.parent("tbody").find("tr[class=success]").removeClass("success") ;
-					_jqthis.addClass("success") ;
+					_jqthis.parent("tbody").find("tr[class=active]").removeClass("active") ;
+					_jqthis.addClass("active") ;
 				}) ;
 
 				var r = new Object() ;
@@ -177,7 +181,13 @@
 			var fields = this.pageView.fields ;
 			var _this = this ;
 
+			var dataset = new Object();
+			dataset.action = "select" ;
+			dataset.service = "jdbcService" ;	
+			dataset.pageViews = new Array();
 			for(var pos =0 ,limit = fields.length ;pos < limit ;pos++){
+
+
 				if(fields[pos].type == "search"){
 					// 
 					var conditionVal = "" ;
@@ -199,39 +209,29 @@
 					pfield.op = "IN" ;
 
 					var jqsearch = pfield.binding.getSearch() ;
-					var obj = new Object() ;
-					obj[jqsearch.conditionName] = conditionVal ;
+					//var obj = new Object() ;
+					//obj[jqsearch.conditionName] = conditionVal ;
 
 					var arrfields = new Array();
 					arrfields[0] = this.pageView.getField(jqsearch.key) ;
 					arrfields[1] = this.pageView.getField(jqsearch.conditionName) ;
-
+					arrfields[1].value = conditionVal ;
 					
-
-					var dataset = toDataset(arrfields,obj,"sysMenu") ;
-					dataset.action = "select" ;
-					dataset.service = "jdbcService" ;
-
-					aphroditeSelect(dataset,callback,this.pageView.grid.binding);					
+					var pageView = toPageView(arrfields,jqsearch.tableName)
+					dataset.pageViews[dataset.pageViews.length] = pageView ;
 				}
-			}
+			}			
+
+			aphroditeSelect(dataset,callback,this.pageView.grid.binding);	
 
 			function callback(data,jq) {
-				//后续data的结构要改成与codevalue结构一致						
-				var jData = JSON.parse(data) ;
-
-				var keycode = new Object()  ;
-				for(var i =0 ,max = jData.length ;i < max ;i++){
-					keycode[jData[i].recordVal[jqsearch.conditionName]] = jData[i].recordVal[jqsearch.key]
-				}
-
-				jq.getGrid().codevalue.jqsearch.conditionName = keycode ;
+				//后续data的结构要改成与codevalue结构一致	
+				alert(data) ;	
+				var dataset = JSON.parse(data) ;				
 
 				//下面这段代码可以改调用append就可以了
 				//先清空再调用append
 				//
-
-				var htmltbody = "" ;
 				for(var i = 0 ,max = records.length ;i < max ;i++){
 					jq.getGrid().append(records[i].recordVal) ;
 				}

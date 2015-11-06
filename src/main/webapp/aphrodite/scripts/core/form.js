@@ -1,7 +1,7 @@
 (function(){
 	var Form = function(binding,pageView){
 		this.binding = binding ;
-		this.id = binding.attr("id") ;
+		//this.id = binding.attr("id") ;
 		this.type="form" ;
 		this.isSearch = (binding.attr("search") != undefined ? true : false) ;
 		//this.fields = new Array();
@@ -15,19 +15,42 @@
 			//_initBtnGroup();
 		},
 		_initFields:function(){
-			//initFields
-			//var fields = this.fields ;
 			var _fields = this.binding.find(".form-control") ;
 
-			var pv = this.pageView
-			$.each(_fields,function(index,field){
+			var pageView = this.pageView
+			$.each(_fields,function(index,_field){
 				//$()
-				var jqField = $(field) ;
-				var _field  = jqField.getField() ;
-				if(_field == undefined){
-					_field = jqField._field() ;
+				var jqField = $(_field) ;
+				var field = pageView.getField(jqField.attr("name")) ;
+				field.type = jqField.attr("type") ;
+				field.format = jqField.attr("format") ;
+				if(field.datatype == "date"){
+					jqField.closest(".form_date").datetimepicker({
+						format : "yyyy-mm-dd",
+						autoclose : true,
+						todayBtn : true,
+						todayHighlight : true,
+						minView : 3,
+						pickerPosition : "bottom-left"
+					}).on("changeDate",function(e){
+					    var _jq = $(this).find("input") ;
+					    var o = _jq.data(_jq.attr("id"))
+						var date = e.date ;
+						o.value = date.getFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDate() ;
+					});
+					//event
+				}else if(this.type == "text"){
+					jqField.on("change",function(e){
+						var _jq = $(this) ;
+						var oField = _jq.data(_jq.attr("id")) ;
+						oField.value = _jq.val();
+					}) ;
+				}else if(this.type=="search"){
+					//如果是搜索复合组件 对按钮的响应事件
+
+					var search = jqField._search();
+
 				}
-				pv.addField(_field) ;
 			}) ;
 		},
 		_initFunction:function(){
@@ -52,8 +75,8 @@
 					var jqgrid = form.siblings("[name=grid]").removeClass("hide").getGrid() ;
 					if(isSearch){
 						function callback(data,jqgrid) {
-							var records = JSON.parse(data) ;
-							jqgrid.insert(records)  ;
+							var dataset= JSON.parse(data) ;
+							jqgrid.insert(dataset.pageViews[0].grid.records)  ;
 						}
 						aphroditeSelect(form.getForm().pageView.dataset,callback,jqgrid) ;
 					}else{

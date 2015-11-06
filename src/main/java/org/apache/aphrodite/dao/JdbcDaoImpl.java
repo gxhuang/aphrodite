@@ -112,8 +112,11 @@ public class JdbcDaoImpl implements JdbcDao {
         	}
         	if(sqlType.name().equals(record.getStatus())){
         		Map<String, String> values = records.get(index).getRecordVal();
+        		Field field = null ;
                 for (int j = 1, len = fieldNames.length; j <= len; j++) {
-                    setParam(pstmt, j, pv.getField(fieldNames[j - 1]), values.get(fieldNames[j - 1]));
+                	field = pv.getField(fieldNames[j - 1]) ;
+                	field.setValue(values.get(fieldNames[j - 1]));
+                    setParam(pstmt, j, field);
                 }
                 pstmt.addBatch();
         	}            
@@ -122,28 +125,26 @@ public class JdbcDaoImpl implements JdbcDao {
     
     private void setSelectParam(SqlContext sqlContext, PageView pv, PreparedStatement pstmt) throws SQLException {
         String[] fieldNames = sqlContext.getFieldNames();
-        Map<String, String> values = pv.getForm().getValues(); 
-        LOGGER.debug("input params:"+((values == null || values.size() ==0) ?"no condition":values.toString()));
         if(fieldNames != null){
         	for (int j = 1, len = fieldNames.length; j <= len; j++) {
-                setParam(pstmt, j, pv.getField(fieldNames[j - 1]), values.get(fieldNames[j - 1]));
+                setParam(pstmt, j, pv.getField(fieldNames[j - 1]));
             }
         }
     }
 
-    private void setParam(PreparedStatement pstmt, int index, Field field, String value) throws SQLException {
+    private void setParam(PreparedStatement pstmt, int index, Field field) throws SQLException {
     	
     	
         if ("date".equals(field.getDataType())) {
             if (Constants.DATE_FORMAT.equals(field.getFormat())) {
-                pstmt.setDate(index, new Date(DateUtil.toDate(value).getTime()));
+                pstmt.setDate(index, new Date(DateUtil.toDate(field.getValue()).getTime()));
             } else if (Constants.DATETIME_FORMAT.equals(field.getFormat())) {
-                pstmt.setDate(index, new Date(DateUtil.toDateTime(value).getTime()));
+                pstmt.setDate(index, new Date(DateUtil.toDateTime(field.getValue()).getTime()));
             }
         } else if ("bigdecimal".equals(field.getDataType())) {
-            pstmt.setBigDecimal(index, new BigDecimal(value));
+            pstmt.setBigDecimal(index, new BigDecimal(field.getValue()));
         } else {
-            pstmt.setString(index, getExpression(field,value));
+            pstmt.setString(index, getExpression(field,field.getValue()));
         }
     }
     

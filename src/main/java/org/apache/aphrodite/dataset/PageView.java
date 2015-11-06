@@ -24,7 +24,7 @@ public class PageView {
     private List<Field> fields ;
 
     //查询及数据展现用的
-    private Form form ;
+//    private Form form ;
 
     private Grid grid ;
 
@@ -44,13 +44,13 @@ public class PageView {
         this.fields = fields;
     }
 
-    public Form getForm() {
-        return form;
-    }
-
-    public void setForm(Form form) {
-        this.form = form;
-    }
+//    public Form getForm() {
+//        return form;
+//    }
+//
+//    public void setForm(Form form) {
+//        this.form = form;
+//    }
 
     public Grid getGrid() {
         return grid;

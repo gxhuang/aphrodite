@@ -6,6 +6,7 @@
         // this.ajax = binding.attr("ajax")
         //存储数据
         this.records = undefined ;
+        //search的tableName如果不为空，则从表里查，如果为空，则从数据字典查,正常情况下一般都是从数据字典查
         this.tableName = this.binding.attr("tableName") ;
         this.grid = (binding.attr("grid") != undefined? true:false) ;
         //key取对的

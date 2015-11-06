@@ -68,24 +68,10 @@ function load(){
 }
 
 
-function toDataset(fields,pObj,table){
-	var dataset = new Object();
+function toPageView(fields,table){
 	var pageView = new Object();
-	if(fields instanceof Array){
-		pageView.fields = fields ;
-	}else if(typeof(fields) == "object"){
-		var arr = new Array();
-		arr[0] = fields ;
-		pageView.fields = arr ;
-	}
-
+	pageView.fields = fields ;
 	pageView.name = table ;	
 	pageView.form = new Object();
-	pageView.form.values = pObj ;
-
-	var pageViews = new Array() ;
-	pageViews[0] = pageView ;
-	dataset.pageViews = pageViews ;
-
-	return dataset ;
+	return pageView ;
 }

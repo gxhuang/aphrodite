@@ -15,9 +15,7 @@ public class SearchControlService {
 		PageView pv = new PageView() ;
 		pv.setFields(search.getFields());
 		pv.setGrid(new Grid());
-		pv.setForm(new Form());
-		pv.getForm().setValues(new HashMap<String, String>());
-		pv.getForm().getValues().put(search.getKey(), search.getCondition());
+		
 		pv.getField(search.getKey()).setOp(search.getOp());
 		pv.setName(search.getTableName());
 		

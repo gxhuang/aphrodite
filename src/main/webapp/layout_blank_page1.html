@@ -406,6 +406,11 @@ License: You must have a valid license purchased only from themeforest(the above
 
 					var pageView = jqtab._pageView(dataset) ;
 					dataset.addPageView(pageView) ;
+
+					var jqgrid = jqtab.find("div[name=grid]") ;
+					var grid = jqgrid._grid(pageView);
+					pageView.grid = grid 
+
 					var jqforms = jqtab.find("form") ;
 					$.each(jqforms,function(index,jqform){
 						var form = $(jqform)._form(pageView) ;
@@ -415,9 +420,7 @@ License: You must have a valid license purchased only from themeforest(the above
 					//var namefield = pageView.form.fields["name"];
 					//namefield.binding.val("黄跃文") ;
 
-					var jqgrid = jqtab.find("div[name=grid]") ;
-					var grid = jqgrid._grid(pageView);
-					pageView.grid = grid 
+					
 				 }) ;
 
 		 	}) ;

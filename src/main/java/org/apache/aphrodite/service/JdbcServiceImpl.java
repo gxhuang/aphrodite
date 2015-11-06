@@ -47,7 +47,6 @@ public class JdbcServiceImpl implements JdbcService {
 		result.setPageViews(dataset.getPageViews());
 		
 		for(PageView pv : result.getPageViews()){
-			pv.setForm(null);
 			pv.setFields(null);
 		}
 		

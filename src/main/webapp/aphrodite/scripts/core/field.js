@@ -10,7 +10,7 @@
 
 (function(){
 	var Field = function(binding){
-		this.binding = binding ;
+		//this.binding = binding ;
 		var selector = this.binding.selector ;
 		this.id = this.binding.attr("id") ;
 		this.name = this.binding.attr("name");
@@ -37,57 +37,14 @@
 			//this._initEvent() ;
 		},
 		_initField:function(){
-			if(this.datatype == "date"){
-				this.binding.closest(".form_date").datetimepicker({
-					format : "yyyy-mm-dd",
-					autoclose : true,
-					todayBtn : true,
-					todayHighlight : true,
-					minView : 3,
-					pickerPosition : "bottom-left"
-				}).on("changeDate",function(e){
-				    var _jq = $(this).find("input") ;
-				    var o = _jq.data(_jq.attr("id"))
-					var date = e.date ;
-					o.value = date.getFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDate() ;
-				});
-				//event
-			}else if(this.type == "text"){
-				this.binding.on("change",function(e){
-					var _jq = $(this) ;
-					var oField = _jq.data(_jq.attr("id")) ;
-					oField.value = _jq.val();
-				}) ;
-			}else if(this.type=="search"){
-				//如果是搜索复合组件 对按钮的响应事件
-//				this.binding.next("div").find("button").on("click",function(e){
-//
-//				});
-//基础资料servlet
-				var search = this.binding._search();
-//				var arr = new Array();
-//
-//				var obj = {};
-//				obj.code="yc"
-//				obj.name="永春" ;
-//				arr[0] = obj ;
-//
-//				var obj1 = {};
-//				obj1.code="nh" ;
-//				obj1.name="宁化" ;
-//				arr[1] = obj1 ;
-//				search.setData(arr);
-			}
+			
 		}
 	};
 	$.fn.extend({
 		_field : function(){
     		var field = new Field(this);
-    		this.data(field.id,field) ;
+    		//this.data(field.id,field) ;
     		return field ;
-    	},
-    	getField:function(){
-    		return this.data(this.attr("name")) ;
     	}
 	});
 })();

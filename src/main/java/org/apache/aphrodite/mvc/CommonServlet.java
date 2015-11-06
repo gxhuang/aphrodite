@@ -1,14 +1,15 @@
 package org.apache.aphrodite.mvc;
 
-import com.google.gson.reflect.TypeToken;
-import org.apache.aphrodite.util.Cache;
-import org.apache.aphrodite.util.GsonUtil;
-
 import java.lang.reflect.Type;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import org.apache.aphrodite.util.Cache;
+import org.apache.aphrodite.util.GsonUtil;
+
+import com.google.gson.reflect.TypeToken;
 
 /**
  * 类描述：

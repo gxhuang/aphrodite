@@ -1,6 +1,9 @@
 (function(){
     var PageView = function(binding,dataset){
         this.binding = binding ;
+        //form标签中含有的field字段，全都包含于grid里的field，只需要将form中的field的多余的属性补充到grid中对应的field即可。
+        //这样可以避免重复定义
+        //如果grid隐藏的信息需要在form表示时如何表示,因为grid读到的field是hide状态，而form中则是非hide状态
         this.fields = new Array() ;
         this.fieldIndexs = new Array();
         this.name = binding.attr("id")
@@ -12,8 +15,8 @@
         setFields:function(fields){
             this.fields = fields ;
         },
-        getField:function(id){
-            return this.fields[this.fieldIndexs[id]] ;
+        getField:function(name){
+            return this.fields[this.fieldIndexs[name]] ;
         },
         addField:function(field){
             if(this.fieldIndexs[field.name] == undefined){                
@@ -46,7 +49,7 @@
             return search ;
         },
         getSearchKeys:function(){
-            //��ȡ��̬��search�ؼ�,������
+            //»ñÈ¡¾²Ì¬µÄsearch¿Ø¼þ,Çø±ðÂë
             var searchs = new Array();
 
             var jqSearch = undefined ;

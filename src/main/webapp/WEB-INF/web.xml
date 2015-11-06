@@ -18,18 +18,14 @@
     <servlet>
         <servlet-name>loginServlet</servlet-name>
         <servlet-class>org.apache.aphrodite.mvc.LoginServlet</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>aphroditeServlet</servlet-name>
-        <servlet-class>org.apache.aphrodite.mvc.AphroditeServlet</servlet-class>
-    </servlet>
+    </servlet>    
     <servlet>
         <servlet-name>commonServlet</servlet-name>
         <servlet-class>org.apache.aphrodite.mvc.CommonServlet</servlet-class>
     </servlet>
      <servlet>
-        <servlet-name>searchControlServlet</servlet-name>
-        <servlet-class>org.apache.aphrodite.mvc.SearchContolServlet</servlet-class>
+        <servlet-name>aphroditeServlet</servlet-name>
+        <servlet-class>org.apache.aphrodite.mvc.AphroditeServlet</servlet-class>
     </servlet>
      <servlet-mapping>
         <servlet-name>aphroditeServlet</servlet-name>
@@ -43,10 +39,7 @@
         <servlet-name>commonServlet</servlet-name>
         <url-pattern>/commonServlet</url-pattern>
     </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>searchControlServlet</servlet-name>
-        <url-pattern>/searchControlServlet</url-pattern>
-    </servlet-mapping>
+    
     <welcome-file-list>
         <welcome-file>layout_blank_page1.html</welcome-file>
     </welcome-file-list>
