@@ -23,15 +23,16 @@
 			var pageView = jqtab._pageView(this) ;
 			// dataset.addPageView(pageView) ;
 
-			var jqgrid = jqtab.find("div[name=grid]") ;
-			var grid = jqgrid._grid(pageView);
-			pageView.grid = grid 
+			var jqgrid = pageView.binding.find("div[name=grid]") ;
+            var grid = jqgrid._grid(pageView);
+            pageView.grid = grid 
 
-			var jqforms = jqtab.find("form") ;
-			$.each(jqforms,function(index,jqform){
-				var form = $(jqform)._form(pageView) ;
-				pageView.form = form ;
-			}) ;
+            // var _forms = pageView.forms ;
+            var jqforms = pageView.binding.find("form") ;
+            $.each(jqforms,function(index,jqform){
+              var form = $(jqform)._form(pageView) ;
+                pageView.forms[pageView.forms.length] = form ;
+            }) ;
 			
 		},
 		addPageView:function(pageView){

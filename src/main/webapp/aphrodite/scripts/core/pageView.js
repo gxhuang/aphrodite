@@ -7,11 +7,12 @@
         this.fields = new Array() ;
         this.fieldIndexs = new Array();
         this.name = binding.attr("id")
-        this.form = undefined ;
+        this.forms = new Array() ;
         this.grid = undefined ;
         //使用规则codevalue->codevalue object -> code table当中不一定在form中出现
         this.codeValue = new Object();
         this.dataset = dataset ;
+        //this._init() ;
     } ;
     PageView.prototype = {
         setFields:function(fields){
@@ -24,8 +25,7 @@
             if(this.fieldIndexs[field.name] == undefined){                
                 this.fieldIndexs[field.name] = this.fields.length
                 this.fields[this.fields.length] = field ;
-            }
-            
+            }            
         },
         setForm:function(form){
             this.form = form ;
