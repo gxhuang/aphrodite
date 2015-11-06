@@ -27,6 +27,7 @@ public class CommonServlet extends AphroditeServlet {
 	 */
 	private static final long serialVersionUID = 1L;
 
+	@SuppressWarnings("unchecked")
 	@Override
     public String doService(String message) {
 

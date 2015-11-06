@@ -13,15 +13,20 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 
 /**
- * ÀàÃèÊö£º
+ * 
  *
  * @author: huang.yuewen
  * <p>
- * History:  2015Äê05ÔÂ07ÈÕ 15:33   huang.yuewen   Created.
+ * History:  2015 05 07  15:33   huang.yuewen   Created.
  */
 public class LoginServlet extends HttpServlet {
 
-    private static final Logger LOGGER = LogManager.getLogger(LoginServlet.class) ;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
+	private static final Logger LOGGER = LogManager.getLogger(LoginServlet.class) ;
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -44,14 +49,14 @@ public class LoginServlet extends HttpServlet {
 
         LOGGER.debug("request service {}",service);
 
-        //ÓÃ»§Ð£Ñé
+        //ï¿½Ã»ï¿½Ð£ï¿½ï¿½
        // resp.sendRedirect("");
         resp.setCharacterEncoding("utf-8");
 //        resp.setContentType("");
 //        resp.sendRedirect("layout_blank_page.html");
 
         ServletOutputStream sos = resp.getOutputStream() ;
-        sos.write("±±¾©»¶Ó­Äã".getBytes("UTF-8"));
+        sos.write("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ó­ï¿½ï¿½".getBytes("UTF-8"));
     }
 
     @Override

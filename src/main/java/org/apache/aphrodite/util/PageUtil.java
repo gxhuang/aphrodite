@@ -9,11 +9,9 @@ import java.nio.charset.Charset;
 
 
 /**
- * ��������
+ * 
+ * @author huang.yuewen 2015年11月6日下午3:17:49
  *
- * @author: huang.yuewen
- * <p>
- * History:  2015��05��07�� 15:33   huang.yuewen   Created.
  */
 public abstract class PageUtil {
 
@@ -76,16 +74,6 @@ public abstract class PageUtil {
     private static String getPlaceholder(Field field){
         String palceholder = "palceholder=\""+field.getName()+"\"" ;
         return  palceholder;
-    }
-
-
-    private static String getformat(Field field){
-        String type = field.getType().getSimpleName() ;
-        String format = "" ;
-        if("date".equals(type)){
-            format = "format=\"yyyymmdd\"" ;
-        }
-        return format ;
     }
 
     private static String getType(Field field){

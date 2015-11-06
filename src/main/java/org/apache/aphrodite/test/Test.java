@@ -5,7 +5,6 @@ import java.util.List;
 
 import org.apache.aphrodite.dataset.Field;
 import org.apache.aphrodite.dataset.Search;
-import org.apache.aphrodite.service.SearchControlService;
 import org.apache.aphrodite.util.GsonUtil;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -76,8 +75,6 @@ public class Test {
     	search.setTableName("sysMenu");
     	search.setCondition("系统管理");
     	
-    	SearchControlService searchControlService = cxt.getBean("searchControlService",SearchControlService.class) ;
-    	searchControlService.get(search);
     	
     	System.out.println(GsonUtil.toJson(search));
 

@@ -7,8 +7,6 @@ import org.apache.aphrodite.dao.JdbcDao;
 import org.apache.aphrodite.exception.ServiceException;
 import org.apache.aphrodite.util.ApplicationContextUtil;
 
-import com.sun.glass.ui.Application;
-
 /**
  * 
  *

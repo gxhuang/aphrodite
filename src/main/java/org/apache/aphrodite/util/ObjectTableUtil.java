@@ -38,7 +38,6 @@ public abstract class ObjectTableUtil {
     public static void main(String[] args){
         String name = "huangYueWen" ;
         System.out.println(ObjectTableUtil.toTableFieldFormat(name));
-        char c = '_' ;
         System.out.println((char)('H'+32));
         System.out.println(ObjectTableUtil.toObjectFieldFormat("HUANG_YUE_WEN"));
 

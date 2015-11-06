@@ -1,15 +1,18 @@
 package org.apache.aphrodite.exception;
 
 /**
- * ÀàÃèÊö£º
+ * 
+ * @author huang.yuewen 2015å¹´11æœˆ6æ—¥ä¸‹åˆ3:19:11
  *
- * @author: huang.yuewen
- * <p>
- * History:  2015Äê05ÔÂ07ÈÕ 15:33   huang.yuewen   Created.
  */
 public class DaoException extends RuntimeException {
 
-    public DaoException(String message, Throwable cause) {
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	public DaoException(String message, Throwable cause) {
         super(message, cause);
     }
 }

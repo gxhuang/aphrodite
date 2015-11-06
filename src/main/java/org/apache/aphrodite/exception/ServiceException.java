@@ -1,15 +1,18 @@
 package org.apache.aphrodite.exception;
 
 /**
- * ÀàÃèÊö£º
+ * 
+ * @author huang.yuewen 2015å¹´11æœˆ6æ—¥ä¸‹åˆ3:19:34
  *
- * @author: huang.yuewen
- * <p>
- * History:  2015Äê05ÔÂ07ÈÕ 15:33   huang.yuewen   Created.
  */
 public class ServiceException extends RuntimeException {
 
-    public ServiceException(String message, Throwable cause) {
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	public ServiceException(String message, Throwable cause) {
         super(message, cause);
     }
 }
