@@ -109,6 +109,19 @@
 			//追加在最后 last函数
 			//添加监听事件
 
+			//判断是否是空记录
+			var allUndefined = true ;
+			for(var p in record){
+				if(p != undefined && p != ""){
+					allUndefined = false ;
+					break ;
+				}
+			}
+			if(allUndefined){
+				return ;
+			}
+
+
 			var jqtbody = this.binding.find("tbody") ;
 			//这个能保证顺序与table的一致吗
 			var fields = this.pageView.fields ;
@@ -127,48 +140,29 @@
 				return strClass ;
 			}
 
-			var trhtml = "<tr id="+record["id"]+getStatus(this.status)+">" ;
+			
 			var value = undefined ;
-			var allUndefined = true ;
-			for(var index = 0,len = fields.length ; index < len ;index++){
-				value = record[fields[index].name] ;
+			var trhtml = "<tr id="+record["id"]+getStatus(this.status)+">" ;
+			trhtml += this.tdhtml(record) ;
+			trhtml += "</tr>" ;
 
-				if(value != undefined && value != ""){
-					allUndefined = false ;
-				}
+			
+			//新增的时候如果所有控件都没有值 ，则无需要新增一行
+			
+			var jqtr = this.binding.find("tbody").append(trhtml).find("tr").last() ;
+			jqtr.on("click",function(){
+				var _jqthis = $(this) ;
+				_jqthis.parent("tbody").find("tr[class=active]").removeClass("active") ;
+				_jqthis.addClass("active") ;
+			}) ;
+			
 
-				//code-value转换规则
-				if(fields[index] == "search"){
-
-				}
-				if(fields[index].isHide){
-					trhtml += "<td class=\"hide\">"+(value == undefined ?"":value)+"</td>" ;
-				}else{
-					trhtml += "<td>"+(value == undefined ?"":value)+"</td>" ;
-				}
-				
-				value = undefined ;
-
-			}
-
-			if(!allUndefined){
-				//新增的时候如果所有控件都没有值 ，则无需要新增一行
-				trhtml += "</tr>" ;
-				var jqtr = this.binding.find("tbody").append(trhtml).find("tr").last() ;
-				jqtr.on("click",function(){
-					var _jqthis = $(this) ;
-					_jqthis.parent("tbody").find("tr[class=active]").removeClass("active") ;
-					_jqthis.addClass("active") ;
-				}) ;
-				
-
-				var r = new Object() ;
-				r.recordVal = record ;
-				r.status = this.status ;
-				this.records[this.records.length] = r ;
-				jqtr.data("record",r) ;
-				this.status = undefined ;
-			}
+			var r = new Object() ;
+			r.recordVal = record ;
+			r.status = this.status ;
+			this.records[this.records.length] = r ;
+			jqtr.data("record",r) ;
+			this.status = undefined ;
 			
 
 		},
@@ -186,9 +180,7 @@
 			dataset.pageViews = new Array();
 			for(var pos =0 ,limit = fields.length ;pos < limit ;pos++){
 
-
-				if(fields[pos].type == "search"){
-					// 
+				if(fields[pos].type == "search"){					// 
 					var conditionVal = "" ;
 					var pfield = fields[pos] ;
 					
@@ -241,17 +233,20 @@
 			//找到相应的记录，更新掉记录的值
 			var tr = this.binding.find("tbody").find("tr.active");
 			tr.empty() ;
-			var fields = this.pageView.fields ;
+			var tdhtml = this.tdhtml(record);			
+			tr.append(tdhtml) ;
+
+			var oldrecord = tr.data("record") ;
+			oldrecord.recordVal = record ;
+			oldrecord.status = this.status ;
+			this.status = undefined ;
+		},
+		tdhtml:function(record){
 			var tdhtml = "" ;
 			var value = undefined ;
-			var allUndefined = true ;
+			var fields = this.pageView.fields ;
 			for(var index = 0,len = fields.length ; index < len ;index++){
 				value = record[fields[index].name] ;
-
-				if(value != undefined && value != ""){
-					allUndefined = false ;
-				}
-
 				//code-value转换规则
 				if(fields[index] == "search"){
 
@@ -265,17 +260,7 @@
 				value = undefined ;
 
 			}
-			tr.append(tdhtml).on("click",function(){
-
-				var _jqthis = $(this) ;
-				_jqthis.parent("tbody").find("tr[class=active]").removeClass("active") ;
-				_jqthis.addClass("active") ;				
-			}) ;
-
-			var oldrecord = tr.data("record") ;
-			oldrecord.recordVal = record ;
-			oldrecord.status = this.status ;
-			this.status = undefined ;
+			return tdhtml ;
 		}
 	};
 
