@@ -48,7 +48,6 @@
             this.binding.on("keyup",function(e){
                 //回车时候触发查询
                 if(e.which == 13) {
-
                     var _jq = $(this) ;
                     var search = _jq.getSearch();
                     search.condition = _jq.val() ;
@@ -66,12 +65,8 @@
                             search.setData(records) ;
                         }
 
-                        //前台组成一个dataset
-
                         var searchJson = JSON.stringify(_jq.getSearch(),searchFilter) ;
                         var result = aphroditeSelect("searchControlServlet",searchJson,searchCallback,search) ;
-                        //console.log(JSON.stringify(result)) ;
-                        // _jq.getSearch.setGridData(data.grid) ;
                     }else{
                         _jq.getSearch().filter(_jq.val()) ;
                     }                  
@@ -123,10 +118,10 @@
                 this.binding.next("div").find("ul").empty().append(selhtml) ;
                 this.binding.next("div").find("ul").find("li").find("a").on("click",function(e){
                     var _jq = $(this) ;
-                    var input=_jq.parents("div.input-group-btn").prev("input[type=search]").getField() ;
+                    var input =_jq.parents("div.input-group-btn").prev("input[type=search]");
                     //alert(_jq.attr("href"))
-                    input.binding.val(_jq.text());
-                    input.value=_jq.attr("href") ;
+                    input.val(_jq.text()) ;
+                    input.value = _jq.attr("href").substring(1,_jq.attr("href").length) ; 
                 }) ;
             }
 
