@@ -71,23 +71,23 @@
 					//区分新增或者是修改
 					var obj = {} ;
 					var jqForm = _jq.parents("form") ;
-					var form =jqForm.getForm() ;
-
+					var form =jqForm.getForm() ;					
+					var isSearch = form.isSearch ;
 					var pageView = form.pageView ;
+
+					jqForm.addClass("hide") ;
+					var grid = jqForm.siblings("[name=grid]").removeClass("hide").getGrid() ;
+
 					var fields = pageView.fields ;
 					for(var index =0 ,max = fields.length ;index < max ;index++){
 						var _field = fields[index] ;
 						obj[_field.name] = _field.value ;
 					}					
-
-					console.log(JSON.stringify(obj)) ;
-					var isSearch = form.isSearch ;
-					jqForm.addClass("hide") ;
-					var grid = jqForm.siblings("[name=grid]").removeClass("hide").getGrid() ;
+					
 					if(isSearch){
-						function callback(data,grid) {
+						function callback(data,obj) {
 							var dataset= JSON.parse(data) ;
-							grid.insert(dataset.pageViews[0].grid.records)  ;
+							obj.insert(dataset.pageViews[0].grid.records)  ;
 						}
 						aphroditeSelect(pageView.dataset,callback,grid) ;
 					}else{
@@ -110,11 +110,7 @@
 					field.value = values[prop] ;
 				}
 			}
-		},
-		_initBtnGroup:function(){
-			// form 组件 $(".btn.btn-group")
 		}
-
 	};
 
 	$.fn.extend ({
