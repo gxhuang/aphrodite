@@ -125,11 +125,11 @@
 			//新增的数据没有ID的
 			var strClass = "" ;
 			if(status == "INSERT") {
-
+				strClass="success"
 			}else if(status == "UPDATE") {
-
+				strClass="warning"
 			}else if(status == "DELETE") {
-
+				strClass="danger"
 			}
 			return strClass ;
 		},
@@ -147,18 +147,20 @@
 			var jqtbody = this.binding.find("tbody") ;
 			//这个能保证顺序与table的一致吗
 			var fields = this.pageView.fields ;		
-			var trhtml = "<tr id="+record["id"]+" "+this.getStatus(this.status)+">" ;
+			var trhtml = "<tr>" ;
 			trhtml += this.tdhtml(record) ;
 			trhtml += "</tr>" ;
 
 			
 			//新增的时候如果所有控件都没有值 ，则无需要新增一行
 			
-			var jqtr = this.binding.find("tbody").append(trhtml).find("tr").last().on("click",function(){
+			var jqtr = this.binding.find("tbody").append(trhtml).find("tr").last();
+			jqtr.on("click",function(){
 				var _jqthis = $(this) ;
 				_jqthis.parent("tbody").find("tr[class=active]").removeClass("active") ;
 				_jqthis.addClass("active") ;
-			}) ;			
+			}) ;
+			jqtr.removeClass().addClass(this.getStatus(this.status)) ;
 
 			var r = new Object() ;
 			r.recordVal = record ;
