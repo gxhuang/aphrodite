@@ -90,6 +90,7 @@
 					if(isSearch){
 						function callback(data,obj) {
 							var dataset= JSON.parse(data) ;
+							obj.binding.find("tbody").empty();
 							obj.insert(dataset.pageViews[0].grid.records)  ;
 						}
 						aphroditeSelect(pageView.dataset,callback,grid) ;

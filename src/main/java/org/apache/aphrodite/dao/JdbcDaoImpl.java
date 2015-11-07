@@ -100,6 +100,16 @@ public class JdbcDaoImpl implements JdbcDao {
 
         return 0;
     }
+    
+    private void setDeleteParam(SqlContext sqlContext, PageView pv, PreparedStatement pstmt) throws SQLException{
+    	List<Record> records = pv.getGrid().getRecords();
+    	Record record = null ;
+        for (int index = 0, max = records.size() - 1; index <= max; index++) {
+        	record = records.get(index) ;
+        	pstmt.setString(1, record.getRecordVal().get("id"));    
+        	pstmt.addBatch();
+        }
+    }
 
     private void setUpdateParam(SqlContext sqlContext, PageView pv, PreparedStatement pstmt,SqlType sqlType) throws SQLException {
         List<Record> records = pv.getGrid().getRecords();
@@ -177,8 +187,19 @@ public class JdbcDaoImpl implements JdbcDao {
 
 
     public int delete(PageView pv) {
-
-        //
+    	PreparedStatement pstmt = null;
+        SqlContext sqlContext = PageViewUtil.getSql(SqlType.DELETE, pv);
+        try {
+        	String sql = String.format(Constants.UPDATE_FORMAT, ObjectTableUtil.toTableFieldFormat(pv.getName()), sqlContext.getHead(),sqlContext.getTail());
+        	LOGGER.debug("delete sql:"+sql);
+            pstmt = getConnection().prepareStatement(sql);
+            setDeleteParam(sqlContext, pv, pstmt);
+            int[] results = pstmt.executeBatch();
+        } catch (SQLException e) {
+            throw new DaoException(e.getMessage(), e);
+        } finally {
+            close(null, pstmt);
+        }
         return 0;
     }
 

@@ -89,6 +89,17 @@
 
 					var request = aphroditeSubmit(dataset) ;
 					console.log(request)
+				}else if(op == "delete"){
+					var tr = _jqgrid.find("tbody").find("tr[class=active]") ;
+					if(tr == undefined || tr.length == 0){
+						alert("please select!") ;
+					}else{
+
+						var record = tr.data("record") ;
+						record.status = "DELETE" ;
+						tr.removeClass().addClass("danger") ;
+						//如果是新增记录最终提交的时候，无需提交到后台
+					}
 				}else if(op == "search"){
 					_jqgrid.addClass("hide") ;
 					_jq.parents(".tab-pane").find("form[search]").removeClass("hide") ;

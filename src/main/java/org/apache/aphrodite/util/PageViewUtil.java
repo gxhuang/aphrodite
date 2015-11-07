@@ -21,17 +21,25 @@ public abstract class PageViewUtil {
 	private static final Logger LOGGER = LogManager.getLogger(PageViewUtil.class) ; 
 
     public static SqlContext getSql(Enum<SqlType> sqlType, PageView pv) {
-        SqlContext sql = null ;
+        SqlContext sqlCxt = null ;
         if (sqlType.equals(SqlType.INSERT)) {
-        	sql = getInsertSql(pv) ;
+        	sqlCxt = getInsertSql(pv) ;
         } else if (sqlType.equals(SqlType.UPDATE)) {
-        	sql = getUpdateSql(pv) ;
+        	sqlCxt = getUpdateSql(pv) ;
         } else if (sqlType.equals(SqlType.SELECT)) {
-        	sql = getSelectSql(pv) ;
+        	sqlCxt = getSelectSql(pv) ;
         } else if (sqlType.equals(SqlType.DELETE)) {
-
+        	sqlCxt = getDeleteSql(pv) ;
         }
-        return sql;
+        return sqlCxt;
+    }
+    
+    private static SqlContext getDeleteSql(PageView pv){
+    	String tail = "ID = ?" ;
+    	String head = "ROW_STATUS = '00' ";
+    	String[] fieldNames = new String[1] ;
+    	fieldNames[0] = "id" ;
+    	return new SqlContext(head, tail, fieldNames) ;
     }
 
 

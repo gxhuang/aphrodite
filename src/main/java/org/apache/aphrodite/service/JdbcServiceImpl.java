@@ -52,8 +52,14 @@ public class JdbcServiceImpl implements JdbcService {
 			createdDate.setName("createdDate");
 			pv.getFields().add(createdDate) ;
 			
+			Field rowStatus =  new Field();
+			rowStatus.setDataType("String");
+			rowStatus.setName("rowStatus");
+			pv.getFields().add(rowStatus) ;
+			
 			for(Record record : pv.getGrid().getRecords()){
 				record.getRecordVal().put("createdDate", DateUtil.toString(Constants.DATE_FORMAT, new Date())) ;
+				record.getRecordVal().put("rowStatus", "01") ;
 			}
 			
 //			Field createdUser =  new Field();
