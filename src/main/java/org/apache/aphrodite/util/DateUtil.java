@@ -6,11 +6,9 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
- * ÀàÃèÊö£º
+ * 
+ * @author huang.yuewen 2015å¹´11æœˆ7æ—¥ä¸Šåˆ10:40:14
  *
- * @author: huang.yuewen
- * <p>
- * History:  2015Äê05ÔÂ07ÈÕ 15:33   huang.yuewen   Created.
  */
 public abstract class DateUtil {
 
@@ -34,6 +32,13 @@ public abstract class DateUtil {
         } catch (ParseException e) {
             throw new RuntimeException(e.getMessage(),e) ;
         }
+        return result ;
+    }
+    
+    public static String toString(String format, Date date){
+        DateFormat df = new SimpleDateFormat(format) ;
+        String result = null ;
+        result = df.format(date) ;
         return result ;
     }
 

@@ -58,21 +58,31 @@ public abstract class PageViewUtil {
         return new SqlContext(head.toString(),tail.toString(),fieldNames);
     }
 
+    /**
+     * update如何更高效只处理有变化的字段，如果有大表，如此更新，性能会很差的
+     * @param pv
+     * @return
+     */
     private static SqlContext getUpdateSql(PageView pv) {
         List<Field> fields = pv.getFields();
         String[] fieldNames = new String[fields.size()] ;
 
         //
         StringBuilder body = new StringBuilder("") ;
+        int i = 0 ;
         for (int index = 0,max = fields.size()-1 ;index <= max ;index ++ ) {
-            fieldNames[index] = fields.get(index).getName() ;
-            body.append(ObjectTableUtil.toTableFieldFormat(fieldNames[index])).append(" = ").append("?");
-            if(index != max){
-                body.append(",") ;
-            }
+        	
+        	if("id".equals(fields.get(index).getName())){
+        		continue ;
+        	}
+            fieldNames[i] = fields.get(index).getName() ;
+            body.append(ObjectTableUtil.toTableFieldFormat(fieldNames[i++])).append(" = ").append("?").append(",");
+            
         }
+        body.deleteCharAt(body.length()-1) ;
+        fieldNames[i] = "id" ;
 
-        return new SqlContext(body.toString()," WHERE ID = ?",fieldNames);
+        return new SqlContext(body.toString()," ID = ?",fieldNames);
     }
 
     private static SqlContext getSelectSql(PageView pv) {

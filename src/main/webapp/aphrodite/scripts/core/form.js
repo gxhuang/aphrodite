@@ -107,10 +107,16 @@
 		setData:function(record){
 			var values = record.recordVal ;
 			for(var prop in values){
-				var field = this.fieldbindings[prop];
-				if(field != undefined){
-					field.val(values[prop]) ;
-					field.value = values[prop] ;
+				var binding = this.fieldbindings[prop];
+				if(binding != undefined){
+					var value = values[prop] ;
+					this.pageView.getField(binding.attr("name")).value = value
+					if(binding.attr("type") == "search"){
+						value = this.pageView.codeValue[binding.attr("key")][value]
+					}
+					binding.val(value) ;
+					// binding.value = values[prop] ;
+
 				}
 			}
 		}

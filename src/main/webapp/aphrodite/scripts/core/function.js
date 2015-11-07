@@ -22,9 +22,10 @@ function select(){
 JSON.stringify(obj,replace)
 */
 function replace(key,value){
-	if(key == "dataset" || key=="forms" || key == "pageView" || key == "binding" || key == "fieldIndexs" || typeof(value) == "function" || value == undefined || value == ""){
+	if(key == "dataset" || key == "codeValue" || key=="forms" || key == "pageView" || key == "binding" || key == "fieldIndexs" || typeof(value) == "function" || value == undefined || value == ""){
 		return undefined ;
 	}
+
 	return value ;
 }
 

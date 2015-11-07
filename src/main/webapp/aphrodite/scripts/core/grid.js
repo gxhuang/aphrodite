@@ -72,6 +72,21 @@
 				}else if(op == "submit"){					
 					var dataset = _jqgrid.getGrid().pageView.dataset ;
 					//提交
+					dataset.action = "update" ;
+					dataset.service = "jdbcService" ;
+
+					var pageViews = dataset.pageViews
+					for(var index in pageViews){
+						var records = pageViews[index].grid.records ;
+						var newrecords = new Array();
+						for(var i = 0,len = records.length ;i < len ;i++){
+							if(records[i].status != undefined && records[i].status != "" ){
+								newrecords[newrecords.length] = records[i]
+							}
+						}
+						pageViews[index].grid.records = newrecords ;
+					}
+
 					var request = aphroditeSubmit(dataset) ;
 					console.log(request)
 				}else if(op == "search"){
@@ -170,7 +185,11 @@
 			tr.append(tdhtml) ;
 
 			var oldrecord = tr.data("record") ;
-			oldrecord.recordVal = record ;
+			for(var prop in oldrecord.recordVal){
+				if(record[prop] != undefined && record[prop] != ""){
+					oldrecord.recordVal[prop] = record[prop] ;
+				}
+			}			
 			oldrecord.status = this.status ;
 			this.status = undefined ;
 		},

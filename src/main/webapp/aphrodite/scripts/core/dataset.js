@@ -33,6 +33,7 @@
               var form = $(jqform)._form(pageView) ;
                 pageView.forms[pageView.forms.length] = form ;
             }) ;
+            this.addPageView(pageView) ;
 
             pageView.init();
 			
