@@ -117,11 +117,12 @@ public class JdbcDaoImpl implements JdbcDao {
         Record record = null ;
         for (int index = 0, max = records.size() - 1; index <= max; index++) {
         	record = records.get(index) ;
-        	if(sqlType.equals(SqlType.INSERT)){
+        	if(record.getRecordVal().get("id") == null){
         		record.getRecordVal().put("id", UUID.randomUUID().toString()) ;
         	}
         	if(sqlType.name().equals(record.getStatus())){
         		Map<String, String> values = records.get(index).getRecordVal();
+        		LOGGER.info("sql param {}",values.toString());
         		Field field = null ;
                 for (int j = 1, len = fieldNames.length; j <= len; j++) {
                 	field = pv.getField(fieldNames[j - 1]) ;
