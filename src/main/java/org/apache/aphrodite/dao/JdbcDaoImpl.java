@@ -7,6 +7,7 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -150,7 +151,7 @@ public class JdbcDaoImpl implements JdbcDao {
             if (Constants.DATE_FORMAT.equals(field.getFormat())) {
                 pstmt.setDate(index, new Date(DateUtil.toDate(field.getValue()).getTime()));
             } else if (Constants.DATETIME_FORMAT.equals(field.getFormat())) {
-                pstmt.setDate(index, new Date(DateUtil.toDateTime(field.getValue()).getTime()));
+                pstmt.setTimestamp(index, new Timestamp(DateUtil.toDateTime(field.getValue()).getTime()));
             }
         } else if ("bigdecimal".equals(field.getDataType())) {
             pstmt.setBigDecimal(index, new BigDecimal(field.getValue()));

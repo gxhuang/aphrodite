@@ -47,7 +47,7 @@ public class JdbcServiceImpl implements JdbcService {
 	private void setCommonField(SqlType sqlType,PageView pv){
 		if(Constants.INSERT.equals(sqlType.name())){
 			Field createdDate =  new Field();
-			createdDate.setFormat(Constants.DATE_FORMAT);
+			createdDate.setFormat(Constants.DATETIME_FORMAT);
 			createdDate.setDataType("date");
 			createdDate.setName("createdDate");
 			pv.getFields().add(createdDate) ;
@@ -58,7 +58,7 @@ public class JdbcServiceImpl implements JdbcService {
 			pv.getFields().add(rowStatus) ;
 			
 			for(Record record : pv.getGrid().getRecords()){
-				record.getRecordVal().put("createdDate", DateUtil.toString(Constants.DATE_FORMAT, new Date())) ;
+				record.getRecordVal().put("createdDate", DateUtil.toString(Constants.DATETIME_FORMAT, new Date())) ;
 				record.getRecordVal().put("rowStatus", "01") ;
 			}
 			
@@ -67,12 +67,12 @@ public class JdbcServiceImpl implements JdbcService {
 //			createdUser.setName("createdUser");
 		}else if(Constants.UPDATE.equals(sqlType.name()) || Constants.DELETE.equals(sqlType.name())){
 			Field updatedDate =  new Field();
-			updatedDate.setFormat(Constants.DATE_FORMAT);
+			updatedDate.setFormat(Constants.DATETIME_FORMAT);
 			updatedDate.setDataType("date");
 			updatedDate.setName("updatedDate");
 			pv.getFields().add(updatedDate) ;
 			for(Record record : pv.getGrid().getRecords()){
-				record.getRecordVal().put("updatedDate", DateUtil.toString(Constants.DATE_FORMAT, new Date())) ;
+				record.getRecordVal().put("updatedDate", DateUtil.toString(Constants.DATETIME_FORMAT, new Date())) ;
 			}
 		}
 	}
