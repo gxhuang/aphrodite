@@ -103,7 +103,7 @@
           <webApp>
             <contextPath>/aphrodite</contextPath>
           </webApp>
-        </configuration>
+        </configuration>        
       </plugin>
     </plugins>
   </build>

@@ -111,7 +111,7 @@
 				if(binding != undefined){
 					var value = values[prop] ;
 					this.pageView.getField(binding.attr("name")).value = value
-					if(binding.attr("type") == "search"){
+					if(binding.attr("type") == "search" && (binding.attr("tableName") == undefined ||binding.attr("tableName") == "")){
 						value = this.pageView.codeValue[binding.attr("key")][value]
 					}
 					binding.val(value) ;

@@ -160,14 +160,14 @@
 				_jqthis.parent("tbody").find("tr[class=active]").removeClass("active") ;
 				_jqthis.addClass("active") ;
 			}) ;
-			jqtr.removeClass().addClass(this.getStatus(this.status)) ;
+			jqtr.addClass(this.getStatus(this.status)) ;
 
 			var r = new Object() ;
 			r.recordVal = record ;
 			r.status = this.status ;
 			this.records[this.records.length] = r ;
-			jqtr.data("record",r) ;
-			this.status = undefined ;			
+			jqtr.data("record",r) ;				
+			this.status = undefined ;		
 
 		},
 		insert:function(records){
@@ -186,13 +186,19 @@
 			var tdhtml = this.tdhtml(record);			
 			tr.append(tdhtml) ;
 
+
 			var oldrecord = tr.data("record") ;
 			for(var prop in oldrecord.recordVal){
 				if(record[prop] != undefined && record[prop] != ""){
 					oldrecord.recordVal[prop] = record[prop] ;
 				}
-			}			
-			oldrecord.status = this.status ;
+			}
+			//新增的数据是否发生变更都是新增		
+			if(oldrecord.status != "INSERT"){
+				tr.removeClass().addClass(this.getStatus(this.status)) ;	
+				oldrecord.status = this.status ;
+			}
+			
 			this.status = undefined ;
 		},
 		tdhtml:function(record){

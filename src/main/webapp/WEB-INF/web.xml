@@ -4,6 +4,7 @@
 
 <web-app>
   	<display-name>Archetype Created Web Application</display-name>
+  	
   	<listener>
 		<listener-class>
 			org.springframework.web.context.ContextLoaderListener
@@ -15,6 +16,17 @@
 		<!--<param-value>/WEB-INF/applicationContext.xml</param-value>-->
 		<param-value>classpath:applicationContext*.xml</param-value> 
 	</context-param>
+	
+	<servlet>
+	　　<!-- Override init parameter to avoid nasty -->
+	　　<!-- file locking issue on windows.         -->
+	　　<servlet-name>default</servlet-name>
+	　　<init-param>
+	　　<param-name>useFileMappedBuffer</param-name>
+	　　<param-value>false</param-value>
+	　　</init-param>
+　　</servlet>
+	
     <servlet>
         <servlet-name>loginServlet</servlet-name>
         <servlet-class>org.apache.aphrodite.mvc.LoginServlet</servlet-class>
