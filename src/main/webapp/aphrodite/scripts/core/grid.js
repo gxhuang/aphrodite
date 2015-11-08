@@ -42,19 +42,39 @@
 			//init foot toolbar
 			this.initFootToolbar() ;
 		},
+		clean:function(){
+			this.records = new Array();
+		},
 		/****/
 		_initHeadToolbar : function(){
 			var _jqtoolbar = this.binding.find(".btn-group").find("button").on("click",function(e){
+
+
+
+
+
 				var _jq = $(e.target);
 				var _jqgrid = _jq.parents("[name=grid]") ;
 				var op = _jq.attr("name") ;
+
+				var fields = _jqgrid.getGrid().pageView.fields ;
+
+				for(var i = 0 ,max = fields.length ;i<max ;i++){
+					fields[i].value = undefined ;
+					//如果是时间，则还有
+					// fields[i].
+				}
+
+
 				if(op == "new"){
 					//_jqgrid.addClass("hide").prev("br").prev("form").removeClass("hide") ;
 					// var jqSForm = _jqgrid.siblings("form[search]") ;
 					// if(!jqSForm.hasClass("hide")) jqSForm.addClass("hide")
 					_jqgrid.addClass("hide") ;
 					_jqgrid.getGrid().status = "INSERT" ;
-					_jq.parents(".tab-pane").find("form[neworedit]").removeClass("hide") ;
+					_jq.parents(".tab-pane").find("form[neworedit]").removeClass("hide").getForm().clean() ;
+					
+
 				}else if(op == "edit"){
 					var active = _jqgrid.find("tbody").find("tr").filter(".active") ;
 					if(active == undefined || active.length == 0){

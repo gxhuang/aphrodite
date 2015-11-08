@@ -146,7 +146,6 @@ public class JdbcDaoImpl implements JdbcDao {
 
     private void setParam(PreparedStatement pstmt, int index, Field field) throws SQLException {
     	
-    	
         if ("date".equals(field.getDataType())) {
             if (Constants.DATE_FORMAT.equals(field.getFormat())) {
                 pstmt.setDate(index, new Date(DateUtil.toDate(field.getValue()).getTime()));

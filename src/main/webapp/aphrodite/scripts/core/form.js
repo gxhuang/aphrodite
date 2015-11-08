@@ -15,6 +15,14 @@
 			this._initFunction();
 			//_initBtnGroup();
 		},
+		clean:function(){
+			for(var prop in this.fieldbindings){
+				if(prop == undefined || typeof(prop) == "function"){
+					continue ;
+				}
+				fieldbindings[prop].val("");
+			}
+		} ,
 		_initFields:function(){
 			var _fields = this.binding.find(".form-control") ;
 
@@ -93,6 +101,7 @@
 							obj.binding.find("tbody").empty();
 							obj.insert(dataset.pageViews[0].grid.records)  ;
 						}
+						grid.clean();
 						aphroditeSelect(pageView.dataset,callback,grid) ;
 					}else{
 						if("INSERT" == pageView.grid.status){
