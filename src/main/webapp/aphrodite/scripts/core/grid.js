@@ -250,6 +250,22 @@
 
 			}
 			return tdhtml ;
+		},
+		load:function(fkValue){
+			var fk = this.pageView.getFk();
+			var records = this.filter(fk,fkValue) ;
+			this.binding.find("tbody").empty();
+			this.insert(records);
+			
+		},
+		filter:function(key,value){
+			var records = new Array();
+			for(var i=0,max=this.records.length;i<max ;i++){
+				if(this.records[i][key] == value){
+					records[records.length] =this.records[i] ;
+				}
+			}
+			return records ;
 		}
 	};
 

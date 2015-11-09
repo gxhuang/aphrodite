@@ -49,6 +49,8 @@
 				if(key != undefined && this.pageViews.length > 0 && this.getPageView(key).grid.getCurrentRecord().length <=0){
 					alert("请先选中记录") ;
 					flag = false ;
+				}else if(this.getPageView(key).grid.getCurrentRecord().length > 0){
+					this.getPageView(key).grid.load(fk) ;
 				}else{
 					var pageView = jqtab._pageView(this) ;
 					// dataset.addPageView(pageView) ;

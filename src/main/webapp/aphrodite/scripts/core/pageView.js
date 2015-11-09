@@ -57,6 +57,16 @@
         getField:function(name){
             return this.fields[this.fieldIndexs[name]] ;
         },
+        getFk:function(){
+            var fk = undefined ;
+            for(var i=0,max= this.fields.length ;i<max ;i++){
+                fk = this.fields[i].fk ;
+                if(fk != undefined && fk != ""){
+                    break ;
+                }
+                return fk ;
+            }
+        },
         addField:function(field){
             if(this.fieldIndexs[field.name] == undefined){                
                 this.fieldIndexs[field.name] = this.fields.length
