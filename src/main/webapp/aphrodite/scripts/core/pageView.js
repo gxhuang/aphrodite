@@ -58,13 +58,13 @@
             return this.fields[this.fieldIndexs[name]] ;
         },
         getFk:function(){
-            var fk = undefined ;
+            var field = undefined ;
             for(var i=0,max= this.fields.length ;i<max ;i++){
-                fk = this.fields[i].fk ;
-                if(fk != undefined && fk != ""){
+                field = this.fields[i] ;
+                if(field.fk != undefined && field.fk != ""){
                     break ;
                 }
-                return fk ;
+                return field ;
             }
         },
         addField:function(field){

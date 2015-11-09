@@ -62,10 +62,11 @@
 		            // var _forms = pageView.forms ;
 		            var jqforms = pageView.binding.find("form") ;
 		            $.each(jqforms,function(index,jqform){
-		              var form = $(jqform)._form(pageView) ;
+		              	var form = $(jqform)._form(pageView) ;
 		                pageView.forms[pageView.forms.length] = form ;
 		            }) ;
 		            this.addPageView(pageView) ;
+		            pageView.load(currentRecord[0][pageView.getFk()["fk"]]) ;
 
 		            pageView.init();
 				}				

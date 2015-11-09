@@ -252,8 +252,8 @@
 			return tdhtml ;
 		},
 		load:function(fkValue){
-			var fk = this.pageView.getFk();
-			var records = this.filter(fk,fkValue) ;
+			var fieldname = this.pageView.getFk().name;
+			var records = this.filter(fieldname,fkValue) ;
 			this.binding.find("tbody").empty();
 			this.insert(records);
 			
