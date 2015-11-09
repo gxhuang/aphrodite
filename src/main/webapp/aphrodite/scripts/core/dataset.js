@@ -18,32 +18,53 @@
 			
 			var tab = tablist.find("li.active") ;
 			var href = tab.find("a").attr("href") ;
-			var jqtab = $(href) ;
 
-			var pageView = jqtab._pageView(this) ;
-			// dataset.addPageView(pageView) ;
-
-			var jqgrid = pageView.binding.find("div[name=grid]") ;
-            var grid = jqgrid._grid(pageView);
-            pageView.grid = grid 
-
-            // var _forms = pageView.forms ;
-            var jqforms = pageView.binding.find("form") ;
-            $.each(jqforms,function(index,jqform){
-              var form = $(jqform)._form(pageView) ;
-                pageView.forms[pageView.forms.length] = form ;
-            }) ;
-            this.addPageView(pageView) ;
-
-            pageView.init();
+			this.initPageView(href) ;
 
             tablist.on("click",function(e){
-            	alert("click")
+            	var jqtarget = $(e.target) ;
+            	var href = jqtarget.attr("href") ;
+            	jqtarget.parents(".page-content").getDataset().initPageView(href) ;
+            	
             }) ;
 			
 		},
+		initPageView:function(pageViewhref){
+			if(!this.exists(pageViewhref.substring(1,pageViewhref.length))){
+				alert(111)
+				var jqtab = $(pageViewhref) ;
+
+				var pageView = jqtab._pageView(this) ;
+				// dataset.addPageView(pageView) ;
+
+				var jqgrid = pageView.binding.find("div[name=grid]") ;
+	            var grid = jqgrid._grid(pageView);
+	            pageView.grid = grid 
+
+	            // var _forms = pageView.forms ;
+	            var jqforms = pageView.binding.find("form") ;
+	            $.each(jqforms,function(index,jqform){
+	              var form = $(jqform)._form(pageView) ;
+	                pageView.forms[pageView.forms.length] = form ;
+	            }) ;
+	            this.addPageView(pageView) ;
+
+	            pageView.init();
+			}			
+		},
 		addPageView:function(pageView){
+
 			this.pageViews[this.pageViews.length] = pageView ;
+		},
+		exists:function(pageViewId){
+			var isExists = false ;
+			for(var i =0 ,max = this.pageViews.length ;i < max ;i++){
+				if(this.pageViews[i].id == pageViewId){
+					isExists = true ;
+					break ;
+				}
+			}
+			return isExists ;
 		}
 	}
 
