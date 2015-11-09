@@ -1,0 +1,97 @@
+    <form id="orderForm" class="container-fluid form-horizontal" dataset="form" role="form">
+        <div class="form-group">
+            <label class="col-sm-1 control-label">ID</label>
+            <div class="col-sm-5">
+                <input id="ID" type="VARCHAR" class="form-control" palceholder="ID">
+            </div>
+            <label class="col-sm-1 control-label">DICT_NAME</label>
+            <div class="col-sm-5">
+                <input id="DICT_NAME" type="VARCHAR" class="form-control" palceholder="DICT_NAME">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-1 control-label">DICT_CODE</label>
+            <div class="col-sm-5">
+                <input id="DICT_CODE" type="VARCHAR" class="form-control" palceholder="DICT_CODE">
+            </div>
+            <label class="col-sm-1 control-label">REMARK</label>
+            <div class="col-sm-5">
+                <input id="REMARK" type="VARCHAR" class="form-control" palceholder="REMARK">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-1 control-label">STATUS</label>
+            <div class="col-sm-5">
+                <input id="STATUS" type="VARCHAR" class="form-control" palceholder="STATUS">
+            </div>
+            <label class="col-sm-1 control-label">CREATED_DATE</label>
+            <div class="col-sm-5">
+                <input id="CREATED_DATE" type="DATE" class="form-control" palceholder="CREATED_DATE">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-1 control-label">CREATED_USER</label>
+            <div class="col-sm-5">
+                <input id="CREATED_USER" type="VARCHAR" class="form-control" palceholder="CREATED_USER">
+            </div>
+            <label class="col-sm-1 control-label">UPDATED_DATE</label>
+            <div class="col-sm-5">
+                <input id="UPDATED_DATE" type="DATE" class="form-control" palceholder="UPDATED_DATE">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-1 control-label">UPDATED_USER</label>
+            <div class="col-sm-5">
+                <input id="UPDATED_USER" type="VARCHAR" class="form-control" palceholder="UPDATED_USER">
+            </div>
+        </div>
+    </form>
+    <div name="grid">
+        <div class="row" name="toolbar">
+            <div class="col-sm-9">
+                <div class="btn-group">
+                    <button type="button" class="btn btn-success" name="new">新增</button>
+                    <button type="button" class="btn btn-primary" name="edit">编辑</button>
+                    <button type="button" class="btn btn-warning" name="delete">查询</button>
+                    <button type="button" class="btn btn-info" name="search">删除</button>
+                    <button type="button" class="btn btn-warning">warning</button>
+                </div>
+            </div>
+        </div>
+
+        
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th name="ID" datatype="varchar">ID</th>
+                            <th name="DICT_NAME" datatype="varchar">DICT_NAME</th>
+                            <th name="DICT_CODE" datatype="varchar">DICT_CODE</th>
+                            <th name="REMARK" datatype="varchar">REMARK</th>
+                            <th name="STATUS" datatype="varchar">STATUS</th>
+                            <th name="CREATED_DATE" datatype="date">CREATED_DATE</th>
+                            <th name="CREATED_USER" datatype="varchar">CREATED_USER</th>
+                            <th name="UPDATED_DATE" datatype="date">UPDATED_DATE</th>
+                            <th name="UPDATED_USER" datatype="varchar">UPDATED_USER</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                    </tbody>
+
+                </table>
+            </div>
+        </div>
+
+        <ul class="pager">
+            <li class="previous">
+                <a href="#">&larr;</a>
+            </li>
+            <span class="info"></span>
+            <li class="next">
+                <a href="#">&rarr;</a>
+            </li>
+        </ul>
+
+    </div>

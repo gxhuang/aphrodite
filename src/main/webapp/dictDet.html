@@ -1,0 +1,63 @@
+    <form id="orderForm" class="container-fluid form-horizontal" dataset="form" role="form">
+        <div class="form-group">
+            <label class="col-sm-1 control-label">明细编号</label>
+            <div class="col-sm-5">
+                <input id="dictDetCode" name="dictDetCode" type="VARCHAR" class="form-control" palceholder="明细编码">
+            </div>
+            <label class="col-sm-1 control-label">明细名称</label>
+            <div class="col-sm-5">
+                <input id="dictDetName" name="dictDetName" type="VARCHAR" class="form-control" palceholder="明细名称">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-1 control-label">值</label>
+            <div class="col-sm-5">
+                <input id="dictDetValue" name="dictDetValue" type="string" class="form-control" palceholder="值">
+            </div>
+        </div>
+    </form>
+    <div name="grid">
+        <div class="row" name="toolbar">
+            <div class="col-sm-9">
+                <div class="btn-group">
+                    <button type="button" class="btn btn-success" name="new">新增</button>
+                    <button type="button" class="btn btn-primary" name="edit">编辑</button>
+                    <button type="button" class="btn btn-warning" name="delete">查询</button>
+                    <button type="button" class="btn btn-info" name="search">删除</button>
+                    <button type="button" class="btn btn-warning">warning</button>
+                </div>
+            </div>
+        </div>
+
+        
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th name="id" class="hide" datatype="string">ID</th>
+                            <th name="dictId" class="hide" datatype="string">DICT_ID</th>
+                            <th name="dictDetCode" datatype="string">明细编号</th>
+                            <th name="dictDetName" datatype="string">明细名称</th>
+                            <th name="dictDetValue" datatype="string">明细值</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                    </tbody>
+
+                </table>
+            </div>
+        </div>
+
+        <ul class="pager">
+            <li class="previous">
+                <a href="#">&larr;</a>
+            </li>
+            <span class="info"></span>
+            <li class="next">
+                <a href="#">&rarr;</a>
+            </li>
+        </ul>
+
+    </div>

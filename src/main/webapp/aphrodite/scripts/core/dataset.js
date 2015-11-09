@@ -36,6 +36,10 @@
             this.addPageView(pageView) ;
 
             pageView.init();
+
+            tablist.on("click",function(e){
+            	alert("click")
+            }) ;
 			
 		},
 		addPageView:function(pageView){

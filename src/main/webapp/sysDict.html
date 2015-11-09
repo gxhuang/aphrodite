@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<!-- BEGIN PAGE CONTENT-->
+<div class="row">
+    <div class="col-md-12">
+        <!--new or edit start-->
+        <div id="orderNewOrEdit" class="container-fluid collapse in">
+            <div id="tabs" class="row">
+                <ul class="nav nav-pills nav-justified" role="tablist">
+                    <li class="active"><a href="#sysDict" role="tab" data-toggle="tab">数据字典</a></li>
+                    <li><a href="#sysDictDet" role="tab" data-toggle="tab">字典明细</a></li>
+                </ul>
+                <div class="tab-content">
+                    <div class="tab-pane active" id="sysDict">
+                        </br>
+                        <form id="dictForm" neworedit class="container-fluid form-horizontal hide" dataset="form" role="form">
+                            <div class="form-group">
+                                 <label class="col-sm-1 control-label">字典编号</label>
+                                <div class="col-sm-5">
+                                    <input id="DICT_CODE" type="string" datatype="DICT_CODE" class="form-control" palceholder="DICT_CODE">
+                                </div>
+                                <label class="col-sm-1 control-label">字典名称</label>
+                                <div class="col-sm-5">
+                                    <input id="DICT_NAME" type="string" datatype="DICT_NAME" class="form-control" palceholder="DICT_NAME">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-1 control-label">是否有效</label>
+                                <div class="col-sm-5">
+                                    <input id="STATUS" type="string" datatype="STATUS" class="form-control" palceholder="STATUS">
+                                </div>
+                                <label class="col-sm-1 control-label">创建时间</label>
+                                <div class="col-sm-5">
+                                    <input id="CREATED_DATE" type="DATE" datatype="CREATED_DATE" class="form-control" palceholder="CREATED_DATE">
+                                </div>
+                            </div>
+                            <div class="form-group">                               
+                                <label class="col-sm-1 control-label">备注</label>
+                                <div class="col-sm-5">
+                                    <input id="REMARK" type="string" datatype="REMARK" class="form-control" palceholder="REMARK">
+                                </div>
+                            </div>
+                        </form>
+                        <div name="grid">
+                            <div class="row" name="toolbar">
+                                <div class="col-sm-9">
+                                    <div class="btn-group">
+                                        <button type="button" class="btn btn-success" name="new">新增</button>
+                                        <button type="button" class="btn btn-primary" name="edit">编辑</button>
+                                        <button type="button" class="btn btn-warning" name="search">查询</button>
+                                        <button type="button" class="btn btn-info" name="delete">删除</button>
+                                    </div>
+                                </div>
+                            </div>
+                            </br>
+                            
+                            <div class="panel panel-default">
+                                <div class="panel-body">
+                                    <table class="table table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th width="80px" class="hide" name="ID" datatype="ID">name="ID"</th>
+                                                <th width="80px" name="DICT_CODE" datatype="DICT_CODE">字典编号</th>
+                                                <th width="80px" name="DICT_NAME" datatype="DICT_NAME">字典名称</th>
+                                                <th width="80px" name="STATUS" datatype="STATUS">是否有效</th>
+                                                <th width="80px" name="CREATED_DATE" datatype="CREATED_DATE">创建时间</th>
+                                            </tr>
+                                        </thead>
+
+                                        <tbody>
+                                        </tbody>
+
+                                    </table>
+                                </div>
+                            </div>
+
+                            <ul class="pager">
+                                <li class="previous">
+                                    <a href="#">&larr;</a>
+                                </li>
+                                <span class="info"></span>
+                                <li class="next">
+                                    <a href="#">&rarr;</a>
+                                </li>
+                            </ul>
+
+                        </div>
+
+                        </br>
+
+                    </div>
+                    <div class="tab-pane" id="sysDictDet">
+                        </br>
+                        <form id="dictDetForm" neworedit class="container-fluid form-horizontal hide" dataset="form" role="form">
+                            <div class="form-group">
+                                <label class="col-sm-1 control-label">明细编号</label>
+                                <div class="col-sm-5">
+                                    <input id="dictDetCode" name="dictDetCode" type="string" class="form-control" palceholder="明细编码">
+                                </div>
+                                <label class="col-sm-1 control-label">明细名称</label>
+                                <div class="col-sm-5">
+                                    <input id="dictDetName" name="dictDetName" type="string" class="form-control" palceholder="明细名称">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-1 control-label">值</label>
+                                <div class="col-sm-5">
+                                    <input id="dictDetValue" name="dictDetValue" type="string" class="form-control" palceholder="值">
+                                </div>
+                            </div>
+                        </form>
+                        <div name="grid">
+                            <div class="row" name="toolbar">
+                                <div class="col-sm-9">
+                                    <div class="btn-group">
+                                        <button type="button" class="btn btn-success" name="new">新增</button>
+                                        <button type="button" class="btn btn-primary" name="edit">编辑</button>
+                                        <button type="button" class="btn btn-warning" name="search">查询</button>
+                                        <button type="button" class="btn btn-info" name="delete">删除</button>
+                                    </div>
+                                </div>
+                            </div>
+                            </br>
+                            
+                            <div class="panel panel-default">
+                                <div class="panel-body">
+                                    <table class="table table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th name="id" class="hide" datatype="string">ID</th>
+                                                <th name="dictId" class="hide" datatype="string">DICT_ID</th>
+                                                <th name="dictDetCode" datatype="string">明细编号</th>
+                                                <th name="dictDetName" datatype="string">明细名称</th>
+                                                <th name="dictDetValue" datatype="string">明细值</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+
+                            <ul class="pager">
+                                <li class="previous">
+                                    <a href="#">&larr;</a>
+                                </li>
+                                <span class="info"></span>
+                                <li class="next">
+                                    <a href="#">&rarr;</a>
+                                </li>
+                            </ul>
+                        </div>
+                        </br>
+
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+        <!--new or edit end-->
+    </div>
+</div>
+<!-- END PAGE CONTENT-->
+</body>
+</html>
