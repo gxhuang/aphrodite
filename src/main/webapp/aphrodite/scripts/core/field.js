@@ -22,8 +22,10 @@
 		this.format = binding.attr("format") ;//日期及数据精度模式
 		this.fromValue = undefined ;//开始日期
 		this.toValue = undefined ;//结束日期
-		this.minView = undefined ;
+		// this.minView = undefined ;
 		this.isHide = binding.hasClass("hide") ;
+		//外键
+		this.fk = binding.attr("fk") ;
 		//如果是th则不需要这个初始化动作
 		this._init() ;
 	};

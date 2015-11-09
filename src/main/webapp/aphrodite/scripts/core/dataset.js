@@ -9,6 +9,7 @@
 		this.pageViews = new Array();
 		this.action = "update" ;
 		this.service = "jdbcService" ;
+		this.currentPageView = undefined ;
 		this._init();
 	} ;
 
@@ -18,20 +19,34 @@
 			
 			var tab = tablist.find("li.active") ;
 			var href = tab.find("a").attr("href") ;
-
+			this.currentPageView = href.substring(1,href.length)
 			this.initPageView(href) ;
 
             tablist.on("click",function(e){
+
             	var jqtarget = $(e.target) ;
             	var href = jqtarget.attr("href") ;
-            	jqtarget.parents(".page-content").getDataset().initPageView(href) ;            	
+            	var dataset = jqtarget.parents(".page-content").getDataset() ;
+            	var flag = dataset.initPageView(href) ;  
+            	if(!flag){
+            		$("#"+dataset.currentPageView).tab("show") ;
+            	}else{
+            		dataset.currentPageView = href.substring(1,href.length)     ;     	
+            	}            	
             }) ;
 			
 		},
 		initPageView:function(pageViewhref){
 			if(!this.exists(pageViewhref.substring(1,pageViewhref.length))){
+				
 				//alert(111)
 				var jqtab = $(pageViewhref) ;
+				var key = jqtab.attr("key") ;
+				if(key != undefined && this.pageViews.length > 0 && this.getPageView(key).grid.getCurrentRecord().length <=0){
+					alert("请先选中记录") ;
+					return false ;
+				}
+				
 
 				var pageView = jqtab._pageView(this) ;
 				// dataset.addPageView(pageView) ;
@@ -55,10 +70,20 @@
 
 			this.pageViews[this.pageViews.length] = pageView ;
 		},
+		getPageView:function(name){
+			var pageView = undefined ;
+			for(var i =0 ,max = this.pageViews.length ;i < max ;i++){
+				if(this.pageViews[i].name == name){
+					pageView = this.pageViews[i] ;
+					break ;
+				}
+			}
+			return pageView ;
+		},
 		exists:function(pageViewId){
 			var isExists = false ;
 			for(var i =0 ,max = this.pageViews.length ;i < max ;i++){
-				if(this.pageViews[i].id == pageViewId){
+				if(this.pageViews[i].name == pageViewId){
 					isExists = true ;
 					break ;
 				}

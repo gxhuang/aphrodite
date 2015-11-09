@@ -101,7 +101,7 @@
                         </br>
 
                     </div>
-                    <div class="tab-pane" id="sysDictDet">
+                    <div class="tab-pane" id="sysDictDet" key="sysDict">
                         </br>
                         <form id="dictDetForm" neworedit class="container-fluid form-horizontal hide" dataset="form" role="form">
                             <div class="form-group">
@@ -149,8 +149,8 @@
                                     <table class="table table-hover">
                                         <thead>
                                             <tr>
-                                                <th name="id" class="hide" datatype="string">ID</th>
-                                                <th name="dictId" class="hide" datatype="string">DICT_ID</th>
+                                                <th name="id" class="hide" datatype="string"></th>
+                                                <th name="dictId" fk="id" class="hide" datatype="string"></th>
                                                 <th name="dictDetCode" datatype="string">明细编号</th>
                                                 <th name="dictDetName" datatype="string">明细名称</th>
                                                 <th name="dictDetValue" datatype="string">明细值</th>

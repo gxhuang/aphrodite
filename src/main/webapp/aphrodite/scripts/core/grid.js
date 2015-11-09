@@ -48,11 +48,6 @@
 		/****/
 		_initHeadToolbar : function(){
 			var _jqtoolbar = this.binding.find(".btn-group").find("button").on("click",function(e){
-
-
-
-
-
 				var _jq = $(e.target);
 				var _jqgrid = _jq.parents("[name=grid]") ;
 				var op = _jq.attr("name") ;
@@ -142,6 +137,10 @@
 		},
 		_initThead : function(){
 
+		},
+		getCurrentRecord:function(){
+			var record = this.binding.find("tr[class=active]") ;
+			return record ;
 		},
 		initFootToolbar:function(){
 			var jqfoot = $(this.binding).find(".pager").find("li").find("a").on("click",function(e){

@@ -1,13 +1,16 @@
 (function(){
     var PageView = function(binding,dataset){
         this.binding = binding ;
-        this.id = binding.attr("id") ;
+        // this.id = binding.attr("id") ;
         //form标签中含有的field字段，全都包含于grid里的field，只需要将form中的field的多余的属性补充到grid中对应的field即可。
         //这样可以避免重复定义
         //如果grid隐藏的信息需要在form表示时如何表示,因为grid读到的field是hide状态，而form中则是非hide状态
         this.fields = new Array() ;
         this.fieldIndexs = new Array();
-        this.name = binding.attr("id")
+        this.name = binding.attr("id") ;
+
+        //pageView与pageView之间的关联关系，格式如:"sysDict"表示与"sysDict"pageView存在关联关系
+        this.key = binding.attr("key") ;
         this.forms = new Array() ;
         this.grid = undefined ;
         //使用规则codevalue->codevalue object -> code table当中不一定在form中出现
