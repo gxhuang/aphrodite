@@ -22,27 +22,35 @@
                             <div class="form-group">
                                  <label class="col-sm-1 control-label">字典编号</label>
                                 <div class="col-sm-5">
-                                    <input id="DICT_CODE" type="string" datatype="DICT_CODE" class="form-control" palceholder="DICT_CODE">
+                                    <input id="dictCode" name="dictCode" type="text" datatype="string" class="form-control" palceholder="aaaa">
                                 </div>
                                 <label class="col-sm-1 control-label">字典名称</label>
                                 <div class="col-sm-5">
-                                    <input id="DICT_NAME" type="string" datatype="DICT_NAME" class="form-control" palceholder="DICT_NAME">
+                                    <input id="dictName" type="text" name="dictName" class="form-control" palceholder="字典名称">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-sm-1 control-label">是否有效</label>
                                 <div class="col-sm-5">
-                                    <input id="STATUS" type="string" datatype="STATUS" class="form-control" palceholder="STATUS">
+                                    <input id="status" name="status" type="text"  class="form-control" palceholder="是否有效">
                                 </div>
-                                <label class="col-sm-1 control-label">创建时间</label>
-                                <div class="col-sm-5">
-                                    <input id="CREATED_DATE" type="DATE" datatype="CREATED_DATE" class="form-control" palceholder="CREATED_DATE">
-                                </div>
+                                
                             </div>
                             <div class="form-group">                               
                                 <label class="col-sm-1 control-label">备注</label>
                                 <div class="col-sm-5">
-                                    <input id="REMARK" type="string" datatype="REMARK" class="form-control" palceholder="REMARK">
+                                    <input id="remark" name="remark" type="text" class="form-control" palceholder="备注">
+                                </div>
+                            </div>
+
+                             <div class="form-group" name="toolbar">
+                                <div class="row">
+                                    <div class="col-md-6 col-md-offset-6">
+                                        <div class="btn-group btn-group-justified" aria-label="Justified button group" role="group">
+                                            <a class="btn btn-default btn-info" role="button" href="#" name="submit">确定</a>
+                                            <a class="btn btn-default btn-warning" role="button" href="#" name="cancle">取消</a>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </form>
@@ -64,11 +72,10 @@
                                     <table class="table table-hover">
                                         <thead>
                                             <tr>
-                                                <th width="80px" class="hide" name="ID" datatype="ID">name="ID"</th>
-                                                <th width="80px" name="DICT_CODE" datatype="DICT_CODE">字典编号</th>
-                                                <th width="80px" name="DICT_NAME" datatype="DICT_NAME">字典名称</th>
-                                                <th width="80px" name="STATUS" datatype="STATUS">是否有效</th>
-                                                <th width="80px" name="CREATED_DATE" datatype="CREATED_DATE">创建时间</th>
+                                                <th width="80px" class="hide" name="id" datatype="string">name="ID"</th>
+                                                <th width="80px" name="dictCode" datatype="string">字典编号</th>
+                                                <th width="80px" name="dictName" datatype="string">字典名称</th>
+                                                <th width="80px" name="status" datatype="STATUS">是否有效</th>
                                             </tr>
                                         </thead>
 
@@ -100,17 +107,27 @@
                             <div class="form-group">
                                 <label class="col-sm-1 control-label">明细编号</label>
                                 <div class="col-sm-5">
-                                    <input id="dictDetCode" name="dictDetCode" type="string" class="form-control" palceholder="明细编码">
+                                    <input id="dictDetCode" name="dictDetCode" type="text" class="form-control" palceholder="明细编码">
                                 </div>
                                 <label class="col-sm-1 control-label">明细名称</label>
                                 <div class="col-sm-5">
-                                    <input id="dictDetName" name="dictDetName" type="string" class="form-control" palceholder="明细名称">
+                                    <input id="dictDetName" name="dictDetName" type="text" class="form-control" palceholder="明细名称">
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-1 control-label">值</label>
+                                <label class="col-sm-1 control-label">明细值</label>
                                 <div class="col-sm-5">
-                                    <input id="dictDetValue" name="dictDetValue" type="string" class="form-control" palceholder="值">
+                                    <input id="dictDetValue" name="dictDetValue" type="text" class="form-control" palceholder="明细值">
+                                </div>
+                            </div>
+                            <div class="form-group" name="toolbar">
+                                <div class="row">
+                                    <div class="col-md-6 col-md-offset-6">
+                                        <div class="btn-group btn-group-justified" aria-label="Justified button group" role="group">
+                                            <a class="btn btn-default btn-info" role="button" href="#" name="submit">确定</a>
+                                            <a class="btn btn-default btn-warning" role="button" href="#" name="cancle">取消</a>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </form>

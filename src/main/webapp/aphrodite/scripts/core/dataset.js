@@ -24,14 +24,13 @@
             tablist.on("click",function(e){
             	var jqtarget = $(e.target) ;
             	var href = jqtarget.attr("href") ;
-            	jqtarget.parents(".page-content").getDataset().initPageView(href) ;
-            	
+            	jqtarget.parents(".page-content").getDataset().initPageView(href) ;            	
             }) ;
 			
 		},
 		initPageView:function(pageViewhref){
 			if(!this.exists(pageViewhref.substring(1,pageViewhref.length))){
-				alert(111)
+				//alert(111)
 				var jqtab = $(pageViewhref) ;
 
 				var pageView = jqtab._pageView(this) ;

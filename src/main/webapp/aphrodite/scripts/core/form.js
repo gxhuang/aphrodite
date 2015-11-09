@@ -20,15 +20,16 @@
 				if(prop == undefined || typeof(prop) == "function"){
 					continue ;
 				}
-				fieldbindings[prop].val("");
+				this.fieldbindings[prop].val("");
 			}
 		} ,
 		_initFields:function(){
 			var _fields = this.binding.find(".form-control") ;
 
-			var pageView = this.pageView
+			var pageView = this.pageView ;
 			var bindings = this.fieldbindings ;
 			$.each(_fields,function(index,_field){
+				// alert(index)
 				var jqField = $(_field) ;
 				bindings[jqField.attr("name")] = jqField ;
 				var field = pageView.getField(jqField.attr("name")) ;
