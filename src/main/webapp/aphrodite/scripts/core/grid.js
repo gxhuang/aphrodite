@@ -109,7 +109,6 @@
 					if(tr == undefined || tr.length == 0){
 						alert("please select!") ;
 					}else{
-
 						var record = tr.data("record") ;
 						record.status = "DELETE" ;
 						tr.removeClass().addClass("danger") ;
@@ -139,8 +138,8 @@
 
 		},
 		getCurrentRecord:function(){
-			var record = this.binding.find("tr[class=active]") ;
-			return record ;
+			var records = this.binding.find("tr").filter(".active") ;
+			return records ;
 		},
 		initFootToolbar:function(){
 			var jqfoot = $(this.binding).find(".pager").find("li").find("a").on("click",function(e){

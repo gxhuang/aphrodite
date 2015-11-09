@@ -22,6 +22,8 @@
 			this.currentPageView = href.substring(1,href.length)
 			this.initPageView(href) ;
 
+			// tablist.find("a[href=#sysDictDet]").tab("show") ;
+
             tablist.on("click",function(e){
 
             	var jqtarget = $(e.target) ;
@@ -29,14 +31,16 @@
             	var dataset = jqtarget.parents(".page-content").getDataset() ;
             	var flag = dataset.initPageView(href) ;  
             	if(!flag){
-            		$("#"+dataset.currentPageView).tab("show") ;
+            		$(this).find("a[href=#"+dataset.currentPageView+"]").tab("show") ;
             	}else{
             		dataset.currentPageView = href.substring(1,href.length)     ;     	
-            	}            	
+            	}
+            	return flag ;            	
             }) ;
 			
 		},
 		initPageView:function(pageViewhref){
+			var flag = true ;
 			if(!this.exists(pageViewhref.substring(1,pageViewhref.length))){
 				
 				//alert(111)
@@ -44,27 +48,27 @@
 				var key = jqtab.attr("key") ;
 				if(key != undefined && this.pageViews.length > 0 && this.getPageView(key).grid.getCurrentRecord().length <=0){
 					alert("请先选中记录") ;
-					return false ;
-				}
-				
+					flag = false ;
+				}else{
+					var pageView = jqtab._pageView(this) ;
+					// dataset.addPageView(pageView) ;
 
-				var pageView = jqtab._pageView(this) ;
-				// dataset.addPageView(pageView) ;
+					var jqgrid = pageView.binding.find("div[name=grid]") ;
+		            var grid = jqgrid._grid(pageView);
+		            pageView.grid = grid 
 
-				var jqgrid = pageView.binding.find("div[name=grid]") ;
-	            var grid = jqgrid._grid(pageView);
-	            pageView.grid = grid 
+		            // var _forms = pageView.forms ;
+		            var jqforms = pageView.binding.find("form") ;
+		            $.each(jqforms,function(index,jqform){
+		              var form = $(jqform)._form(pageView) ;
+		                pageView.forms[pageView.forms.length] = form ;
+		            }) ;
+		            this.addPageView(pageView) ;
 
-	            // var _forms = pageView.forms ;
-	            var jqforms = pageView.binding.find("form") ;
-	            $.each(jqforms,function(index,jqform){
-	              var form = $(jqform)._form(pageView) ;
-	                pageView.forms[pageView.forms.length] = form ;
-	            }) ;
-	            this.addPageView(pageView) ;
-
-	            pageView.init();
-			}			
+		            pageView.init();
+				}				
+			}		
+			return flag ;
 		},
 		addPageView:function(pageView){
 
