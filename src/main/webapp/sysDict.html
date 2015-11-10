@@ -7,11 +7,15 @@
 <body>
 <!-- BEGIN PAGE CONTENT-->
 <div class="row">
+    <div class="alert alert-warning alert-dismissible" role="alert">
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <strong>Warning!</strong> Better check yourself, you're not looking too good.
+    </div>
     <div class="col-md-12">
         <!--new or edit start-->
         <div id="orderNewOrEdit" class="container-fluid collapse in">
             <div id="tabs" class="row">
-                <ul class="nav nav-pills nav-justified" role="tablist">
+                <ul class="nav nav-tabs" role="tablist">
                     <li class="active"><a href="#sysDict" role="tab" data-toggle="tab">数据字典</a></li>
                     <li><a href="#sysDictDet" role="tab" data-toggle="tab">字典明细</a></li>
                 </ul>
@@ -39,7 +43,7 @@
                             <div class="form-group">                               
                                 <label class="col-sm-1 control-label">备注</label>
                                 <div class="col-sm-5">
-                                    <input id="remark" name="remark" type="text" class="form-control" palceholder="备注">
+                                    <textarea id="remark" name="remark" type="textarea" class="form-control" palceholder="备注"></textarea>
                                 </div>
                             </div>
 
@@ -73,16 +77,15 @@
                                     <table class="table table-hover">
                                         <thead>
                                             <tr>
-                                                <th width="80px" class="hide" name="id" datatype="string">name="ID"</th>
+                                                <th width="80px" class="hide" name="id" datatype="string"></th>
+                                                <th width="20px"><input type="checkbox"/></th>
                                                 <th width="80px" name="dictCode" datatype="string">字典编号</th>
                                                 <th width="80px" name="dictName" datatype="string">字典名称</th>
-                                                <th width="80px" name="status" datatype="STATUS">是否有效</th>
+                                                <th width="80px" name="status" datatype="string">是否有效</th>
                                             </tr>
                                         </thead>
-
                                         <tbody>
                                         </tbody>
-
                                     </table>
                                 </div>
                             </div>
@@ -151,6 +154,7 @@
                                     <table class="table table-hover">
                                         <thead>
                                             <tr>
+                                                <th width="20px"><input type="checkbox"/></th>
                                                 <th name="id" class="hide" datatype="string"></th>
                                                 <th name="dictId" fk="id" class="hide" datatype="string"></th>
                                                 <th name="dictDetCode" datatype="string">明细编号</th>

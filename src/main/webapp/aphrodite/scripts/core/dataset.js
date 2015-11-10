@@ -46,11 +46,14 @@
 				//alert(111)
 				var jqtab = $(pageViewhref) ;
 				var key = jqtab.attr("key") ;
-				if(key != undefined && this.pageViews.length > 0 && this.getPageView(key).grid.getCurrentRecord().length <=0){
-					alert("请先选中记录") ;
-					flag = false ;
-				}else if(this.getPageView(key).grid.getCurrentRecord().length > 0){
-					this.getPageView(key).grid.load(fk) ;
+				var id = jqtab.attr("id") ;
+				if(this.getPageView(id) != undefined ){
+					if(key != undefined && this.getPageView(key) != undefined && this.getPageView(key).grid.getCurrentRecord().length <= 0){
+						alert("请先选中记录") ;
+						flag = false ;
+					}else{
+						this.getPageView(key).grid.load(fk) ;
+					}
 				}else{
 					var pageView = jqtab._pageView(this) ;
 					// dataset.addPageView(pageView) ;
@@ -66,15 +69,12 @@
 		                pageView.forms[pageView.forms.length] = form ;
 		            }) ;
 		            this.addPageView(pageView) ;
-		            pageView.load(currentRecord[0][pageView.getFk()["fk"]]) ;
-
 		            pageView.init();
-				}				
-			}		
+				}					
+			}
 			return flag ;
 		},
 		addPageView:function(pageView){
-
 			this.pageViews[this.pageViews.length] = pageView ;
 		},
 		getPageView:function(name){

@@ -26,6 +26,9 @@
 			var pv = this.pageView
 			$.each(ths,function(index,th){
 				var jqField = $(this) ;
+				if(jqField.attr("name") == undefined){
+					return ;
+				}
 				var _field = pv.getField() ;
 				if(_field == undefined){
 					_field = jqField._field() ;
@@ -176,7 +179,7 @@
 			var jqtbody = this.binding.find("tbody") ;
 			//这个能保证顺序与table的一致吗
 			var fields = this.pageView.fields ;		
-			var trhtml = "<tr>" ;
+			var trhtml = "<tr><td><input type=\"checkbox\"></td>" ;
 			trhtml += this.tdhtml(record) ;
 			trhtml += "</tr>" ;
 
@@ -186,8 +189,17 @@
 			var jqtr = this.binding.find("tbody").append(trhtml).find("tr").last();
 			jqtr.on("click",function(){
 				var _jqthis = $(this) ;
-				_jqthis.parent("tbody").find("tr[class=active]").removeClass("active") ;
-				_jqthis.addClass("active") ;
+				if(_jqthis.find("input[type=checkbox]").prop("checked")){
+					_jqthis.find("input[type=checkbox]").prop("checked",false) ;
+					_jqthis.removeClass(".active") ;
+				}else{
+					_jqthis.parent("tbody").find("tr").find("input[type=checkbox]").prop("checked",false);
+					_jqthis.parent("tbody").find("tr[class=active]").removeClass("active")
+					//_jqthis.addClass("active") ;
+					_jqthis.find("input[type=checkbox]").prop("checked",true) ;
+					_jqthis.addClass("active")
+				}
+				
 			}) ;
 			jqtr.addClass(this.getStatus(this.status)) ;
 
@@ -210,7 +222,7 @@
 		},
 		update:function(record){
 			//找到相应的记录，更新掉记录的值
-			var tr = this.binding.find("tbody").find("tr.active");
+			var tr = this.binding.find("tbody").filter(".active");
 			tr.empty() ;
 			var tdhtml = this.tdhtml(record);			
 			tr.append(tdhtml) ;
