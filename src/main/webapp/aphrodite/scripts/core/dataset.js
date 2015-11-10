@@ -51,6 +51,7 @@
 			var firstFlag = false ;
 
 
+			//判断页是否是第一次点，如果是第一次点则需要做初始化动，如果不是，则是否加载数据
 			if(key == undefined){
 				if(this.getPageView(id) == undefined){
 					firstFlag = true ;
@@ -66,7 +67,7 @@
 					firstFlag = false ;
 				}
 			}
-			
+
 
 			if(firstFlag){					
 				var pageView = jqtab._pageView(this) ;
@@ -84,6 +85,11 @@
 	            }) ;
 	            this.addPageView(pageView) ;
 	            pageView.init() ;
+			}else{
+				//查看是否需要加载数据
+				if(key != undefined){
+					this.getPageView(key).grid.load(key) ;
+				}
 			}
 
 			return flag ;
