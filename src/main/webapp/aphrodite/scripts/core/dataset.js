@@ -40,38 +40,52 @@
 			
 		},
 		initPageView:function(pageViewhref){
-			var flag = true ;
-			if(!this.exists(pageViewhref.substring(1,pageViewhref.length))){
+			var flag = true ;			
 				
-				//alert(111)
-				var jqtab = $(pageViewhref) ;
-				var key = jqtab.attr("key") ;
-				var id = jqtab.attr("id") ;
-				if(this.getPageView(id) != undefined ){
-					if(key != undefined && this.getPageView(key) != undefined && this.getPageView(key).grid.getCurrentRecord().length <= 0){
-						alert("请先选中记录") ;
-						flag = false ;
-					}else{
-						this.getPageView(key).grid.load(fk) ;
-					}
-				}else{
-					var pageView = jqtab._pageView(this) ;
-					// dataset.addPageView(pageView) ;
+			//alert(111)
+			var jqtab = $(pageViewhref) ;
+			var key = jqtab.attr("key") ;
+			
+			var id = jqtab.attr("id") ;
 
-					var jqgrid = pageView.binding.find("div[name=grid]") ;
-		            var grid = jqgrid._grid(pageView);
-		            pageView.grid = grid 
+			var firstFlag = false ;
 
-		            // var _forms = pageView.forms ;
-		            var jqforms = pageView.binding.find("form") ;
-		            $.each(jqforms,function(index,jqform){
-		              	var form = $(jqform)._form(pageView) ;
-		                pageView.forms[pageView.forms.length] = form ;
-		            }) ;
-		            this.addPageView(pageView) ;
-		            pageView.init();
-				}					
+
+			if(key == undefined){
+				if(this.getPageView(id) == undefined){
+					firstFlag = true ;
+				}
+			}else{
+				if(this.getPageView(id) == undefined){
+					firstFlag = true ;
+				}
+
+				if(this.getPageView(key).grid.getCurrentRecord().length == 0){
+					alert("请先选中记录") ;
+					flag = false ;
+					firstFlag = false ;
+				}
 			}
+			
+
+			if(firstFlag){					
+				var pageView = jqtab._pageView(this) ;
+				// dataset.addPageView(pageView) ;
+
+				var jqgrid = pageView.binding.find("div[name=grid]") ;
+	            var grid = jqgrid._grid(pageView);
+	            pageView.grid = grid 
+
+	            // var _forms = pageView.forms ;
+	            var jqforms = pageView.binding.find("form") ;
+	            $.each(jqforms,function(index,jqform){
+	              	var form = $(jqform)._form(pageView) ;
+	                pageView.forms[pageView.forms.length] = form ;
+	            }) ;
+	            this.addPageView(pageView) ;
+	            pageView.init() ;
+			}
+
 			return flag ;
 		},
 		addPageView:function(pageView){

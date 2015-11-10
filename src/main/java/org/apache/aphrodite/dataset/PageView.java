@@ -13,8 +13,6 @@ import org.apache.aphrodite.util.SqlType;
  */
 public class PageView {
 
-
-    //对就package+class
     private String id ;
 
     //tableName

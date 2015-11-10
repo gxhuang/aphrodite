@@ -97,13 +97,13 @@
 					}					
 					
 					if(isSearch){
-						function callback(data,obj) {
+						function _callback(data,obj) {
 							var dataset= JSON.parse(data) ;
 							obj.binding.find("tbody").empty();
 							obj.insert(dataset.pageViews[0].grid.records)  ;
 						}
 						grid.clean();
-						aphroditeSelect(pageView.dataset,callback,grid) ;
+						aphroditeSelect(pageView.dataset,_callback,grid) ;
 					}else{
 						if("INSERT" == pageView.grid.status){
 							grid.append(obj);	

@@ -34,7 +34,7 @@
                     }
                 }
            }
-           function callback(data,pageView){
+           function _callback(data,pageView){
                 var obj = JSON.parse(data) ;
                 for(var prop in obj){
                     pageView.codeValue[prop] = obj[prop] ;
@@ -48,7 +48,7 @@
                 }
            }
            }
-           getData(keys,callback,this) ;
+           getData(keys,_callback,this) ;
 
         },
         setFields:function(fields){

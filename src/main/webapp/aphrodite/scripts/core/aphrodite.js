@@ -152,7 +152,7 @@ function collapseInit(collapse){
 						var tmpgrid = dataset.getGrid(jqbtn.closest("[dataset='grid']").attr("name"));
 
 						//alert(tr.attr("index")) ;
-						var check = this.checked ;
+						var _check = tr.find("input").prop("checked") ;
 						if(check){
 							tr.addClass("active");
 							tmpgrid.select(tr.attr("index")) ;

@@ -191,7 +191,7 @@
 				var _jqthis = $(this) ;
 				if(_jqthis.find("input[type=checkbox]").prop("checked")){
 					_jqthis.find("input[type=checkbox]").prop("checked",false) ;
-					_jqthis.removeClass(".active") ;
+					_jqthis.removeClass("active") ;
 				}else{
 					_jqthis.parent("tbody").find("tr").find("input[type=checkbox]").prop("checked",false);
 					_jqthis.parent("tbody").find("tr[class=active]").removeClass("active")
@@ -200,6 +200,15 @@
 					_jqthis.addClass("active")
 				}
 				
+			}) ;
+			jqtr.find("input").on("click",function(e){
+				var jqcheck = $(this) ;
+				jqcheck.prop("checked",!jqcheck.prop("checked"));
+				if(jqcheck.parent("td").parent("tr").hasClass("active")){
+					jqcheck.parent("td").parent("tr").removeClass("active") ;
+				}else{
+					jqcheck.parent("td").parent("tr").addClass("active") ;
+				}
 			}) ;
 			jqtr.addClass(this.getStatus(this.status)) ;
 
