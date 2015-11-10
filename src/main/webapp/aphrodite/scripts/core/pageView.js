@@ -34,8 +34,8 @@
                     }
                 }
            }
-           function _callback(data,pageView){
-                var obj = JSON.parse(data) ;
+           function _callback(_data,pageView){
+                var obj = JSON.parse(_data) ;
                 for(var prop in obj){
                     pageView.codeValue[prop] = obj[prop] ;
                 }

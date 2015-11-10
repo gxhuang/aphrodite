@@ -97,8 +97,8 @@
 					}					
 					
 					if(isSearch){
-						function _callback(data,obj) {
-							var dataset= JSON.parse(data) ;
+						function _callback(_data,obj) {
+							var dataset= JSON.parse(_data) ;
 							obj.binding.find("tbody").empty();
 							obj.insert(dataset.pageViews[0].grid.records)  ;
 						}

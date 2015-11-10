@@ -59,8 +59,8 @@
                             return value ;
                         }
 
-                        function searchCallback(search,data){
-                            var obj = JSON.parse(data) ;
+                        function searchCallback(search,_data){
+                            var obj = JSON.parse(_data) ;
                             var records = obj.records ;
                             search.setData(records) ;
                         }

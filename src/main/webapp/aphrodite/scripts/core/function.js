@@ -59,10 +59,10 @@ function get(url,message){
     ajax(url,body,callback) ;
 }*/
 
-function getData(arr,callback,obj){
+function getData(arr,_callback,obj){
     var url = "commonServlet" ;
     var message = JSON.stringify(arr) ;
-    ajaxFunction(url,message,callback,obj) ;
+    ajaxFunction(url,message,_callback,obj) ;
 }
 
 function load(){

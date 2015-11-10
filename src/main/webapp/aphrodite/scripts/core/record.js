@@ -1,9 +1,9 @@
 (function(){
 
 	//如果是一棵树，record可以嵌套record
-	var Record = new function(data){
-		this.id = data.id ;
-		this.datatype = data.datatype ;
+	var Record = new function(_data){
+		this.id = _data.id ;
+		this.datatype = _data.datatype ;
 		this.binding = undefined ;
 		//记录变更字段，这样对于大表的处理性能会更高,与后台的相应变更要全局考虑
 		this.changeFields = new Array();
